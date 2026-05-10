@@ -86,7 +86,7 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 
 /* ── DROPDOWN MENU ── */
 #nav-menu{
-  position:fixed;top:0;right:0;bottom:0;z-index:120;width:min(320px,85vw);
+  position:fixed;top:0;right:0;bottom:0;z-index:240;width:min(320px,85vw);
   background:rgba(4,4,14,.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
   border-left:1px solid rgba(196,196,255,.07);
   transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);
@@ -112,7 +112,7 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 }
 .nav-close:hover{color:rgba(196,196,255,.7);}
 #nav-backdrop{
-  display:none;position:fixed;inset:0;z-index:110;
+  display:none;position:fixed;inset:0;z-index:235;
   background:rgba(0,0,10,.5);backdrop-filter:blur(2px);
 }
 #nav-backdrop.open{display:block;}
@@ -554,7 +554,7 @@ body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#090
       <p>Técnica de coherencia cardíaca adaptada al ciclo lunar. Inhala 4 segundos, sostén 4, exhala 6. Repite 5 ciclos.</p>
     </div>
     <div class="breathing-circle" id="breath-circle">
-      <span id="breath-text">Pulsa</span>
+      <span id="breath-text">pulsa en contador</span>
     </div>
     <div class="breath-instruction" id="breath-instruction"></div>
     <div style="text-align:center;margin-top:.8rem;">
@@ -602,12 +602,13 @@ body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#090
       <button class="amt-btn" data-amt="5">🌕 5€</button>
       <button class="amt-btn" data-amt="10">✦ 10€</button>
     </div>
-    <div style="margin-top:.5rem;">
-      <button class="donate-main-btn">Donar · Ko-fi / Stripe</button>
+    <div style="margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+      <button class="donate-main-btn" id="btn-kofi" style="flex:1">☕ Ko-fi</button>
+      <button class="donate-main-btn" id="btn-stripe" style="flex:1">💳 Stripe</button>
     </div>
     <div class="panel-divider"></div>
     <div class="panel-body">
-      <p id="donacion-footer" style="opacity:.45;font-style:italic;">Los pagos estarán activos cuando Lunallena esté en producción. Por ahora — gracias por estar aquí.</p>
+      <p id="donacion-footer" style="opacity:.45;font-style:italic;">Tu aportación se destina directamente a mantener Lunallena activa. Gracias.</p>
     </div>
   </div>
 </div>
@@ -678,6 +679,10 @@ body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#090
 </div>
 
 <script>
+// ── DONATION URLs — fill in your actual links ──
+const KOFI_URL   = 'https://ko-fi.com/YOURNAME';          // ← tu URL de Ko-fi
+const STRIPE_URL = 'https://buy.stripe.com/YOURLINK';     // ← tu Payment Link de Stripe
+
 // ── LUNAR ENGINE ──
 const LC=29.530588853,REF=new Date('2000-01-06T18:14:00Z');
 function lunarAge(d){return(((d-REF)/86400000%LC)+LC)%LC;}
@@ -895,7 +900,7 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   const ratio=isWax?(1-2*t):(2*t-1);
   const rx2=Math.abs(ratio)*r;
 
-  ctx.fillStyle='rgba(4,4,12,.84)';
+  ctx.fillStyle='rgba(5,5,13,.97)';
   ctx.beginPath();
   if(isWax){
     if(ratio>=0){
@@ -922,10 +927,11 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
 
   // ── TERMINATOR SOFT EDGE on shadow boundary ──
   // Soft gradient along the terminator line
-  const tGrad=ctx.createLinearGradient(cx-r*.15,cy,cx+r*.15,cy);
-  tGrad.addColorStop(0,'rgba(2,2,18,0)');
-  tGrad.addColorStop(.5,`rgba(2,2,18,${Math.abs(ratio)<.15?0.25:0})`);
-  tGrad.addColorStop(1,'rgba(2,2,18,0)');
+  const edgeAmt=Math.max(0.18,0.42*(1-Math.abs(ratio)));
+  const tGrad=ctx.createLinearGradient(cx-r*.1,cy,cx+r*.1,cy);
+  tGrad.addColorStop(0,'rgba(5,5,13,0)');
+  tGrad.addColorStop(.5,`rgba(5,5,13,${edgeAmt})`);
+  tGrad.addColorStop(1,'rgba(5,5,13,0)');
   ctx.fillStyle=tGrad;
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
 
@@ -1284,7 +1290,7 @@ const LANG={
     btn:'EN',title:'Lunallena — La próxima luna llena',
     adLabel:'Publicidad',
     footerCalc:'Cálculos astronómicos precisos',footerPrivacy:'Privacidad',
-    breathTap:'Pulsa',breathStart:'Iniciar · 5 ciclos',breathStop:'Detener',breathDone:'Completado',
+    breathTap:'pulsa en contador',breathStart:'Iniciar · 5 ciclos',breathStop:'Detener',breathDone:'Completado',
     breathCycle:(i,t)=>`Ciclo ${i} de ${t}`,
     breathSteps:[
       {phase:'inhale',label:'Inhala',dur:4000,inst:'Inhala profundamente por la nariz'},
@@ -1307,7 +1313,7 @@ const LANG={
     btn:'ES',title:'Fullmoon.co — Next full moon',
     adLabel:'Advertising',
     footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',
-    breathTap:'Tap',breathStart:'Start · 5 cycles',breathStop:'Stop',breathDone:'Completed',
+    breathTap:'tap to start',breathStart:'Start · 5 cycles',breathStop:'Stop',breathDone:'Completed',
     breathCycle:(i,t)=>`Cycle ${i} of ${t}`,
     breathSteps:[
       {phase:'inhale',label:'Inhale',dur:4000,inst:'Breathe in deeply through your nose'},
@@ -1350,7 +1356,7 @@ function applyLang(){
     document.querySelector('#panel-tienda [style]').innerHTML='Lunar branding · Coming soon';
     document.querySelector('#panel-donacion .panel-title').textContent='Support Lunallena';
     document.querySelector('#panel-donacion .panel-sub').textContent='Lunallena is free, beautiful and tracker-free. If it brings you value, consider keeping it alive.';
-    document.querySelector('.donate-main-btn').textContent='Donate · Ko-fi / Stripe';
+    // donate buttons keep their brand labels (no translation needed)
     // nav menu
     document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-label').textContent='The 12 Full Moons');
     document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-sub').textContent='Names, meanings and magic');
@@ -1375,7 +1381,7 @@ function applyLang(){
     document.querySelector('#panel-tienda [style]').innerHTML='Branding lunar · Próximamente';
     document.querySelector('#panel-donacion .panel-title').textContent='Apoya Lunallena';
     document.querySelector('#panel-donacion .panel-sub').textContent='Lunallena es libre, bonita y sin trackers. Si te aporta algo, considera mantenerla encendida.';
-    document.querySelector('.donate-main-btn').textContent='Donar · Ko-fi / Stripe';
+    // donate buttons keep their brand labels
     document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-label').textContent='Las 12 lunas llenas');
     document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-sub').textContent='Nombres, significados y magia');
     document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[1].querySelector('.nav-label').textContent='Mindfulness lunar');
@@ -1523,7 +1529,7 @@ function applyLang(){
   const dbh=document.getElementById('donacion-body-h3'),dbp=document.getElementById('donacion-body-p'),df=document.getElementById('donacion-footer');
   if(dbh)dbh.textContent=currentLang==='en'?'What does your contribution support?':'¿Para qué sirve tu aportación?';
   if(dbp)dbp.textContent=currentLang==='en'?'Domain · Design improvements · English version · No invasive ads ever.':'Dominio · Mejoras de diseño · Versión en inglés · Sin publicidad invasiva para siempre.';
-  if(df)df.textContent=currentLang==='en'?'Payments will be active when Lunallena is in production. For now — thank you for being here.':'Los pagos estarán activos cuando Lunallena esté en producción. Por ahora — gracias por estar aquí.';
+  if(df)df.textContent=currentLang==='en'?'Your contribution goes directly to keeping Lunallena running. Thank you.':'Tu aportación se destina directamente a mantener Lunallena activa. Gracias.';
 }
 
 // ── COUNTDOWN ──
@@ -1561,6 +1567,7 @@ function initMoonFocus(){
 }
 
 // ── NAV MENU ──
+function closePanels(){document.querySelectorAll('.page-panel').forEach(p=>p.style.display='none');}
 function initMenu(){
   const btn=document.getElementById('menu-btn');
   const menu=document.getElementById('nav-menu');
@@ -1571,6 +1578,10 @@ function initMenu(){
   btn.addEventListener('click',()=>menu.classList.contains('open')?close():open());
   closeBtn.addEventListener('click',close);
   backdrop.addEventListener('click',close);
+  // Logo → close panel + go home
+  document.querySelector('.topbar-logo').addEventListener('click',e=>{
+    e.preventDefault();closePanels();close();window.scrollTo(0,0);
+  });
   // Panel links
   document.querySelectorAll('[data-panel]').forEach(el=>{
     el.addEventListener('click',e=>{
@@ -1595,6 +1606,10 @@ function initDonation(){
       btn.classList.add('active');
     });
   });
+  const kofiBtn=document.getElementById('btn-kofi');
+  const stripeBtn=document.getElementById('btn-stripe');
+  if(kofiBtn)kofiBtn.addEventListener('click',()=>window.open(KOFI_URL,'_blank','noopener'));
+  if(stripeBtn)stripeBtn.addEventListener('click',()=>window.open(STRIPE_URL,'_blank','noopener'));
 }
 
 // ── BREATHING EXERCISE ──
