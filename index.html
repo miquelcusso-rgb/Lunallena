@@ -11,7 +11,7 @@
 <title>Lunallena — La próxima luna llena</title>
 <meta name="description" content="Descubre cuándo será la próxima luna llena, los efectos de la luna de hoy y curiosidades lunares verificadas. Countdown en tiempo real.">
 <link rel="alternate" hreflang="es" href="https://www.lunallena.com/">
-<link rel="alternate" hreflang="en" href="https://www.fullmoon.co/">
+<link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/">
 <link rel="alternate" hreflang="x-default" href="https://www.lunallena.com/">
 <link rel="apple-touch-icon" id="apple-touch-icon" href="">
 <link rel="icon" type="image/png" id="favicon" href="">
@@ -353,7 +353,7 @@ body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#090
 // Auto-switch language on fullmoon.co
 (function(){
   const host=location.hostname;
-  if(host==='www.fullmoon.co'||host==='fullmoon.co'){
+  if(host==='www.nextfullmoon.co'||host==='nextfullmoon.co'){
     document.documentElement.lang='en';
   }
 })();
@@ -681,7 +681,7 @@ body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#090
 <script>
 // ── DONATION URLs — fill in your actual links ──
 const KOFI_URL   = 'https://ko-fi.com/miquelcusso';
-const STRIPE_URL = 'https://buy.stripe.com/YOURLINK';     // ← tu Payment Link de Stripe
+const STRIPE_URL = 'https://buy.stripe.com/4gM3cx75U5zx5Sna769R600';
 
 // ── LUNAR ENGINE ──
 const LC=29.530588853,REF=new Date('2000-01-06T18:14:00Z');
@@ -1310,7 +1310,7 @@ const LANG={
     days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     nextPrefix:'Next',
     cdLabels:['days','hours','min','sec'],
-    btn:'ES',title:'Fullmoon.co — Next full moon',
+    btn:'ES',title:'Nextfullmoon.co — Next full moon',
     adLabel:'Advertising',
     footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',
     breathTap:'tap to start',breathStart:'Start · 5 cycles',breathStop:'Stop',breathDone:'Completed',
@@ -1668,7 +1668,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   tick();setInterval(tick,1000);
   initStars();initMoonFocus();initMenu();initDonation();initBreathing();initPWA();
   // Auto-detect language from domain
-  if(location.hostname==='www.fullmoon.co'||location.hostname==='fullmoon.co'){currentLang='en';}
+  if(location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co'){currentLang='en';}
   applyLang();
   window.addEventListener('resize',()=>updateSlidePos());
 });
