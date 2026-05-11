@@ -7,24 +7,54 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Lunallena">
-<meta name="theme-color" content="#05050d">
+<meta name="theme-color" content="#07091e">
 <title>Lunallena — La próxima luna llena</title>
 <meta name="description" content="Descubre cuándo será la próxima luna llena, los efectos de la luna de hoy y curiosidades lunares verificadas. Countdown en tiempo real.">
+<link rel="canonical" href="https://www.lunallena.com/">
 <link rel="alternate" hreflang="es" href="https://www.lunallena.com/">
 <link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/">
 <link rel="alternate" hreflang="x-default" href="https://www.lunallena.com/">
 <link rel="apple-touch-icon" id="apple-touch-icon" href="">
 <link rel="icon" type="image/png" id="favicon" href="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lunallena">
+<meta property="og:url" content="https://www.lunallena.com/">
+<meta property="og:title" content="Lunallena — La próxima luna llena">
+<meta property="og:description" content="Descubre cuándo será la próxima luna llena, los efectos de la luna de hoy y curiosidades lunares verificadas. Countdown en tiempo real.">
+<meta property="og:image" content="https://www.lunallena.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lunallena — La próxima luna llena">
+<meta name="twitter:description" content="Descubre cuándo será la próxima luna llena. Fase lunar de hoy con countdown en tiempo real.">
+<meta name="twitter:image" content="https://www.lunallena.com/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Lunallena","url":"https://www.lunallena.com/","description":"Descubre cuándo será la próxima luna llena y la fase lunar de hoy.","inLanguage":"es","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.lunallena.com/"}}}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600&family=Cinzel+Decorative:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --night:#05050d;--silver:#c4c4d8;--gold:#c9a84c;--pale:#ece8f5;
-  --bg-gradient:radial-gradient(ellipse at 30% 20%,#0e0e2e 0%,#05050d 60%,#000008 100%);
+  --bg-gradient:
+    radial-gradient(ellipse 80% 60% at 35% 30%,#0e1535 0%,transparent 65%),
+    radial-gradient(ellipse 55% 70% at 75% 80%,#0a1028 0%,transparent 60%),
+    radial-gradient(ellipse at 50% 50%,#0c1230 0%,#07091e 55%,#04060f 100%);
   --safe-bottom:env(safe-area-inset-bottom,0px);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{font-size:16px;scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;}
 body{background:var(--bg-gradient);min-height:100vh;font-family:'Cormorant Garamond',Georgia,serif;color:var(--pale);overflow-x:hidden;position:relative;transition:background 2s ease;}
+body::after{
+  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 35% 28% at 10% 80%,rgba(8,12,38,.6) 0%,transparent 100%),
+    radial-gradient(ellipse 25% 20% at 90% 10%,rgba(6,10,30,.5) 0%,transparent 100%);
+}
 
 #starfield{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
@@ -55,11 +85,9 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 }
 .topbar-logo:hover{opacity:1;}
 .topbar-logo-dot{
-  width:22px;height:22px;border-radius:50%;flex-shrink:0;
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
   background:radial-gradient(circle at 36% 36%,#e4e4ff,#8888b0);
-  box-shadow:0 0 12px rgba(196,196,255,.45);
-  position:relative;top:0px;
-  align-self:center;
+  box-shadow:0 0 10px rgba(196,196,255,.4);
 }
 /* ── LANG TOGGLE ── */
 #lang-toggle{
@@ -122,7 +150,13 @@ main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:co
 
 /* ── TITLE ── */
 .title-block{text-align:center;margin-bottom:1.5vh;animation:fsi 1.4s cubic-bezier(.16,1,.3,1) both;}
-.title-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.76rem,1.1vw,.9rem);letter-spacing:.55em;text-transform:uppercase;color:var(--silver);opacity:.38;margin-bottom:.6rem;}
+.title-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.76rem,1.1vw,.9rem);letter-spacing:.55em;text-transform:uppercase;color:var(--silver);opacity:.38;margin-bottom:.5rem;}
+.main-title{
+  font-family:'Cinzel Decorative',serif;font-weight:300;
+  font-size:clamp(2rem,5.5vw,3.6rem);
+  letter-spacing:.08em;color:#fff;opacity:.9;line-height:1.1;
+  text-shadow:0 0 40px rgba(180,190,255,.22);
+}
 
 /* ── CENTRAL MOON ── */
 .moon-stage{
@@ -134,7 +168,10 @@ main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:co
 #central-moon-canvas{
   width:clamp(240px,50vw,600px);height:clamp(240px,50vw,600px);
   display:block;
-  filter:drop-shadow(0 0 32px rgba(196,196,255,.32)) drop-shadow(0 0 70px rgba(160,160,220,.12));
+  filter:
+    drop-shadow(0 0 18px rgba(175,188,255,.42))
+    drop-shadow(0 0 55px rgba(148,165,235,.20))
+    drop-shadow(0 0 110px rgba(120,140,215,.09));
   transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s;
   animation:moonFloat 9s ease-in-out infinite;
 }
@@ -237,14 +274,31 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 
 @keyframes fsi{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
-body.phase-new-moon{--bg-gradient:radial-gradient(ellipse at 50% 50%,#020208 0%,#04040c 50%,#000 100%);}
-body.phase-waxing-crescent{--bg-gradient:radial-gradient(ellipse at 35% 25%,#0a0a26 0%,#060616 60%,#000009 100%);}
-body.phase-first-quarter{--bg-gradient:radial-gradient(ellipse at 25% 20%,#0d0d32 0%,#08081c 60%,#000012 100%);}
-body.phase-waxing-gibbous{--bg-gradient:radial-gradient(ellipse at 20% 15%,#111142 0%,#0a0a26 60%,#00001c 100%);}
-body.phase-full-moon{--bg-gradient:radial-gradient(ellipse at 50% 28%,#1c1c50 0%,#0e0e34 40%,#040418 100%);}
-body.phase-waning-gibbous{--bg-gradient:radial-gradient(ellipse at 75% 20%,#0f0f3c 0%,#090922 60%,#000012 100%);}
-body.phase-last-quarter{--bg-gradient:radial-gradient(ellipse at 70% 25%,#0c0c2c 0%,#070718 60%,#000009 100%);}
-body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#09092c 0%,#050512 60%,#000006 100%);}
+body.phase-new-moon{--bg-gradient:
+  radial-gradient(ellipse 65% 55% at 50% 45%,#080d20 0%,transparent 68%),
+  radial-gradient(ellipse at 50% 50%,#07091a 0%,#040610 60%,#02030a 100%);}
+body.phase-waxing-crescent{--bg-gradient:
+  radial-gradient(ellipse 70% 55% at 30% 28%,#101838 0%,transparent 65%),
+  radial-gradient(ellipse at 40% 50%,#0c1230 0%,#060a1e 60%,#030610 100%);}
+body.phase-first-quarter{--bg-gradient:
+  radial-gradient(ellipse 65% 55% at 24% 22%,#121a42 0%,transparent 62%),
+  radial-gradient(ellipse at 38% 48%,#0e1438 0%,#080c26 58%,#040816 100%);}
+body.phase-waxing-gibbous{--bg-gradient:
+  radial-gradient(ellipse 60% 50% at 20% 18%,#161e50 0%,transparent 60%),
+  radial-gradient(ellipse at 35% 45%,#101840 0%,#0a1030 55%,#060c1e 100%);}
+body.phase-full-moon{--bg-gradient:
+  radial-gradient(ellipse 65% 48% at 50% 28%,#1e2660 0%,transparent 56%),
+  radial-gradient(ellipse 45% 42% at 50% 78%,#101840 0%,transparent 68%),
+  radial-gradient(ellipse at 50% 50%,#141c4e 0%,#0a1038 45%,#060c20 100%);}
+body.phase-waning-gibbous{--bg-gradient:
+  radial-gradient(ellipse 60% 52% at 76% 22%,#141c4c 0%,transparent 60%),
+  radial-gradient(ellipse at 65% 48%,#0e1440 0%,#080e2c 58%,#050918 100%);}
+body.phase-last-quarter{--bg-gradient:
+  radial-gradient(ellipse 65% 52% at 72% 25%,#101838 0%,transparent 63%),
+  radial-gradient(ellipse at 62% 50%,#0c1230 0%,#07091e 60%,#040610 100%);}
+body.phase-waning-crescent{--bg-gradient:
+  radial-gradient(ellipse 68% 50% at 68% 30%,#0e1434 0%,transparent 64%),
+  radial-gradient(ellipse at 60% 50%,#0a1028 0%,#06081a 60%,#03050e 100%);}
 
 @media(max-width:768px){
   main{padding:clamp(4.5rem,10vh,6rem) 5vw 20vh;}
@@ -350,11 +404,27 @@ body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#090
 .ios-close{margin-top:.9rem;background:transparent;border:1px solid rgba(196,196,255,.09);color:rgba(200,200,220,.32);font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.2em;padding:.46rem 1.2rem;border-radius:2px;cursor:pointer;}
 </style>
 <script>
-// Auto-switch language on fullmoon.co
 (function(){
   const host=location.hostname;
-  if(host==='www.nextfullmoon.co'||host==='nextfullmoon.co'){
+  const isEN=host==='www.nextfullmoon.co'||host==='nextfullmoon.co';
+  if(isEN){
     document.documentElement.lang='en';
+    const canonical=document.querySelector('link[rel="canonical"]');
+    if(canonical)canonical.href='https://www.nextfullmoon.co/';
+    const ogUrl=document.querySelector('meta[property="og:url"]');
+    if(ogUrl)ogUrl.content='https://www.nextfullmoon.co/';
+    const ogImg=document.querySelector('meta[property="og:image"]');
+    if(ogImg)ogImg.content='https://www.nextfullmoon.co/og.png';
+    const twImg=document.querySelector('meta[name="twitter:image"]');
+    if(twImg)twImg.content='https://www.nextfullmoon.co/og.png';
+    const ogTitle=document.querySelector('meta[property="og:title"]');
+    if(ogTitle)ogTitle.content='Nextfullmoon.co — Next full moon';
+    const ogDesc=document.querySelector('meta[property="og:description"]');
+    if(ogDesc)ogDesc.content='Find out when the next full moon is. Real-time countdown and today\'s lunar phase.';
+    const twTitle=document.querySelector('meta[name="twitter:title"]');
+    if(twTitle)twTitle.content='Nextfullmoon.co — Next full moon';
+    const ogLocale=document.querySelector('meta[property="og:locale"]');
+    if(ogLocale)ogLocale.content='en_US';
   }
 })();
 </script>
@@ -403,7 +473,8 @@ body.phase-waning-crescent{--bg-gradient:radial-gradient(ellipse at 65% 30%,#090
 <!-- MAIN -->
 <main>
   <div class="title-block">
-    <p class="title-eyebrow">Calendario Lunar</p>
+    <p class="title-eyebrow" id="title-eyebrow">La luna de hoy</p>
+    <h1 class="main-title" id="main-title">Luna llena</h1>
   </div>
 
   <!-- CENTRAL MOON — canvas rendered -->
@@ -682,14 +753,14 @@ const LC=29.530588853,REF=new Date('2000-01-06T18:14:00Z');
 function lunarAge(d){return(((d-REF)/86400000%LC)+LC)%LC;}
 function lunarIllum(a){return((1-Math.cos(a/LC*2*Math.PI))/2)*100;}
 function lunarPhase(a){
-  if(a<1.85)  return{n:'Luna nueva',        e:'🌑',k:'new-moon'};
-  if(a<7.38)  return{n:'Cuarto creciente',  e:'🌒',k:'waxing-crescent'};
-  if(a<9.22)  return{n:'Primer cuarto',     e:'🌓',k:'first-quarter'};
-  if(a<14.77) return{n:'Gibosa creciente',  e:'🌔',k:'waxing-gibbous'};
-  if(a<16.61) return{n:'Luna llena',        e:'🌕',k:'full-moon'};
-  if(a<22.15) return{n:'Gibosa menguante',  e:'🌖',k:'waning-gibbous'};
-  if(a<23.99) return{n:'Último cuarto',     e:'🌗',k:'last-quarter'};
-  return       {n:'Creciente menguante',    e:'🌘',k:'waning-crescent'};
+  if(a<1.85)  return{n:'Luna nueva',       e:'🌑',k:'new-moon'};
+  if(a<7.38)  return{n:'Luna creciente',   e:'🌒',k:'waxing-crescent'};
+  if(a<9.22)  return{n:'Cuarto creciente', e:'🌓',k:'first-quarter'};
+  if(a<14.77) return{n:'Gibosa creciente', e:'🌔',k:'waxing-gibbous'};
+  if(a<16.61) return{n:'Luna llena',       e:'🌕',k:'full-moon'};
+  if(a<22.15) return{n:'Gibosa menguante', e:'🌖',k:'waning-gibbous'};
+  if(a<23.99) return{n:'Cuarto menguante', e:'🌗',k:'last-quarter'};
+  return       {n:'Luna menguante',        e:'🌘',k:'waning-crescent'};
 }
 function nextFull(d){const a=lunarAge(d);const dd=a<=14.765?14.765-a:LC-a+14.765;return new Date(d.getTime()+dd*86400000);}
 function pad(n){return String(Math.floor(n)).padStart(2,'0');}
@@ -713,12 +784,12 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   // ── CLIP to circle ──
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
 
-  // ── BASE: warm highland tone ──
-  const base=ctx.createRadialGradient(cx-r*.18,cy-r*.2,r*.05,cx,cy,r);
-  base.addColorStop(0,'#e8e4d8');
-  base.addColorStop(.45,'#ccc8b8');
-  base.addColorStop(.78,'#b0aaa0');
-  base.addColorStop(1,'#888480');
+  // ── BASE: bright lunar surface ──
+  const base=ctx.createRadialGradient(cx-r*.15,cy-r*.18,r*.04,cx,cy,r);
+  base.addColorStop(0,'#f0f1f5');
+  base.addColorStop(.35,'#dcdee8');
+  base.addColorStop(.68,'#b8bacb');
+  base.addColorStop(1,'#8a8c9e');
   ctx.fillStyle=base;ctx.fillRect(cx-r,cy-r,r*2,r*2);
 
   // ── MARIA (lunar seas) — dark basaltic plains ──
@@ -872,19 +943,19 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   });
 
   // ── TERMINATOR SHADING — limb darkening ──
-  const limb=ctx.createRadialGradient(cx,cy,r*.5,cx,cy,r);
+  const limb=ctx.createRadialGradient(cx,cy,r*.45,cx,cy,r);
   limb.addColorStop(0,'rgba(0,0,0,0)');
-  limb.addColorStop(.75,'rgba(0,0,8,.04)');
-  limb.addColorStop(.9,'rgba(0,0,10,.22)');
-  limb.addColorStop(1,'rgba(0,0,12,.55)');
+  limb.addColorStop(.7,'rgba(2,3,12,.06)');
+  limb.addColorStop(.88,'rgba(3,5,16,.32)');
+  limb.addColorStop(1,'rgba(4,6,16,.72)');
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
   ctx.fillStyle=limb;ctx.fill();
 
-  // ── HIGHLIGHTS — atmospheric specular top-left ──
+  // ── HIGHLIGHTS — cool specular (moonlight has slight blue cast) ──
   const spec=ctx.createRadialGradient(cx-r*.3,cy-r*.32,0,cx-r*.2,cy-r*.22,r*.55);
-  spec.addColorStop(0,'rgba(255,255,248,.14)');
-  spec.addColorStop(.5,'rgba(240,238,230,.04)');
-  spec.addColorStop(1,'rgba(220,218,210,0)');
+  spec.addColorStop(0,'rgba(235,240,255,.16)');
+  spec.addColorStop(.45,'rgba(220,228,248,.05)');
+  spec.addColorStop(1,'rgba(200,210,240,0)');
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
   ctx.fillStyle=spec;ctx.fill();
 
@@ -894,7 +965,7 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   const ratio=isWax?(1-2*t):(2*t-1);
   const rx2=Math.abs(ratio)*r;
 
-  ctx.fillStyle='rgba(5,5,13,.97)';
+  ctx.fillStyle='rgba(4,6,16,.98)';
   ctx.beginPath();
   if(isWax){
     if(ratio>=0){
@@ -920,23 +991,43 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   ctx.closePath();ctx.fill();
 
   // ── TERMINATOR SOFT EDGE on shadow boundary ──
-  // Soft gradient along the terminator line
-  const edgeAmt=Math.max(0.18,0.42*(1-Math.abs(ratio)));
-  const tGrad=ctx.createLinearGradient(cx-r*.1,cy,cx+r*.1,cy);
-  tGrad.addColorStop(0,'rgba(5,5,13,0)');
-  tGrad.addColorStop(.5,`rgba(5,5,13,${edgeAmt})`);
-  tGrad.addColorStop(1,'rgba(5,5,13,0)');
+  const edgeAmt=Math.max(0.22,0.5*(1-Math.abs(ratio)));
+  const tGrad=ctx.createLinearGradient(cx-r*.12,cy,cx+r*.12,cy);
+  tGrad.addColorStop(0,'rgba(4,6,16,0)');
+  tGrad.addColorStop(.5,`rgba(4,6,16,${edgeAmt})`);
+  tGrad.addColorStop(1,'rgba(4,6,16,0)');
   ctx.fillStyle=tGrad;
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
 
-  // ── OUTER ATMOSPHERIC GLOW ──
+  // ── EARTHSHINE: faint glow on dark side for thin crescents ──
+  const illumFrac=lunarIllum(age)/100; // 0=new moon, 1=full moon
+  const esStrength=Math.max(0,(.32-illumFrac)/.32);
+  if(esStrength>0){
+    ctx.save();
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
+    const es=ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+    es.addColorStop(0,`rgba(30,40,80,${esStrength*.18})`);
+    es.addColorStop(.6,`rgba(20,28,60,${esStrength*.10})`);
+    es.addColorStop(1,'rgba(10,15,40,0)');
+    ctx.fillStyle=es;ctx.fillRect(cx-r,cy-r,r*2,r*2);
+    ctx.restore();
+  }
+
+  // ── OUTER ATMOSPHERIC GLOW — triple ring for realism ──
   ctx.restore();
-  const glow=ctx.createRadialGradient(cx,cy,r*.95,cx,cy,r*1.12);
-  glow.addColorStop(0,'rgba(200,205,255,0)');
-  glow.addColorStop(.5,'rgba(180,185,240,.06)');
-  glow.addColorStop(1,'rgba(160,165,220,0)');
-  ctx.beginPath();ctx.arc(cx,cy,r*1.12,0,Math.PI*2);
-  ctx.fillStyle=glow;ctx.fill();
+  const g1=ctx.createRadialGradient(cx,cy,r*.96,cx,cy,r*1.08);
+  g1.addColorStop(0,'rgba(190,200,255,0)');
+  g1.addColorStop(.5,'rgba(170,182,245,.09)');
+  g1.addColorStop(1,'rgba(155,168,235,0)');
+  ctx.beginPath();ctx.arc(cx,cy,r*1.08,0,Math.PI*2);
+  ctx.fillStyle=g1;ctx.fill();
+
+  const g2=ctx.createRadialGradient(cx,cy,r*1.06,cx,cy,r*1.22);
+  g2.addColorStop(0,'rgba(160,175,235,0)');
+  g2.addColorStop(.5,'rgba(145,162,225,.05)');
+  g2.addColorStop(1,'rgba(130,148,215,0)');
+  ctx.beginPath();ctx.arc(cx,cy,r*1.22,0,Math.PI*2);
+  ctx.fillStyle=g2;ctx.fill();
 }
 
 function initMoonCanvas(age){
@@ -1271,7 +1362,7 @@ function buildRing(curAge){
 // ── LANG TOGGLE ──
 const LANG={
   es:{
-    eyebrow:'Calendario Lunar',cdCaption:'Próxima luna llena',
+    eyebrow:'La luna de hoy',cdCaption:'Próxima luna llena',
     illumLabel:'Iluminación',phaseLabel:'Fase lunar hoy',
     sliderHead:'Lo que revela la luna de hoy',
     cycleHead:'Ciclo lunar',
@@ -1281,6 +1372,7 @@ const LANG={
     days:['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],
     nextPrefix:'El próximo',
     cdLabels:['días','horas','min','seg'],
+    mainTitle:'Luna llena',
     btn:'EN',title:'Lunallena — La próxima luna llena',
     adLabel:'Publicidad',
     footerCalc:'Cálculos astronómicos precisos',footerPrivacy:'Privacidad',
@@ -1291,10 +1383,10 @@ const LANG={
       {phase:'hold',label:'Sostén',dur:4000,inst:'Retén el aire con calma'},
       {phase:'exhale',label:'Exhala',dur:6000,inst:'Exhala lentamente por la boca'},
     ],
-    phaseNames:{'new-moon':'Luna nueva','waxing-crescent':'Cuarto creciente','first-quarter':'Primer cuarto','waxing-gibbous':'Gibosa creciente','full-moon':'Luna llena','waning-gibbous':'Gibosa menguante','last-quarter':'Último cuarto','waning-crescent':'Creciente menguante'},
+    phaseNames:{'new-moon':'Luna nueva','waxing-crescent':'Luna creciente','first-quarter':'Cuarto creciente','waxing-gibbous':'Gibosa creciente','full-moon':'Luna llena','waning-gibbous':'Gibosa menguante','last-quarter':'Cuarto menguante','waning-crescent':'Luna menguante'},
   },
   en:{
-    eyebrow:'Lunar Calendar',cdCaption:'Next full moon',
+    eyebrow:"Tonight's moon",cdCaption:'Next full moon',
     illumLabel:'Illumination',phaseLabel:'Moon phase today',
     sliderHead:"What tonight's moon reveals",
     cycleHead:'Lunar cycle',
@@ -1304,6 +1396,7 @@ const LANG={
     days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     nextPrefix:'Next',
     cdLabels:['days','hours','min','sec'],
+    mainTitle:'Full Moon',
     btn:'ES',title:'Nextfullmoon.co — Next full moon',
     adLabel:'Advertising',
     footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',
@@ -1326,6 +1419,8 @@ function applyLang(){
   const L=LANG[currentLang];
   document.title=L.title;
   document.querySelector('.title-eyebrow').textContent=L.eyebrow;
+  const mt=document.getElementById('main-title');
+  if(mt)mt.textContent=L.mainTitle;
   document.querySelector('.countdown-caption').textContent=L.cdCaption;
   const ilLabel=document.querySelector('.illum-label span');
   if(ilLabel)ilLabel.textContent=L.illumLabel;
