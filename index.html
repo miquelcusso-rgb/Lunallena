@@ -165,11 +165,7 @@ main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:co
 #central-moon-canvas{
   width:clamp(240px,50vw,600px);height:clamp(240px,50vw,600px);
   display:block;
-  filter:
-    drop-shadow(0 0 18px rgba(175,188,255,.42))
-    drop-shadow(0 0 55px rgba(148,165,235,.20))
-    drop-shadow(0 0 110px rgba(120,140,215,.09));
-  transition:transform .55s cubic-bezier(.16,1,.3,1),filter .55s;
+  transition:transform .55s cubic-bezier(.16,1,.3,1);
   animation:moonFloat 9s ease-in-out infinite;
 }
 body.moon-focused .moon-stage{z-index:20;}
@@ -251,7 +247,7 @@ body.moon-focused .moon-stage{z-index:20;}
 .cycle-phrase{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.14rem,1.7vw,1.32rem);color:rgba(236,232,245,.52);line-height:1.65;margin-bottom:1.2rem;}
 .cycle-phrase strong{color:rgba(255,255,255,.82);font-style:normal;font-family:'Cinzel',serif;font-size:clamp(.62rem,1vw,.78rem);letter-spacing:.15em;text-transform:uppercase;}
 .cycle-ring-container{display:flex;justify-content:center;margin-bottom:.9rem;}
-#cycleRingSvg{width:400px;height:400px;}
+#cycleRingSvg{width:min(400px,92vw);height:min(400px,92vw);}
 .cycle-legend{display:flex;flex-wrap:nowrap;gap:0;justify-content:center;overflow:hidden;}
 .legend-item{
   font-family:'Cinzel',serif;font-size:clamp(.56rem,.68vw,.68rem);
@@ -868,14 +864,24 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   // ── CLIP to circle ──
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
 
-  // ── BASE: high-contrast photorealistic surface ──
+  // ── BASE: sphere curvature gradient ──
   const base=ctx.createRadialGradient(cx-r*.12,cy-r*.15,r*.03,cx,cy,r);
-  base.addColorStop(0,'#f8f8fa');
-  base.addColorStop(.28,'#e8eaee');
-  base.addColorStop(.58,'#c4c6d0');
-  base.addColorStop(.82,'#9a9ca8');
-  base.addColorStop(1,'#6e7080');
+  base.addColorStop(0,'#fafafa');
+  base.addColorStop(.22,'#eaebed');
+  base.addColorStop(.52,'#c0c2cc');
+  base.addColorStop(.80,'#8e9098');
+  base.addColorStop(1,'#5a5c6a');
   ctx.fillStyle=base;ctx.fillRect(cx-r,cy-r,r*2,r*2);
+
+  // ── COARSE ALBEDO PATCHES (highland/lowland variation) ──
+  for(let i=0;i<80;i++){
+    const ang=rng()*Math.PI*2,dist=rng()*r*.90;
+    const px=cx+Math.cos(ang)*dist,py=cy+Math.sin(ang)*dist;
+    const sz=r*(.06+rng()*.14);
+    ctx.beginPath();ctx.arc(px,py,sz,0,Math.PI*2);
+    ctx.fillStyle=rng()>.5?`rgba(230,228,222,${rng()*.07})`:`rgba(28,26,34,${rng()*.08})`;
+    ctx.fill();
+  }
 
   // ── MARIA (lunar seas) — dark basaltic plains ──
   const maria=[
@@ -894,82 +900,74 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
     ctx.save();
     ctx.translate(cx+m.x*r,cy+m.y*r);ctx.rotate(m.rot);
     const mg=ctx.createRadialGradient(0,0,0,0,0,m.rx*r);
-    mg.addColorStop(0,`rgba(48,46,52,${m.a})`);
-    mg.addColorStop(.5,`rgba(58,56,62,${m.a*.80})`);
-    mg.addColorStop(.82,`rgba(72,70,76,${m.a*.45})`);
-    mg.addColorStop(1,'rgba(88,86,92,0)');
+    mg.addColorStop(0,`rgba(44,42,50,${m.a})`);
+    mg.addColorStop(.45,`rgba(54,52,58,${m.a*.82})`);
+    mg.addColorStop(.78,`rgba(68,66,72,${m.a*.44})`);
+    mg.addColorStop(1,'rgba(82,80,86,0)');
     ctx.scale(1,m.ry/m.rx);
     ctx.beginPath();ctx.arc(0,0,m.rx*r,0,Math.PI*2);
     ctx.fillStyle=mg;ctx.fill();ctx.restore();
   });
 
-  // ── SURFACE TEXTURE — albedo variation ──
-  for(let i=0;i<340;i++){
-    const ang=rng()*Math.PI*2,dist=rng()*r*.96;
+  // ── MEDIUM TEXTURE (sub-albedo patches) ──
+  const rng2=seededRand(77);
+  for(let i=0;i<130;i++){
+    const ang=rng2()*Math.PI*2,dist=rng2()*r*.93;
     const px=cx+Math.cos(ang)*dist,py=cy+Math.sin(ang)*dist;
-    const sz=rng()*r*.07+r*.008;
-    const bright=rng()>.48;
+    const sz=r*(.010+rng2()*.026);
     ctx.beginPath();ctx.arc(px,py,sz,0,Math.PI*2);
-    ctx.fillStyle=bright
-      ?`rgba(205,208,218,${rng()*.14})`
-      :`rgba(42,40,48,${rng()*.13})`;
+    ctx.fillStyle=rng2()>.5?`rgba(205,202,195,${rng2()*.12})`:`rgba(22,20,28,${rng2()*.11})`;
     ctx.fill();
   }
 
-  // ── CRATERS — sized & positioned based on real lunar map ──
+  // ── FINE GRAIN (regolith dust) ──
+  const rng3=seededRand(123);
+  for(let i=0;i<550;i++){
+    const ang=rng3()*Math.PI*2,dist=rng3()*r*.97;
+    const px=cx+Math.cos(ang)*dist,py=cy+Math.sin(ang)*dist;
+    const sz=r*(.002+rng3()*.007);
+    ctx.beginPath();ctx.arc(px,py,sz,0,Math.PI*2);
+    ctx.fillStyle=rng3()>.5?`rgba(238,235,228,${rng3()*.09})`:`rgba(16,14,22,${rng3()*.08})`;
+    ctx.fill();
+  }
+
+  // ── CRATERS — named positions + random small impacts ──
   const craters=[
-    // Major craters (name reference for accuracy)
-    // Tycho — bright rayed crater, lower center
-    {x:.04,y:.44,r:.065,depth:.9,rays:true},
-    // Copernicus — center left
-    {x:-.22,y:.12,r:.075,depth:.85,rays:true},
-    // Kepler — left of center
-    {x:-.36,y:.08,r:.045,depth:.8,rays:false},
-    // Aristarchus — upper left, very bright
-    {x:-.52,y:-.18,r:.04,depth:.92,rays:true},
-    // Plato — upper left, dark floor
-    {x:-.28,y:-.52,r:.055,depth:.7,rays:false,dark:true},
-    // Grimaldi — far left
-    {x:-.68,y:.04,r:.055,depth:.65,rays:false,dark:true},
-    // Clavius — large southern
-    {x:-.1,y:.58,r:.088,depth:.72,rays:false},
-    // Maginus — south of Clavius
-    {x:.08,y:.62,r:.06,depth:.68,rays:false},
-    // Schickard — left southern
-    {x:-.42,y:.5,r:.065,depth:.7,rays:false},
-    // Theophilus — near Tranquillitatis
-    {x:.26,y:.18,r:.05,depth:.82,rays:false},
-    // Langrenus — right
-    {x:.56,y:.14,r:.05,depth:.78,rays:false},
-    // Petavius — lower right
-    {x:.58,y:.36,r:.055,depth:.74,rays:false},
-    // Piccolomini — south
-    {x:.28,y:.5,r:.04,depth:.72,rays:false},
-    // Gassendi — top of Humorum
-    {x:-.42,y:.26,r:.04,depth:.7,rays:false},
-    // Random small impacts
-    ...Array.from({length:40},()=>({
-      x:(rng()-.5)*1.7,y:(rng()-.5)*1.7,
-      r:rng()*.025+.008,depth:.5+rng()*.3,rays:false
+    {x:.04,y:.44,r:.065,depth:.9,rays:true},        // Tycho
+    {x:-.22,y:.12,r:.075,depth:.85,rays:true},      // Copernicus
+    {x:-.36,y:.08,r:.045,depth:.8,rays:false},      // Kepler
+    {x:-.52,y:-.18,r:.04,depth:.92,rays:true},      // Aristarchus
+    {x:-.28,y:-.52,r:.055,depth:.7,rays:false,dark:true}, // Plato
+    {x:-.68,y:.04,r:.055,depth:.65,rays:false,dark:true}, // Grimaldi
+    {x:-.1,y:.58,r:.088,depth:.72,rays:false},      // Clavius
+    {x:.08,y:.62,r:.06,depth:.68,rays:false},       // Maginus
+    {x:-.42,y:.5,r:.065,depth:.7,rays:false},       // Schickard
+    {x:.26,y:.18,r:.05,depth:.82,rays:false},       // Theophilus
+    {x:.56,y:.14,r:.05,depth:.78,rays:false},       // Langrenus
+    {x:.58,y:.36,r:.055,depth:.74,rays:false},      // Petavius
+    {x:.28,y:.5,r:.04,depth:.72,rays:false},        // Piccolomini
+    {x:-.42,y:.26,r:.04,depth:.7,rays:false},       // Gassendi
+    ...Array.from({length:50},()=>({
+      x:(rng()-.5)*1.8,y:(rng()-.5)*1.8,
+      r:rng()*.022+.006,depth:.45+rng()*.35,rays:false
     })),
   ];
 
+  const rng4=seededRand(55);
   craters.forEach(cr=>{
     const px=cx+cr.x*r,py=cy+cr.y*r,cr_r=cr.r*r;
-    // Skip if outside disk
     if(Math.hypot(cr.x,cr.y)>1.05)return;
 
-    // Ray system for young craters
     if(cr.rays){
-      const nRays=12+Math.floor(rng()*8);
+      const nRays=12+Math.floor(rng4()*8);
       for(let i=0;i<nRays;i++){
-        const ang=(i/nRays)*Math.PI*2+rng()*.3;
-        const rLen=(2.2+rng()*2.8)*cr_r;
-        const rW=cr_r*(0.12+rng()*.1);
+        const ang=(i/nRays)*Math.PI*2+rng4()*.3;
+        const rLen=(2.2+rng4()*2.8)*cr_r;
+        const rW=cr_r*(0.12+rng4()*.1);
         ctx.save();ctx.translate(px,py);ctx.rotate(ang);
         const rg=ctx.createLinearGradient(0,0,rLen,0);
-        rg.addColorStop(0,`rgba(220,215,205,${cr.depth*.22})`);
-        rg.addColorStop(.4,`rgba(210,205,195,${cr.depth*.12})`);
+        rg.addColorStop(0,`rgba(225,220,210,${cr.depth*.22})`);
+        rg.addColorStop(.4,`rgba(215,210,200,${cr.depth*.12})`);
         rg.addColorStop(1,'rgba(210,205,195,0)');
         ctx.fillStyle=rg;
         ctx.beginPath();ctx.ellipse(rLen/2,0,rLen/2,rW*(1-rLen/r/4),0,0,Math.PI*2);
@@ -977,7 +975,6 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
       }
     }
 
-    // Ejecta blanket (bright halo)
     if(!cr.dark){
       const halo=ctx.createRadialGradient(px,py,cr_r*.6,px,py,cr_r*2.2);
       halo.addColorStop(0,`rgba(215,210,200,${cr.depth*.35})`);
@@ -987,7 +984,6 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
       ctx.fillStyle=halo;ctx.fill();
     }
 
-    // Crater rim — bright outer ring
     const rim=ctx.createRadialGradient(px,py,cr_r*.65,px,py,cr_r*1.12);
     rim.addColorStop(0,'rgba(0,0,0,0)');
     rim.addColorStop(.65,`rgba(210,208,200,${cr.depth*.72})`);
@@ -996,12 +992,8 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
     ctx.beginPath();ctx.arc(px,py,cr_r*1.12,0,Math.PI*2);
     ctx.fillStyle=rim;ctx.fill();
 
-    // Crater interior shadow
-    const interior=ctx.createRadialGradient(
-      px+cr_r*.2,py-cr_r*.18,0,
-      px,py,cr_r
-    );
-    const floorCol=cr.dark?'rgba(32,30,38':'rgba(44,42,50';
+    const interior=ctx.createRadialGradient(px+cr_r*.2,py-cr_r*.18,0,px,py,cr_r);
+    const floorCol=cr.dark?'rgba(28,26,34':'rgba(40,38,46';
     interior.addColorStop(0,`${floorCol},${cr.depth*.92})`);
     interior.addColorStop(.5,`${floorCol},${cr.depth*.72})`);
     interior.addColorStop(.82,`${floorCol},${cr.depth*.32})`);
@@ -1009,31 +1001,30 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
     ctx.beginPath();ctx.arc(px,py,cr_r,0,Math.PI*2);
     ctx.fillStyle=interior;ctx.fill();
 
-    // Central peak
     if(cr_r>r*.04&&!cr.dark){
       const peak=ctx.createRadialGradient(px,py,0,px,py,cr_r*.24);
-      peak.addColorStop(0,`rgba(218,215,208,${cr.depth*.82})`);
+      peak.addColorStop(0,`rgba(222,218,210,${cr.depth*.82})`);
       peak.addColorStop(1,'rgba(185,182,175,0)');
       ctx.beginPath();ctx.arc(px,py,cr_r*.24,0,Math.PI*2);
       ctx.fillStyle=peak;ctx.fill();
     }
   });
 
-  // ── LIMB DARKENING — strong edge falloff ──
-  const limb=ctx.createRadialGradient(cx,cy,r*.42,cx,cy,r);
+  // ── LIMB DARKENING ──
+  const limb=ctx.createRadialGradient(cx,cy,r*.40,cx,cy,r);
   limb.addColorStop(0,'rgba(0,0,0,0)');
-  limb.addColorStop(.65,'rgba(1,2,8,.05)');
-  limb.addColorStop(.84,'rgba(2,3,9,.38)');
-  limb.addColorStop(.94,'rgba(2,3,9,.65)');
-  limb.addColorStop(1,'rgba(2,3,9,.88)');
+  limb.addColorStop(.62,'rgba(1,2,8,.04)');
+  limb.addColorStop(.82,'rgba(2,3,9,.36)');
+  limb.addColorStop(.93,'rgba(2,3,9,.64)');
+  limb.addColorStop(1,'rgba(2,3,9,.90)');
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
   ctx.fillStyle=limb;ctx.fill();
 
-  // ── HIGHLIGHTS — cool specular (moonlight has slight blue cast) ──
+  // ── SUBTLE SPECULAR HIGHLIGHT ──
   const spec=ctx.createRadialGradient(cx-r*.3,cy-r*.32,0,cx-r*.2,cy-r*.22,r*.55);
-  spec.addColorStop(0,'rgba(235,240,255,.16)');
-  spec.addColorStop(.45,'rgba(220,228,248,.05)');
-  spec.addColorStop(1,'rgba(200,210,240,0)');
+  spec.addColorStop(0,'rgba(255,255,255,.09)');
+  spec.addColorStop(.45,'rgba(240,245,255,.03)');
+  spec.addColorStop(1,'rgba(220,230,250,0)');
   ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
   ctx.fillStyle=spec;ctx.fill();
 
@@ -1068,44 +1059,44 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   }
   ctx.closePath();ctx.fill();
 
-  // ── TERMINATOR SOFT EDGE ──
-  const edgeAmt=Math.max(0.28,0.55*(1-Math.abs(ratio)));
-  const tGrad=ctx.createLinearGradient(cx-r*.1,cy,cx+r*.1,cy);
-  tGrad.addColorStop(0,'rgba(2,3,9,0)');
-  tGrad.addColorStop(.5,`rgba(2,3,9,${edgeAmt})`);
-  tGrad.addColorStop(1,'rgba(2,3,9,0)');
-  ctx.fillStyle=tGrad;
-  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
+  // ── MOUNTAIN TERMINATOR HIGHLIGHTS ──
+  // Peaks catching first/last sunlight — the signature look of NASA moon photos
+  const illumFrac=lunarIllum(age)/100;
+  if(illumFrac>.03&&illumFrac<.97){
+    // Terminator x at equator: waxing lit=right (+x), waning lit=left (-x)
+    const termX=isWax?cx+ratio*r:cx-ratio*r;
+    const litDir=isWax?1:-1;
+    const rng5=seededRand(88);
+    for(let i=0;i<72;i++){
+      const yFrac=(rng5()-.5)*2*.88;
+      const py2=cy+yFrac*r;
+      // Peaks centered near terminator, slight bias onto lit side
+      const xOff=(rng5()-.30)*r*.08;
+      const peakX=termX+litDir*xOff;
+      if(Math.hypot(peakX-cx,py2-cy)>r*.95)continue;
+      const sz=r*(.004+rng5()*.015);
+      const alpha=.40+rng5()*.56;
+      ctx.beginPath();ctx.arc(peakX,py2,sz,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,252,242,${alpha})`;
+      ctx.fill();
+    }
+  }
 
-  // ── EARTHSHINE: faint glow on dark side for thin crescents ──
-  const illumFrac=lunarIllum(age)/100; // 0=new moon, 1=full moon
+  // ── EARTHSHINE: faint blue glow on dark limb for thin crescents ──
   const esStrength=Math.max(0,(.32-illumFrac)/.32);
   if(esStrength>0){
     ctx.save();
     ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
     const es=ctx.createRadialGradient(cx,cy,0,cx,cy,r);
-    es.addColorStop(0,`rgba(30,40,80,${esStrength*.18})`);
-    es.addColorStop(.6,`rgba(20,28,60,${esStrength*.10})`);
+    es.addColorStop(0,`rgba(30,40,80,${esStrength*.16})`);
+    es.addColorStop(.6,`rgba(20,28,60,${esStrength*.09})`);
     es.addColorStop(1,'rgba(10,15,40,0)');
     ctx.fillStyle=es;ctx.fillRect(cx-r,cy-r,r*2,r*2);
     ctx.restore();
   }
 
-  // ── OUTER ATMOSPHERIC GLOW — triple ring for realism ──
   ctx.restore();
-  const g1=ctx.createRadialGradient(cx,cy,r*.96,cx,cy,r*1.08);
-  g1.addColorStop(0,'rgba(190,200,255,0)');
-  g1.addColorStop(.5,'rgba(170,182,245,.09)');
-  g1.addColorStop(1,'rgba(155,168,235,0)');
-  ctx.beginPath();ctx.arc(cx,cy,r*1.08,0,Math.PI*2);
-  ctx.fillStyle=g1;ctx.fill();
-
-  const g2=ctx.createRadialGradient(cx,cy,r*1.06,cx,cy,r*1.22);
-  g2.addColorStop(0,'rgba(160,175,235,0)');
-  g2.addColorStop(.5,'rgba(145,162,225,.05)');
-  g2.addColorStop(1,'rgba(130,148,215,0)');
-  ctx.beginPath();ctx.arc(cx,cy,r*1.22,0,Math.PI*2);
-  ctx.fillStyle=g2;ctx.fill();
+  // No atmospheric glow — the moon is in space
 }
 
 function initMoonCanvas(age){
