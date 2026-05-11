@@ -152,10 +152,8 @@ main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:co
 .title-block{text-align:center;margin-bottom:1.5vh;animation:fsi 1.4s cubic-bezier(.16,1,.3,1) both;}
 .title-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.76rem,1.1vw,.9rem);letter-spacing:.55em;text-transform:uppercase;color:var(--silver);opacity:.38;margin-bottom:.5rem;}
 .main-title{
-  font-family:'Cinzel Decorative',serif;font-weight:300;
-  font-size:clamp(2rem,5.5vw,3.6rem);
-  letter-spacing:.08em;color:#fff;opacity:.9;line-height:1.1;
-  text-shadow:0 0 40px rgba(180,190,255,.22);
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
 }
 
 /* ── CENTRAL MOON ── */
@@ -793,50 +791,41 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   ctx.fillStyle=base;ctx.fillRect(cx-r,cy-r,r*2,r*2);
 
   // ── MARIA (lunar seas) — dark basaltic plains ──
-  // Based on real mare positions (normalized to unit circle)
   const maria=[
-    // Mare Imbrium — large, upper left
-    {x:-.28,y:-.32,rx:.42,ry:.36,rot:-.3,a:.72},
-    // Mare Serenitatis — upper right of Imbrium
-    {x:.18,y:-.28,rx:.26,ry:.22,rot:.2,a:.68},
-    // Mare Tranquillitatis — center right (Apollo 11)
-    {x:.26,y:-.02,rx:.3,ry:.22,rot:.4,a:.62},
-    // Mare Fecunditatis — right edge
-    {x:.44,y:.18,rx:.22,ry:.19,rot:.5,a:.58},
-    // Mare Nectaris — lower right
-    {x:.36,y:.3,rx:.18,ry:.15,rot:.3,a:.55},
-    // Mare Crisium — far right, distinct oval
-    {x:.52,y:-.22,rx:.17,ry:.13,rot:.15,a:.70},
-    // Oceanus Procellarum — huge, left side
-    {x:-.42,y:.05,rx:.35,ry:.48,rot:-.15,a:.58},
-    // Mare Humorum — lower left
-    {x:-.38,y:.38,rx:.2,ry:.17,rot:-.1,a:.62},
-    // Mare Nubium — center lower
-    {x:-.12,y:.34,rx:.24,ry:.18,rot:.25,a:.56},
-    // Mare Vaporum — center small
-    {x:.05,y:-.12,rx:.12,ry:.1,rot:.1,a:.52},
+    {x:-.28,y:-.32,rx:.42,ry:.36,rot:-.3,a:.82},   // Mare Imbrium
+    {x:.18,y:-.28,rx:.26,ry:.22,rot:.2,a:.78},      // Mare Serenitatis
+    {x:.26,y:-.02,rx:.3,ry:.22,rot:.4,a:.74},       // Mare Tranquillitatis
+    {x:.44,y:.18,rx:.22,ry:.19,rot:.5,a:.68},       // Mare Fecunditatis
+    {x:.36,y:.3,rx:.18,ry:.15,rot:.3,a:.65},        // Mare Nectaris
+    {x:.52,y:-.22,rx:.17,ry:.13,rot:.15,a:.80},     // Mare Crisium
+    {x:-.42,y:.05,rx:.35,ry:.48,rot:-.15,a:.70},    // Oceanus Procellarum
+    {x:-.38,y:.38,rx:.2,ry:.17,rot:-.1,a:.72},      // Mare Humorum
+    {x:-.12,y:.34,rx:.24,ry:.18,rot:.25,a:.66},     // Mare Nubium
+    {x:.05,y:-.12,rx:.12,ry:.1,rot:.1,a:.62},       // Mare Vaporum
   ];
   maria.forEach(m=>{
     ctx.save();
     ctx.translate(cx+m.x*r,cy+m.y*r);ctx.rotate(m.rot);
     const mg=ctx.createRadialGradient(0,0,0,0,0,m.rx*r);
-    mg.addColorStop(0,`rgba(62,58,55,${m.a})`);
-    mg.addColorStop(.6,`rgba(72,68,62,${m.a*.75})`);
-    mg.addColorStop(1,'rgba(90,86,80,0)');
+    mg.addColorStop(0,`rgba(48,46,52,${m.a})`);
+    mg.addColorStop(.5,`rgba(58,56,62,${m.a*.80})`);
+    mg.addColorStop(.82,`rgba(72,70,76,${m.a*.45})`);
+    mg.addColorStop(1,'rgba(88,86,92,0)');
     ctx.scale(1,m.ry/m.rx);
     ctx.beginPath();ctx.arc(0,0,m.rx*r,0,Math.PI*2);
     ctx.fillStyle=mg;ctx.fill();ctx.restore();
   });
 
-  // ── SURFACE NOISE — fine texture ──
-  // Simulate albedo variation
-  for(let i=0;i<280;i++){
-    const ang=rng()*Math.PI*2,dist=rng()*r*.97;
+  // ── SURFACE TEXTURE — albedo variation ──
+  for(let i=0;i<340;i++){
+    const ang=rng()*Math.PI*2,dist=rng()*r*.96;
     const px=cx+Math.cos(ang)*dist,py=cy+Math.sin(ang)*dist;
-    const sz=rng()*r*.08+r*.01;
-    const bright=rng()>.5;
+    const sz=rng()*r*.07+r*.008;
+    const bright=rng()>.48;
     ctx.beginPath();ctx.arc(px,py,sz,0,Math.PI*2);
-    ctx.fillStyle=bright?`rgba(200,196,185,${rng()*.12})`:`rgba(50,46,42,${rng()*.1})`;
+    ctx.fillStyle=bright
+      ?`rgba(205,208,218,${rng()*.14})`
+      :`rgba(42,40,48,${rng()*.13})`;
     ctx.fill();
   }
 
@@ -912,32 +901,33 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
     }
 
     // Crater rim — bright outer ring
-    const rim=ctx.createRadialGradient(px,py,cr_r*.7,px,py,cr_r*1.1);
+    const rim=ctx.createRadialGradient(px,py,cr_r*.65,px,py,cr_r*1.12);
     rim.addColorStop(0,'rgba(0,0,0,0)');
-    rim.addColorStop(.7,`rgba(195,190,180,${cr.depth*.55})`);
-    rim.addColorStop(1,'rgba(160,155,148,0)');
-    ctx.beginPath();ctx.arc(px,py,cr_r*1.1,0,Math.PI*2);
+    rim.addColorStop(.65,`rgba(210,208,200,${cr.depth*.72})`);
+    rim.addColorStop(.88,`rgba(190,188,180,${cr.depth*.38})`);
+    rim.addColorStop(1,'rgba(170,168,162,0)');
+    ctx.beginPath();ctx.arc(px,py,cr_r*1.12,0,Math.PI*2);
     ctx.fillStyle=rim;ctx.fill();
 
-    // Crater interior shadow — angled lighting from upper-left
+    // Crater interior shadow
     const interior=ctx.createRadialGradient(
-      px+cr_r*.18,py-cr_r*.15,0,
+      px+cr_r*.2,py-cr_r*.18,0,
       px,py,cr_r
     );
-    const floorCol=cr.dark?'rgba(40,36,32':'rgba(55,50,46';
-    interior.addColorStop(0,`${floorCol},${cr.depth*.82})`);
-    interior.addColorStop(.55,`${floorCol},${cr.depth*.6})`);
-    interior.addColorStop(.85,`${floorCol},${cr.depth*.25})`);
+    const floorCol=cr.dark?'rgba(32,30,38':'rgba(44,42,50';
+    interior.addColorStop(0,`${floorCol},${cr.depth*.92})`);
+    interior.addColorStop(.5,`${floorCol},${cr.depth*.72})`);
+    interior.addColorStop(.82,`${floorCol},${cr.depth*.32})`);
     interior.addColorStop(1,`${floorCol},0)`);
     ctx.beginPath();ctx.arc(px,py,cr_r,0,Math.PI*2);
     ctx.fillStyle=interior;ctx.fill();
 
-    // Central peak for large craters
+    // Central peak
     if(cr_r>r*.04&&!cr.dark){
-      const peak=ctx.createRadialGradient(px,py,0,px,py,cr_r*.22);
-      peak.addColorStop(0,`rgba(210,205,196,${cr.depth*.7})`);
-      peak.addColorStop(1,'rgba(180,175,165,0)');
-      ctx.beginPath();ctx.arc(px,py,cr_r*.22,0,Math.PI*2);
+      const peak=ctx.createRadialGradient(px,py,0,px,py,cr_r*.24);
+      peak.addColorStop(0,`rgba(218,215,208,${cr.depth*.82})`);
+      peak.addColorStop(1,'rgba(185,182,175,0)');
+      ctx.beginPath();ctx.arc(px,py,cr_r*.24,0,Math.PI*2);
       ctx.fillStyle=peak;ctx.fill();
     }
   });
@@ -965,7 +955,7 @@ function drawRealisticMoon(ctx, cx, cy, r, age){
   const ratio=isWax?(1-2*t):(2*t-1);
   const rx2=Math.abs(ratio)*r;
 
-  ctx.fillStyle='rgba(4,6,16,.98)';
+  ctx.fillStyle='rgba(8,11,28,.86)';
   ctx.beginPath();
   if(isWax){
     if(ratio>=0){
