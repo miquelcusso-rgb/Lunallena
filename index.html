@@ -447,21 +447,21 @@ body.phase-waning-crescent{--bg-gradient:
     <span class="nav-icon">🌕</span>
     <div><div class="nav-label">Las 12 lunas llenas</div><div class="nav-sub">Nombres, significados y magia</div></div>
   </a>
-  <a class="nav-item" href="#" data-panel="panel-mindfulness">
-    <span class="nav-icon">🧘</span>
-    <div><div class="nav-label">Mindfulness lunar</div><div class="nav-sub">Meditación y respiración</div></div>
-  </a>
-  <a class="nav-item" href="#" data-panel="panel-tienda">
-    <span class="nav-icon">✦</span>
-    <div><div class="nav-label">Tienda</div><div class="nav-sub">Próximamente</div></div>
-  </a>
   <a class="nav-item" href="#" data-panel="panel-eclipses">
     <span class="nav-icon">🌑</span>
     <div><div class="nav-label" id="nav-eclipses-label">Eclipses</div><div class="nav-sub" id="nav-eclipses-sub">Lunares y solares · Próximos</div></div>
   </a>
+  <a class="nav-item" href="#" data-panel="panel-mindfulness">
+    <span class="nav-icon">🧘</span>
+    <div><div class="nav-label">Mindfulness lunar</div><div class="nav-sub">Meditación y respiración</div></div>
+  </a>
   <a class="nav-item" href="#" data-panel="panel-donacion">
     <span class="nav-icon">☽</span>
     <div><div class="nav-label">Apoya Lunallena</div><div class="nav-sub">Mantén la luna encendida</div></div>
+  </a>
+  <a class="nav-item" href="#" data-panel="panel-tienda">
+    <span class="nav-icon">✦</span>
+    <div><div class="nav-label">Tienda</div><div class="nav-sub">Próximamente</div></div>
   </a>
 </div>
 
@@ -1776,7 +1776,7 @@ function initMenu(){
   // Panel links
   document.querySelectorAll('[data-panel]').forEach(el=>{
     el.addEventListener('click',e=>{
-      e.preventDefault();close();
+      e.preventDefault();closePanels();close();
       const panel=document.getElementById(el.dataset.panel);
       if(panel){panel.style.display='block';window.scrollTo(0,0);}
     });
