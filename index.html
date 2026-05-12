@@ -164,8 +164,12 @@ main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:co
   animation:fsi 1.5s cubic-bezier(.16,1,.3,1) .1s both;
 }
 #central-moon-canvas{
-  width:clamp(240px,50vw,600px);height:clamp(240px,50vw,600px);
+  /* Canvas = exact moon diameter — no dead space around it.
+     CSS border-radius handles circular clipping with native anti-aliasing,
+     eliminating the dark-ring artifact from canvas ctx.clip() */
+  width:clamp(192px,40vw,480px);height:clamp(192px,40vw,480px);
   display:block;
+  border-radius:50%;
   transition:transform .55s cubic-bezier(.16,1,.3,1);
   animation:moonFloat 9s ease-in-out infinite;
 }
@@ -1123,46 +1127,43 @@ function dialMoonUrl(){
 }
 
 function drawNasaPhoto(ctx,cx,cy,r,img){
-  ctx.save();
-  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
-  // Draw 3% oversized so the black border in the NASA frame is clipped away
-  const s=r*1.03;
-  ctx.drawImage(img,cx-s,cy-s,s*2,s*2);
-  // Limb darkening
+  // No internal ctx.clip() — CSS border-radius:50% handles the circular edge
+  // cleanly with native browser anti-aliasing (no dark-ring artifact)
+  ctx.drawImage(img,0,0,r*2,r*2);
+  // Limb darkening overlay
   const limb=ctx.createRadialGradient(cx,cy,r*.44,cx,cy,r);
   limb.addColorStop(0,'rgba(0,0,0,0)');
-  limb.addColorStop(.72,'rgba(2,3,9,.12)');
-  limb.addColorStop(.88,'rgba(2,3,9,.50)');
-  limb.addColorStop(1,'rgba(2,3,9,.92)');
-  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
-  ctx.fillStyle=limb;ctx.fill();
-  ctx.restore();
+  limb.addColorStop(.72,'rgba(2,3,9,.10)');
+  limb.addColorStop(.88,'rgba(2,3,9,.46)');
+  limb.addColorStop(1,'rgba(2,3,9,.88)');
+  ctx.fillStyle=limb;ctx.fillRect(0,0,r*2,r*2);
 }
 
 function initMoonCanvas(age){
   const cv=document.getElementById('central-moon-canvas');
-  const cssW=Math.min(600,Math.max(240,window.innerWidth*.50));
+  // Canvas = exact moon size (r = cssW/2 = fills the whole canvas).
+  // CSS border-radius:50% clips the element cleanly — no internal ctx.clip() needed.
+  const cssW=Math.min(480,Math.max(192,window.innerWidth*.40));
   const dpr=Math.min(window.devicePixelRatio||1,2);
   cv.width=cssW*dpr;cv.height=cssW*dpr;
   cv.style.width=cssW+'px';cv.style.height=cssW+'px';
   const ctx=cv.getContext('2d');
   ctx.scale(dpr,dpr);
-  const r=cssW*.4,cx=cssW/2,cy=cssW/2;
+  const r=cssW/2,cx=r,cy=r;
 
   // Draw canvas fallback immediately (visible while photo loads)
   drawRealisticMoon(ctx,cx,cy,r,age);
 
   const url=dialMoonUrl();
-  if(!url)return; // no SVS for this year → keep canvas fallback
+  if(!url)return;
 
   const img=new Image();
-  // No crossOrigin needed — we only draw, never read pixels back
   img.src=url;
   img.onload=()=>{
     ctx.clearRect(0,0,cssW,cssW);
     drawNasaPhoto(ctx,cx,cy,r,img);
   };
-  // img.onerror → canvas fallback stays (already drawn above)
+  // img.onerror → canvas fallback stays
 }
 
 function setShadows(a){
