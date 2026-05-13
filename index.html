@@ -149,7 +149,7 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:clamp(5rem,10vh,7rem) 5vw 10vh;}
 
 /* ── TITLE ── */
-.title-block{text-align:center;margin-bottom:1vh;animation:fsi 1.4s cubic-bezier(.16,1,.3,1) both;}
+.title-block{text-align:center;margin-bottom:2vh;animation:fsi 1.4s cubic-bezier(.16,1,.3,1) both;}
 .title-eyebrow{font-family:'Cinzel',serif;font-size:clamp(1rem,1.35vw,1.15rem);letter-spacing:.55em;text-transform:uppercase;color:var(--silver);opacity:.38;margin-bottom:.5rem;}
 .main-title{
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;
@@ -159,7 +159,7 @@ main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:co
 /* ── CENTRAL MOON ── */
 .moon-stage{
   position:relative;z-index:10;
-  margin:1vh 0 1.3vh;
+  margin:1.5vh 0 1.5vh;
   cursor:pointer;
   animation:fsi 1.5s cubic-bezier(.16,1,.3,1) .1s both;
 }
@@ -255,7 +255,8 @@ body.moon-focused .moon-stage{z-index:20;}
 .cycle-phrase strong{color:rgba(255,255,255,.82);font-style:normal;font-family:'Cinzel',serif;font-size:clamp(.62rem,1vw,.78rem);letter-spacing:.15em;text-transform:uppercase;}
 .cycle-ring-container{display:flex;justify-content:center;margin-bottom:.9rem;}
 #cycleRingSvg{width:min(400px,92vw);height:min(400px,92vw);}
-.cycle-legend{display:flex;flex-wrap:nowrap;gap:0;justify-content:center;overflow:hidden;}
+.cycle-legend{display:flex;flex-wrap:nowrap;gap:0;justify-content:center;overflow-x:auto;overflow-y:visible;padding:0 1rem;scrollbar-width:none;}
+.cycle-legend::-webkit-scrollbar{display:none;}
 .legend-item{
   font-family:'Cinzel',serif;font-size:clamp(.56rem,.68vw,.68rem);
   letter-spacing:.08em;text-transform:uppercase;
@@ -471,7 +472,7 @@ body.phase-waning-crescent{--bg-gradient:
 <!-- MAIN -->
 <main>
   <div class="title-block">
-    <p class="title-eyebrow" id="title-eyebrow">La luna de hoy</p>
+    <p class="title-eyebrow" id="title-eyebrow">Luna de hoy</p>
     <h1 class="main-title" id="main-title">Luna llena</h1>
   </div>
 
@@ -624,7 +625,7 @@ body.phase-waning-crescent{--bg-gradient:
       <p>Técnica de coherencia cardíaca adaptada al ciclo lunar. Inhala 4 segundos, sostén 4, exhala 6. Repite 5 ciclos.</p>
     </div>
     <div class="breathing-circle" id="breath-circle">
-      <span id="breath-text">pulsa en contador</span>
+      <span id="breath-text">pulsa</span>
       <span class="breath-arrow" id="breath-arrow">↓</span>
     </div>
     <div class="breath-instruction" id="breath-instruction"></div>
@@ -1124,12 +1125,11 @@ function dialMoonUrl(){
 }
 
 function drawNasaPhoto(ctx,cx,cy,r,img){
-  // No internal ctx.clip() — CSS border-radius:50% handles the circular edge
-  // cleanly with native browser anti-aliasing (no dark-ring artifact).
-  // No limb overlay: NASA Dial-a-Moon renders already include accurate
-  // photorealistic lighting. Any fillRect/radial overlay reaching the canvas
-  // edge creates a visible dark ring at the CSS clip boundary.
-  ctx.drawImage(img,0,0,r*2,r*2);
+  // Scale image ~4.5% larger than canvas so the moon disk fills edge-to-edge,
+  // pushing the NASA frame's dark background border outside the canvas.
+  // CSS border-radius:50% then clips cleanly with no visible dark ring.
+  const s=1.045,d=r*2*s,o=(d-r*2)/2;
+  ctx.drawImage(img,-o,-o,d,d);
 }
 
 function initMoonCanvas(age){
@@ -1478,7 +1478,7 @@ function buildRing(curAge){
 // ── LANG TOGGLE ──
 const LANG={
   es:{
-    eyebrow:'La luna de hoy',cdCaption:'Próxima luna llena',
+    eyebrow:'Luna de hoy',cdCaption:'Próxima luna llena',
     illumLabel:'Iluminación',phaseLabel:'Fase lunar hoy',
     sliderHead:'Lo que revela la luna de hoy',
     cycleHead:'Ciclo lunar',
@@ -1492,7 +1492,7 @@ const LANG={
     btn:'EN',title:'Lunallena — La próxima luna llena',
     adLabel:'Publicidad',
     footerCalc:'Cálculos astronómicos precisos',footerPrivacy:'Privacidad',
-    breathTap:'pulsa en contador',breathStart:'Iniciar · 5 ciclos',breathStop:'Detener',breathDone:'Completado',
+    breathTap:'pulsa',breathStart:'Iniciar · 5 ciclos',breathStop:'Detener',breathDone:'Completado',
     breathCycle:(i,t)=>`Ciclo ${i} de ${t}`,
     breathSteps:[
       {phase:'inhale',label:'Inhala',dur:4000,inst:'Inhala profundamente por la nariz'},
@@ -1516,7 +1516,7 @@ const LANG={
     btn:'ES',title:'Nextfullmoon.co — Next full moon',
     adLabel:'Advertising',
     footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',
-    breathTap:'tap to start',breathStart:'Start · 5 cycles',breathStop:'Stop',breathDone:'Completed',
+    breathTap:'tap',breathStart:'Start · 5 cycles',breathStop:'Stop',breathDone:'Completed',
     breathCycle:(i,t)=>`Cycle ${i} of ${t}`,
     breathSteps:[
       {phase:'inhale',label:'Inhale',dur:4000,inst:'Breathe in deeply through your nose'},
