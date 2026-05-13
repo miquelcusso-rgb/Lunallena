@@ -464,7 +464,7 @@ body.phase-waning-crescent{--bg-gradient:
   </a>
   <a class="nav-item" href="#" data-panel="panel-donacion">
     <span class="nav-icon">☽</span>
-    <div><div class="nav-label">Apoya Lunallena</div><div class="nav-sub">Mantén la luna encendida</div></div>
+    <div><div class="nav-label">Apoya</div><div class="nav-sub">Mantén la luna encendida</div></div>
   </a>
 </div>
 
@@ -1125,15 +1125,11 @@ function dialMoonUrl(){
 
 function drawNasaPhoto(ctx,cx,cy,r,img){
   // No internal ctx.clip() — CSS border-radius:50% handles the circular edge
-  // cleanly with native browser anti-aliasing (no dark-ring artifact)
+  // cleanly with native browser anti-aliasing (no dark-ring artifact).
+  // No limb overlay: NASA Dial-a-Moon renders already include accurate
+  // photorealistic lighting. Any fillRect/radial overlay reaching the canvas
+  // edge creates a visible dark ring at the CSS clip boundary.
   ctx.drawImage(img,0,0,r*2,r*2);
-  // Limb darkening overlay
-  const limb=ctx.createRadialGradient(cx,cy,r*.44,cx,cy,r);
-  limb.addColorStop(0,'rgba(0,0,0,0)');
-  limb.addColorStop(.72,'rgba(2,3,9,.10)');
-  limb.addColorStop(.88,'rgba(2,3,9,.46)');
-  limb.addColorStop(1,'rgba(2,3,9,.88)');
-  ctx.fillStyle=limb;ctx.fillRect(0,0,r*2,r*2);
 }
 
 function initMoonCanvas(age){
@@ -1567,16 +1563,14 @@ function applyLang(){
     document.querySelector('#panel-donacion .panel-sub').textContent='Lunallena is free, beautiful and tracker-free. If it brings you value, consider keeping it alive.';
     // donate buttons keep their brand labels (no translation needed)
     // nav menu
-    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-label').textContent='The 12 Full Moons');
-    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-sub').textContent='Names, meanings and magic');
-    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[1].querySelector('.nav-label').textContent='Lunar Mindfulness');
-    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[1].querySelector('.nav-sub').textContent='Meditation and breathwork');
-    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[2].querySelector('.nav-label').textContent='Shop');
-    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[2].querySelector('.nav-sub').textContent='Coming soon');
-    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[3].querySelector('.nav-label').textContent='Eclipses');
-    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[3].querySelector('.nav-sub').textContent='Lunar & solar · Upcoming');
-    document.querySelectorAll('.nav-item')[4]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[4].querySelector('.nav-label').textContent='Support Lunallena');
-    document.querySelectorAll('.nav-item')[4]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[4].querySelector('.nav-sub').textContent='Keep the moon lit');
+    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[0].querySelector('.nav-label').textContent='The 12 Full Moons');
+    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[0].querySelector('.nav-sub').textContent='Names, meanings and magic');
+    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[1].querySelector('.nav-label').textContent='Eclipses');
+    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[1].querySelector('.nav-sub').textContent='Lunar & solar · Upcoming');
+    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[2].querySelector('.nav-label').textContent='Lunar Mindfulness');
+    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[2].querySelector('.nav-sub').textContent='Meditation and breathwork');
+    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[3].querySelector('.nav-label').textContent='Support');
+    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[3].querySelector('.nav-sub').textContent='Keep the moon lit');
     // Eclipse panel EN
     document.querySelector('#eclipses-title').textContent='Eclipses';
     document.querySelector('#eclipses-sub').textContent='When the sun, Earth and moon align';
@@ -1607,16 +1601,14 @@ function applyLang(){
     document.querySelector('#panel-donacion .panel-title').textContent='Apoya Lunallena';
     document.querySelector('#panel-donacion .panel-sub').textContent='Lunallena es libre, bonita y sin trackers. Si te aporta algo, considera mantenerla encendida.';
     // donate buttons keep their brand labels
-    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-label').textContent='Las 12 lunas llenas');
-    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[0].querySelector('.nav-sub').textContent='Nombres, significados y magia');
-    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[1].querySelector('.nav-label').textContent='Mindfulness lunar');
-    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[1].querySelector('.nav-sub').textContent='Meditación y respiración');
-    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[2].querySelector('.nav-label').textContent='Tienda');
-    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[2].querySelector('.nav-sub').textContent='Próximamente');
-    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[3].querySelector('.nav-label').textContent='Eclipses');
-    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[3].querySelector('.nav-sub').textContent='Lunares y solares · Próximos');
-    document.querySelectorAll('.nav-item')[4]?.querySelector('.nav-label')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[4].querySelector('.nav-label').textContent='Apoya Lunallena');
-    document.querySelectorAll('.nav-item')[4]?.querySelector('.nav-sub')?.textContent!==undefined && (document.querySelectorAll('.nav-item')[4].querySelector('.nav-sub').textContent='Mantén la luna encendida');
+    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[0].querySelector('.nav-label').textContent='Las 12 lunas llenas');
+    document.querySelectorAll('.nav-item')[0]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[0].querySelector('.nav-sub').textContent='Nombres, significados y magia');
+    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[1].querySelector('.nav-label').textContent='Eclipses');
+    document.querySelectorAll('.nav-item')[1]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[1].querySelector('.nav-sub').textContent='Lunares y solares · Próximos');
+    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[2].querySelector('.nav-label').textContent='Mindfulness lunar');
+    document.querySelectorAll('.nav-item')[2]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[2].querySelector('.nav-sub').textContent='Meditación y respiración');
+    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-label')&&(document.querySelectorAll('.nav-item')[3].querySelector('.nav-label').textContent='Apoya');
+    document.querySelectorAll('.nav-item')[3]?.querySelector('.nav-sub')&&(document.querySelectorAll('.nav-item')[3].querySelector('.nav-sub').textContent='Mantén la luna encendida');
     // Eclipse panel ES
     document.querySelector('#eclipses-title').textContent='Eclipses';
     document.querySelector('#eclipses-sub').textContent='Cuando el sol, la Tierra y la luna se alinean';
