@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.lunallena.com/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.com/"/>
+    <loc>https://www.lunallena.co/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/"/>
     <lastmod>2026-05-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
