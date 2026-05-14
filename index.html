@@ -11,6 +11,7 @@
 <title>Lunallena — La próxima luna llena</title>
 <meta name="description" content="Descubre cuándo será la próxima luna llena, los efectos de la luna de hoy y curiosidades lunares verificadas. Countdown en tiempo real.">
 <link rel="canonical" href="https://www.lunallena.com/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="alternate" hreflang="es" href="https://www.lunallena.com/">
 <link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/">
 <link rel="alternate" hreflang="x-default" href="https://www.lunallena.com/">
@@ -31,10 +32,13 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lunallena — La próxima luna llena">
-<meta name="twitter:description" content="Descubre cuándo será la próxima luna llena. Fase lunar de hoy con countdown en tiempo real.">
+<meta name="twitter:description" content="Descubre cuándo será la próxima luna llena, los efectos de la luna de hoy y curiosidades lunares verificadas. Countdown en tiempo real.">
 <meta name="twitter:image" content="https://www.lunallena.com/og.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"Lunallena","url":"https://www.lunallena.com/","description":"Descubre cuándo será la próxima luna llena y la fase lunar de hoy.","inLanguage":"es","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.lunallena.com/"}}}
+{"@context":"https://schema.org","@type":"WebSite","name":"Lunallena","url":"https://www.lunallena.com/","description":"Descubre cuándo será la próxima luna llena, los efectos de la luna de hoy y curiosidades lunares verificadas. Countdown en tiempo real.","inLanguage":"es","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.lunallena.com/"}}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Lunallena","url":"https://www.lunallena.com/","applicationCategory":"LifestyleApplication","operatingSystem":"Any","description":"Calculadora de fases lunares en tiempo real. Muestra la fase de la luna de hoy, cuenta atrás a la próxima luna llena y las 8 fases del ciclo lunar con visualización NASA.","inLanguage":"es","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600&family=Cinzel+Decorative:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -220,7 +224,7 @@ body.moon-focused .moon-stage{z-index:20;}
 
 /* ── ADS ── */
 .ad-slot{width:100%;max-width:728px;margin:1.5vh auto;text-align:center;}
-.ad-slot-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--silver);opacity:.14;margin-bottom:.18rem;}
+.ad-slot-label{display:none;}
 .ad-placeholder{background:rgba(255,255,255,.01);border:1px dashed rgba(196,196,240,.048);height:88px;display:flex;align-items:center;justify-content:center;color:rgba(196,196,240,.08);font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.14em;}
 
 /* ── CURIOSITIES SLIDER ── */
@@ -545,7 +549,7 @@ body.phase-waning-crescent{--bg-gradient:
 
   <div class="lunar-divider"></div>
 
-  <div class="ad-slot" style="max-width:480px">
+  <div class="ad-slot">
     <div class="ad-slot-label" id="ad-label-2">Publicidad</div>
     <ins class="adsbygoogle"
          style="display:block"
