@@ -11,6 +11,42 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.lunallena.co/lunas-llenas</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/lunas-llenas"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/lunas-llenas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/lunas-llenas"/>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/eclipses</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/eclipses"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/eclipses"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/eclipses"/>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/mindfulness</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/mindfulness"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/mindfulness"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/mindfulness"/>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/apoya</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/apoya"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/apoya"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/apoya"/>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.lunallena.co/privacidad</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>yearly</changefreq>
