@@ -581,7 +581,7 @@ body.phase-waning-crescent{--bg-gradient:
 </main>
 
 <footer>
-  <p>© 2026 Lunallena · <span id="footer-calc">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link"><span id="footer-privacy">Privacidad</span></a></p>
+  <p>© 2026 Lunallena · <span id="footer-calc">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link"><span id="footer-privacy">Privacidad</span></a> · <a href="https://www.next-eclipse.com" target="_blank" rel="noopener" id="footer-eclipse-link"><span id="footer-eclipse">Próximo eclipse →</span></a></p>
 </footer>
 
 <!-- PANELS -->
@@ -1496,7 +1496,7 @@ const LANG={
     mainTitle:'Luna llena',
     btn:'EN',title:'Lunallena — La próxima luna llena',
     adLabel:'Publicidad',
-    footerCalc:'Cálculos astronómicos precisos',footerPrivacy:'Privacidad',
+    footerCalc:'Cálculos astronómicos precisos',footerPrivacy:'Privacidad',footerEclipse:'Próximo eclipse →',
     breathTap:'pulsa',breathStart:'Iniciar · 5 ciclos',breathStop:'Detener',breathDone:'Completado',
     breathCycle:(i,t)=>`Ciclo ${i} de ${t}`,
     breathSteps:[
@@ -1520,7 +1520,7 @@ const LANG={
     mainTitle:'Full Moon',
     btn:'ES',title:'Nextfullmoon.co — Next full moon',
     adLabel:'Advertising',
-    footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',
+    footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',footerEclipse:'Next eclipse →',
     breathTap:'tap',breathStart:'Start · 5 cycles',breathStop:'Stop',breathDone:'Completed',
     breathCycle:(i,t)=>`Cycle ${i} of ${t}`,
     breathSteps:[
@@ -1652,6 +1652,7 @@ function applyLang(){
   // Footer
   const fc=document.getElementById('footer-calc'),fp=document.getElementById('footer-privacy');
   if(fc)fc.textContent=L.footerCalc;if(fp)fp.textContent=L.footerPrivacy;
+  const fe=document.getElementById('footer-eclipse');if(fe)fe.textContent=L.footerEclipse;
 
   // Panel close buttons
   document.querySelectorAll('.panel-close').forEach(b=>b.textContent=currentLang==='en'?'← Back':'← Volver');
