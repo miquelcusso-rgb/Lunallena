@@ -22,6 +22,10 @@
 <script type="application/ld+json" id="pg-jsonld">
 {"@context":"https://schema.org","@type":"Article","headline":"Las 12 lunas llenas del año","description":"Nombres, orígenes y significados de las 12 lunas llenas: Luna del Lobo, Luna de Nieve, Luna del Gusano, Luna Rosa, Luna de Flores, Luna de Fresas, Luna del Ciervo, Luna del Esturión, Luna de la Cosecha, Luna del Cazador, Luna del Castor y Luna Fría.","url":"https://www.lunallena.co/lunas-llenas","publisher":{"@type":"Organization","name":"Lunallena","url":"https://www.lunallena.co"},"inLanguage":"es"}
 </script>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Las 12 lunas llenas del año · Lunallena">
+<meta name="twitter:description" id="tw-desc" content="Descubre los nombres y significados de las 12 lunas llenas: Luna del Lobo, Luna Rosa, Luna de la Cosecha y más.">
+<meta name="twitter:image" content="https://www.lunallena.co/og-moon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -34,6 +38,8 @@ body{background:#030304;font-family:'Cormorant Garamond',Georgia,serif;color:rgb
 .back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(196,196,255,.35);text-decoration:none;transition:color .2s;}
 .back:hover{color:rgba(196,196,255,.65);}
 .site-name{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(196,196,255,.22);text-decoration:none;}
+.share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.28);background:none;border:none;cursor:pointer;padding:0;transition:color .2s;}
+.share-btn:hover{color:rgba(196,196,255,.6);}
 .eyebrow{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.6rem;}
 h1{font-family:'Cinzel',serif;font-weight:300;font-size:clamp(1.7rem,4vw,2.5rem);color:rgba(255,255,255,.88);letter-spacing:.04em;margin-bottom:.5rem;}
 .subtitle{font-size:1.1rem;font-style:italic;color:rgba(196,196,255,.42);margin-bottom:2.5rem;}
@@ -54,7 +60,10 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 <div class="wrap">
   <div class="topbar">
     <a class="back" id="back-link" href="/">← Lunallena</a>
-    <a class="site-name" id="site-link" href="/">lunallena.co</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
+      <a class="site-name" id="site-link" href="/">lunallena.co</a>
+    </div>
   </div>
 
   <p class="eyebrow" id="eyebrow">Ciclo lunar</p>
@@ -99,6 +108,16 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 </div>
 
 <script>
+function shareApp(){
+  const d=document.querySelector('meta[name="description"]');
+  const data={title:document.title,text:d?d.getAttribute('content'):'',url:window.location.href};
+  if(navigator.share){navigator.share(data).catch(()=>{});}
+  else{
+    (navigator.clipboard?navigator.clipboard.writeText(data.url):Promise.reject())
+    .then(()=>{const b=document.getElementById('share-btn');const o=b.textContent;b.textContent='✓';setTimeout(()=>b.textContent=o,2e3);})
+    .catch(()=>{window.open('https://x.com/intent/tweet?url='+encodeURIComponent(data.url),'_blank');});
+  }
+}
 const EN = location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
 if(EN){
   document.documentElement.lang='en';
@@ -111,7 +130,10 @@ if(EN){
   document.getElementById('og-image').content='https://www.nextfullmoon.co/og-moon.png';
   document.getElementById('og-image-alt').content='Full moon in the night sky';
   document.getElementById('og-site').content='Next Full Moon';
+  document.getElementById('tw-title').content='The 12 Full Moons of the Year · Next Full Moon';
+  document.getElementById('tw-desc').content='Discover the names and meanings of the 12 full moons: Wolf Moon, Pink Moon, Harvest Moon and more.';
   document.getElementById('back-link').textContent='← Next Full Moon';
+  document.getElementById('share-btn').textContent='↗ Share';
   document.getElementById('back-link').href='/';
   document.getElementById('site-link').textContent='nextfullmoon.co';
   document.getElementById('eyebrow').textContent='Lunar cycle';

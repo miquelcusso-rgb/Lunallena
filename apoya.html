@@ -19,6 +19,11 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" id="og-image-alt" content="Luna llena sobre el cielo nocturno">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Apoya Lunallena · Mantén la luna encendida">
+<meta name="twitter:description" id="tw-desc" content="Lunallena es libre, bonita y sin trackers. Si te aporta algo, considera apoyarla.">
+<meta name="twitter:image" content="https://www.lunallena.co/og-moon.png">
+<link rel="manifest" href="/manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -48,13 +53,18 @@ ul li::before{content:'·';position:absolute;left:0;color:rgba(196,196,255,.3);}
 .note{font-size:.9rem;font-style:italic;color:rgba(196,196,255,.28);margin-top:.4rem;}
 footer{margin-top:4rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.18);text-align:center;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,255,.1);}
+.share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.28);background:none;border:none;cursor:pointer;padding:0;transition:color .2s;}
+.share-btn:hover{color:rgba(196,196,255,.6);}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topbar">
     <a class="back" id="back-link" href="/">← Lunallena</a>
-    <a class="site-name" id="site-link" href="/">lunallena.co</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
+      <a class="site-name" id="site-link" href="/">lunallena.co</a>
+    </div>
   </div>
 
   <p class="eyebrow" id="eyebrow">Comunidad</p>
@@ -84,6 +94,16 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 </div>
 
 <script>
+function shareApp(){
+  const d=document.querySelector('meta[name="description"]');
+  const data={title:document.title,text:d?d.getAttribute('content'):'',url:window.location.href};
+  if(navigator.share){navigator.share(data).catch(()=>{});}
+  else{
+    (navigator.clipboard?navigator.clipboard.writeText(data.url):Promise.reject())
+    .then(()=>{const b=document.getElementById('share-btn');const o=b.textContent;b.textContent='✓';setTimeout(()=>b.textContent=o,2e3);})
+    .catch(()=>{window.open('https://x.com/intent/tweet?url='+encodeURIComponent(data.url),'_blank');});
+  }
+}
 const EN = location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
 if(EN){
   document.documentElement.lang='en';
@@ -96,6 +116,9 @@ if(EN){
   document.getElementById('og-image').content='https://www.nextfullmoon.co/og-moon.png';
   document.getElementById('og-image-alt').content='Full moon in the night sky';
   document.getElementById('og-site').content='Next Full Moon';
+  document.getElementById('tw-title').content='Support Next Full Moon · Keep the moon lit';
+  document.getElementById('tw-desc').content='Next Full Moon is free, beautiful and tracker-free. If it brings you value, consider keeping it alive.';
+  document.getElementById('share-btn').textContent='↗ Share';
   document.getElementById('back-link').textContent='← Next Full Moon';
   document.getElementById('site-link').textContent='nextfullmoon.co';
   document.getElementById('eyebrow').textContent='Community';
