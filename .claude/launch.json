@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lunallena",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3456", "/Users/mqui/Documents/sites-system/sites/lunallena"],
+      "port": 3456
+    },
+    {
+      "name": "moon-compare",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3457", "/tmp"],
+      "port": 3457
+    }
+  ]
+}

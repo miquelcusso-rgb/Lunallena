@@ -72,7 +72,6 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 
   <div class="ad-slot">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6498215334315959" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <hr>
@@ -127,6 +126,35 @@ if(EN){
   document.getElementById('footer-privacy').textContent='Privacy';
   document.getElementById('footer-privacy').href='/privacy';
 }
+</script>
+
+<!-- ─ cookie consent ─ -->
+<div id="ck" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(3,3,6,.97);border-top:1px solid rgba(196,196,255,.1);padding:.75rem 1.5rem;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:space-between;font-family:'Cinzel',serif;">
+  <span id="ck-t" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.95rem;color:rgba(196,192,230,.55);flex:1;min-width:200px;line-height:1.5;"></span>
+  <div style="display:flex;gap:.5rem;flex-shrink:0;">
+    <button onclick="llConsent(1)" id="ck-y" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:rgba(196,196,255,.07);border:1px solid rgba(196,196,255,.22);color:rgba(196,196,255,.75);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+    <button onclick="llConsent(0)" id="ck-n" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:none;border:1px solid rgba(196,196,255,.1);color:rgba(196,196,255,.35);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+  </div>
+</div>
+<script>
+(function(){
+  const K='ll-consent';
+  const EN=location.hostname.includes('nextfullmoon');
+  const T={
+    en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
+    es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
+  };
+  function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});}
+  function hide(){document.getElementById('ck').style.display='none';}
+  window.llConsent=function(v){localStorage.setItem(K,String(v));hide();if(Number(v))push1();};
+  const tt=T[EN?'en':'es'];
+  document.getElementById('ck-t').innerHTML=tt.t;
+  document.getElementById('ck-y').textContent=tt.y;
+  document.getElementById('ck-n').textContent=tt.n;
+  const v=localStorage.getItem(K);
+  if(v==='1')push1();
+  else if(!v)document.getElementById('ck').style.display='flex';
+})();
 </script>
 </body>
 </html>
