@@ -288,6 +288,10 @@ body.moon-focused .moon-stage{z-index:20;}
 }
 .legend-item.active-phase{color:rgba(255,255,255,.75);}
 
+.eclipse-sister{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:500px;margin:2rem auto 0;padding:1.2rem 1.5rem;border:1px solid rgba(220,160,50,.12);border-radius:3px;background:rgba(220,160,50,.02);text-decoration:none;transition:border-color .2s,background .2s;position:relative;z-index:2;}
+.eclipse-sister:hover{border-color:rgba(220,160,50,.25);background:rgba(220,160,50,.05);}
+.eclipse-sister-eyebrow{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(220,160,50,.38);margin-bottom:.4rem;}
+.eclipse-sister-name{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.06em;color:rgba(255,220,160,.65);}
 footer{position:relative;z-index:2;text-align:center;padding:1.2rem 1rem 2rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.19em;color:var(--silver);opacity:.19;text-transform:uppercase;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,240,.13);}
 
@@ -591,6 +595,14 @@ body.phase-waning-crescent{--bg-gradient:
     <div class="cycle-legend" id="cycle-legend"></div>
   </div>
 </main>
+
+<a class="eclipse-sister" href="https://www.next-eclipse.com" target="_blank" rel="noopener" id="eclipse-sister">
+  <div>
+    <p class="eclipse-sister-eyebrow" id="eclipse-sister-eyebrow">También sigue</p>
+    <p class="eclipse-sister-name" id="eclipse-sister-name">Próximo Eclipse →</p>
+  </div>
+  <span style="font-size:1.8rem;opacity:.4;line-height:1;">🌑</span>
+</a>
 
 <footer>
   <p>© 2026 Furiosa Studio · <span id="footer-calc">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link"><span id="footer-privacy">Privacidad</span></a> · <a href="https://www.next-eclipse.com" target="_blank" rel="noopener" id="footer-eclipse-link"><span id="footer-eclipse">Próximo eclipse →</span></a></p>
@@ -1677,6 +1689,11 @@ function applyLang(){
   const fc=document.getElementById('footer-calc'),fp=document.getElementById('footer-privacy');
   if(fc)fc.textContent=L.footerCalc;if(fp)fp.textContent=L.footerPrivacy;
   const fe=document.getElementById('footer-eclipse');if(fe)fe.textContent=L.footerEclipse;
+
+  // Sister box
+  const sey=document.getElementById('eclipse-sister-eyebrow'),sen=document.getElementById('eclipse-sister-name');
+  if(sey)sey.textContent=currentLang==='en'?'Also follow':'También sigue';
+  if(sen)sen.textContent=currentLang==='en'?'Next Eclipse →':'Próximo Eclipse →';
 
   // Panel close buttons
   document.querySelectorAll('.panel-close').forEach(b=>b.textContent=currentLang==='en'?'← Back':'← Volver');
