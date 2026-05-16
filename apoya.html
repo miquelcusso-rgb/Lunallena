@@ -59,6 +59,10 @@ ul li::before{content:'·';position:absolute;left:0;color:rgba(196,196,255,.3);}
 .btn-stripe:hover{background:rgba(196,196,255,.15);}
 .btn-stripe-5{background:rgba(196,196,255,.04);border-color:rgba(196,196,255,.35);color:rgba(196,196,255,.92);}
 .note{font-size:.9rem;font-style:italic;color:rgba(196,196,255,.28);margin-top:.4rem;}
+.sister-box{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:2rem;padding:1.2rem 1.5rem;border:1px solid rgba(220,160,50,.12);border-radius:3px;background:rgba(220,160,50,.02);text-decoration:none;transition:border-color .2s,background .2s;}
+.sister-box:hover{border-color:rgba(220,160,50,.25);background:rgba(220,160,50,.05);}
+.sister-eyebrow{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(220,160,50,.38);margin-bottom:.4rem;}
+.sister-name{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.06em;color:rgba(255,220,160,.65);}
 footer{margin-top:4rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.18);text-align:center;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,255,.1);}
 .share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}
@@ -94,6 +98,14 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
     <a class="btn btn-stripe btn-stripe-5" href="https://buy.stripe.com/bJefZjdui8LJgx16UU9R60a" target="_blank" rel="noopener" id="btn-stripe-5">💳 €5</a>
   </div>
   <p class="note" id="note">Tu aportación se destina directamente a mantener Lunallena activa. Gracias.</p>
+
+  <a class="sister-box" href="https://www.next-eclipse.com" target="_blank" rel="noopener" id="sister-box">
+    <div>
+      <p class="sister-eyebrow" id="sister-eyebrow">También sigue</p>
+      <p class="sister-name" id="sister-name">Próximo Eclipse →</p>
+    </div>
+    <span style="font-size:1.8rem;opacity:.45;line-height:1;">🌑</span>
+  </a>
 
   <hr>
   <footer>
@@ -142,6 +154,8 @@ if(EN){
   document.getElementById('footer-link').textContent='Next Full Moon';
   document.getElementById('footer-privacy').textContent='Privacy';
   document.getElementById('footer-privacy').href='/privacy';
+  document.getElementById('sister-eyebrow').textContent='Also follow';
+  document.getElementById('sister-name').textContent='Next Eclipse →';
 }
 </script>
 </body>
