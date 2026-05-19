@@ -1,24 +1,23 @@
 {
+  "rewrites": [
+    { "source": "/lunas-llenas",   "destination": "/lunas-llenas.html" },
+    { "source": "/fases-lunares",  "destination": "/moon-phases.html" },
+    { "source": "/luna-hoy",       "destination": "/moon-today.html" },
+    { "source": "/signos-lunares", "destination": "/moon-signs.html" },
+    { "source": "/eclipses",       "destination": "/eclipses.html" },
+    { "source": "/mindfulness",    "destination": "/mindfulness.html" },
+    { "source": "/apoya",          "destination": "/apoya.html" },
+    { "source": "/privacidad",     "destination": "/privacidad.html" },
+    { "source": "/privacy",        "destination": "/privacy.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=(), payment=()"
-        }
+        { "key": "X-Frame-Options",           "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options",    "value": "nosniff" },
+        { "key": "Referrer-Policy",           "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",        "value": "camera=(), microphone=(), geolocation=(), payment=()" }
       ]
     }
   ]
