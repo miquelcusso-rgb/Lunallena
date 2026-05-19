@@ -47,14 +47,8 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959" crossorigin="anonymous"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#030304;font-family:'Cormorant Garamond',Georgia,serif;color:rgba(236,232,245,.72);min-height:100vh;padding:3.5rem 1.5rem 5rem;line-height:1.75;}
-.wrap{max-width:760px;margin:0 auto;}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:3rem;}
-.back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(196,196,255,.35);text-decoration:none;transition:color .2s;}
-.back:hover{color:rgba(196,196,255,.65);}
-.site-name{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(196,196,255,.22);text-decoration:none;}
-.share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}
-.share-btn:hover{color:rgba(196,196,255,.88);border-color:rgba(196,196,255,.42);background:rgba(196,196,255,.05);}
+body{background:radial-gradient(ellipse 70% 50% at 30% 25%,#040409 0%,transparent 65%),radial-gradient(ellipse at 50% 50%,#030304 0%,#020202 60%,#010101 100%);font-family:'Cormorant Garamond',Georgia,serif;color:rgba(236,232,245,.72);min-height:100vh;padding:0;line-height:1.75;}
+.wrap{max-width:760px;margin:0 auto;position:relative;z-index:1;padding:5.5rem 1.5rem 0;}
 .eyebrow{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.6rem;}
 h1{font-family:'Cinzel',serif;font-weight:300;font-size:clamp(1.7rem,4vw,2.5rem);color:rgba(255,255,255,.88);letter-spacing:.04em;margin-bottom:.5rem;}
 .subtitle{font-size:1.1rem;font-style:italic;color:rgba(196,196,255,.42);margin-bottom:2.5rem;}
@@ -76,21 +70,67 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 .nav-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
 .nav-pill{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.4);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.22rem .55rem;border-radius:2px;transition:all .2s;}
 .nav-pill:hover{color:rgba(196,196,255,.75);border-color:rgba(196,196,255,.28);}
+
+#starfield{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+#topbar{position:fixed;top:0;left:0;right:0;z-index:250;display:flex;align-items:center;justify-content:space-between;padding:clamp(.85rem,2.2vw,1.2rem) clamp(1rem,4vw,2.4rem);background:linear-gradient(180deg,rgba(5,5,13,.92) 0%,transparent 100%);pointer-events:none;}
+.topbar-logo{pointer-events:all;font-family:'Cinzel',serif;font-weight:400;font-size:clamp(1rem,1.8vw,1.35rem);letter-spacing:.42em;text-transform:uppercase;color:#fff;opacity:.75;text-decoration:none;transition:opacity .25s;display:flex;align-items:center;gap:.6rem;line-height:1;}
+.topbar-logo:hover{opacity:1;}
+.topbar-logo-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;background:radial-gradient(circle at 36% 36%,#e4e4ff,#8888b0);box-shadow:0 0 10px rgba(196,196,255,.4);position:relative;top:-1px;}
+.topbar-right{pointer-events:all;display:flex;align-items:center;gap:.75rem;}
+.share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}
+.share-btn:hover{color:rgba(196,196,255,.88);border-color:rgba(196,196,255,.42);}
+#lang-toggle{background:none;border:1px solid rgba(196,196,255,.16);color:rgba(196,196,255,.5);font-family:'Cinzel',serif;font-size:clamp(.68rem,.9vw,.82rem);letter-spacing:.25em;text-transform:uppercase;padding:.28rem .58rem;border-radius:2px;cursor:pointer;transition:border-color .2s,color .2s;}
+#lang-toggle:hover{color:rgba(196,196,255,.85);border-color:rgba(196,196,255,.32);}
+#menu-btn{background:none;border:none;cursor:pointer;padding:4px;display:flex;flex-direction:column;gap:5px;}
+#menu-btn span{display:block;width:22px;height:1px;background:rgba(196,196,255,.55);transition:transform .3s,opacity .3s;}
+#menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+#menu-btn.open span:nth-child(2){opacity:0;}
+#menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+#nav-menu{position:fixed;top:0;right:0;bottom:0;z-index:240;width:min(300px,85vw);background:rgba(4,4,14,.97);backdrop-filter:blur(28px);border-left:1px solid rgba(196,196,255,.07);transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;padding:5rem 2rem 3rem;pointer-events:none;}
+#nav-menu.open{transform:translateX(0);pointer-events:all;}
+.nav-menu-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.3);margin-bottom:1.8rem;}
+.menu-nav-item{display:flex;align-items:center;gap:.85rem;padding:.9rem 0;border-bottom:1px solid rgba(196,196,255,.05);transition:opacity .2s;text-decoration:none;}
+.menu-nav-item:hover{opacity:.7;}
+.menu-nav-item:last-child{border:none;}
+.menu-nav-icon{font-size:1.1rem;width:1.4rem;text-align:center;opacity:.5;}
+.menu-nav-label{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(236,232,245,.75);}
+#nav-close{position:absolute;top:1.2rem;right:1.3rem;background:none;border:none;color:rgba(196,196,255,.35);font-size:1.1rem;cursor:pointer;}
+#nav-backdrop{display:none;position:fixed;inset:0;z-index:235;background:rgba(0,0,10,.5);backdrop-filter:blur(2px);}
+#nav-backdrop.open{display:block;}
 </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7GBHVCL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="wrap">
-  <div class="topbar">
-    <a class="back" id="back-link" href="/">← Lunallena</a>
-    <div style="display:flex;align-items:center;gap:1rem;">
-      <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
-      <a class="site-name" id="site-link" href="/">lunallena.co</a>
-    </div>
+<canvas id="starfield"></canvas>
+<nav id="topbar">
+  <a class="topbar-logo" href="/">
+    <span class="topbar-logo-dot"></span>
+    <span id="topbar-logo-text">Lunallena</span>
+  </a>
+  <div class="topbar-right">
+    <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
+    <button id="lang-toggle" onclick="toggleLang()" aria-label="Cambiar idioma">EN</button>
+    <button id="menu-btn" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
-
+</nav>
+<div id="nav-backdrop"></div>
+<div id="nav-menu">
+  <button id="nav-close">✕</button>
+  <p class="nav-menu-title" id="menu-title">Explorar</p>
+  <a class="menu-nav-item" href="/"><span class="menu-nav-icon">◎</span><span class="menu-nav-label" id="mnav-home">Inicio</span></a>
+  <a class="menu-nav-item" href="/lunas-llenas.html"><span class="menu-nav-icon">○</span><span class="menu-nav-label" id="mnav-lunas">Las 12 lunas</span></a>
+  <a class="menu-nav-item" href="/moon-phases.html"><span class="menu-nav-icon">◑</span><span class="menu-nav-label" id="mnav-phases">Fases lunares</span></a>
+  <a class="menu-nav-item" href="/moon-today.html"><span class="menu-nav-icon">◐</span><span class="menu-nav-label" id="mnav-today">Luna hoy</span></a>
+  <a class="menu-nav-item" href="/moon-signs.html"><span class="menu-nav-icon">✦</span><span class="menu-nav-label" id="mnav-signs">Signos lunares</span></a>
+  <a class="menu-nav-item" href="/eclipses.html"><span class="menu-nav-icon">◌</span><span class="menu-nav-label" id="mnav-eclipses">Eclipses</span></a>
+  <a class="menu-nav-item" href="/mindfulness.html"><span class="menu-nav-icon">☽</span><span class="menu-nav-label" id="mnav-mindfulness">Mindfulness</span></a>
+</div>
+<!-- compat stubs so existing EN-block JS doesn't error -->
+<span id="back-link" style="display:none;"></span>
+<span id="site-link" style="display:none;"></span>
+<div class="wrap">
   <div class="nav-links">
     <a class="nav-pill" href="/lunas-llenas.html" id="nav-lunas">Las 12 lunas</a>
     <a class="nav-pill" href="/moon-today.html" id="nav-today">Luna hoy</a>
@@ -399,6 +439,61 @@ if(EN){
   if(v==='1')push1();
   else if(!v)document.getElementById('ck').style.display='flex';
 })();
+</script>
+
+<script>
+function initStars(){
+  const cv=document.getElementById('starfield'),ctx=cv.getContext('2d');
+  let W,H,S,P,shooters=[];let nextShoot=0;
+  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;build();}
+  function build(){
+    S=Array.from({length:220},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.15+.18,a:Math.random(),da:(Math.random()-.5)*.0022}));
+    P=Array.from({length:55},()=>mkP(true));
+  }
+  function mkP(init){return{x:Math.random()*W,y:init?Math.random()*H:H+8,vx:(Math.random()-.5)*.28,vy:-(Math.random()*.55+.06),r:Math.random()*1.4+.25,a:Math.random()*.4+.07,l:Math.random()};}
+  function mkShooter(){const angle=Math.PI/6+Math.random()*Math.PI/6;const speed=W*.009+Math.random()*W*.006;return{x:Math.random()*W*.8,y:Math.random()*H*.35,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,len:W*.09+Math.random()*W*.08,life:1,decay:.022+Math.random()*.014,r:.9+Math.random()*.6};}
+  function draw(ts){
+    ctx.clearRect(0,0,W,H);
+    S.forEach(s=>{s.a+=s.da;if(s.a>1||s.a<0)s.da*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(200,212,255,${s.a*.62})`;ctx.fill();});
+    P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.l-=.0014;if(p.l<=0||p.y<-10)Object.assign(p,mkP(false));const alpha=Math.min(p.l*2,p.a);ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(210,212,255,${alpha})`;ctx.fill();});
+    if(ts>nextShoot){shooters.push(mkShooter());nextShoot=ts+7000+Math.random()*9000;}
+    shooters=shooters.filter(sh=>{sh.x+=sh.vx;sh.y+=sh.vy;sh.life-=sh.decay;if(sh.life<=0)return false;const alpha=sh.life*.85;const grd=ctx.createLinearGradient(sh.x,sh.y,sh.x-sh.vx*(sh.len/sh.r),sh.y-sh.vy*(sh.len/sh.r));grd.addColorStop(0,`rgba(255,255,255,${alpha})`);grd.addColorStop(.4,`rgba(200,210,255,${alpha*.5})`);grd.addColorStop(1,`rgba(180,190,255,0)`);ctx.beginPath();ctx.moveTo(sh.x,sh.y);const tailLen=sh.len*(1-sh.life*.3);const nx=sh.vx/Math.hypot(sh.vx,sh.vy),ny=sh.vy/Math.hypot(sh.vx,sh.vy);ctx.lineTo(sh.x-nx*tailLen,sh.y-ny*tailLen);ctx.strokeStyle=grd;ctx.lineWidth=sh.r;ctx.lineCap='round';ctx.stroke();ctx.beginPath();ctx.arc(sh.x,sh.y,sh.r*1.4,0,Math.PI*2);ctx.fillStyle=`rgba(240,244,255,${alpha*.9})`;ctx.fill();return true;});
+    requestAnimationFrame(draw);
+  }
+  addEventListener('resize',resize);resize();requestAnimationFrame(draw);
+}
+function initMenu(){
+  const btn=document.getElementById('menu-btn');
+  const menu=document.getElementById('nav-menu');
+  const backdrop=document.getElementById('nav-backdrop');
+  const closeBtn=document.getElementById('nav-close');
+  function openMenu(){menu.classList.add('open');backdrop.classList.add('open');btn.classList.add('open');}
+  function closeMenu(){menu.classList.remove('open');backdrop.classList.remove('open');btn.classList.remove('open');}
+  btn.addEventListener('click',()=>menu.classList.contains('open')?closeMenu():openMenu());
+  closeBtn.addEventListener('click',closeMenu);
+  backdrop.addEventListener('click',closeMenu);
+}
+function toggleLang(){
+  const EN=location.hostname.includes('nextfullmoon');
+  if(EN){window.location.href=window.location.href.replace(/nextfullmoon\.co/,'lunallena.co');}
+  else{window.location.href=window.location.href.replace(/lunallena\.co/,'nextfullmoon.co');}
+}
+// EN nav translations
+(function(){
+  if(!location.hostname.includes('nextfullmoon'))return;
+  document.getElementById('topbar-logo-text').textContent='Next Full Moon';
+  document.getElementById('lang-toggle').textContent='ES';
+  document.getElementById('menu-title').textContent='Explore';
+  document.getElementById('mnav-home').textContent='Home';
+  document.getElementById('mnav-lunas').textContent='The 12 moons';
+  document.getElementById('mnav-phases').textContent='Moon phases';
+  document.getElementById('mnav-today').textContent='Moon today';
+  document.getElementById('mnav-signs').textContent='Moon signs';
+  document.getElementById('mnav-eclipses').textContent='Eclipses';
+  document.getElementById('mnav-mindfulness').textContent='Mindfulness';
+})();
+initStars();
+initMenu();
 </script>
 </body>
 </html>
