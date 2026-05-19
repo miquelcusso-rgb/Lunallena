@@ -1996,18 +1996,19 @@ document.addEventListener('DOMContentLoaded',()=>{
 let mrLat=40.4168, mrLon=-3.7038;
 function mrFmt(d){if(!d||isNaN(d))return'—';return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
 function mrUpdate(){
-  if(typeof SunCalc==='undefined') return;
-  const now=new Date();
-  const times=SunCalc.getMoonTimes(now,mrLat,mrLon);
-  const pos=SunCalc.getMoonPosition(now,mrLat,mrLon);
-  const altDeg=(pos.altitude*180/Math.PI).toFixed(1);
-  // Transit: highest point scan
-  let maxA=-99,trT=null;
-  for(let i=-720;i<=720;i+=3){const t=new Date(now.getTime()+i*60000);const a=SunCalc.getMoonPosition(t,mrLat,mrLon).altitude;if(a>maxA){maxA=a;trT=t;}}
-  document.getElementById('mr-val-rise').textContent=mrFmt(times.rise);
-  document.getElementById('mr-val-transit').textContent=mrFmt(trT);
-  document.getElementById('mr-val-set').textContent=mrFmt(times.set);
-  document.getElementById('mr-val-alt').textContent=altDeg+'°';
+  if(typeof SunCalc==='undefined'){setTimeout(mrUpdate,500);return;}
+  try{
+    const now=new Date();
+    const times=SunCalc.getMoonTimes(now,mrLat,mrLon);
+    const pos=SunCalc.getMoonPosition(now,mrLat,mrLon);
+    const altDeg=(pos.altitude*180/Math.PI).toFixed(1);
+    let maxA=-99,trT=null;
+    for(let i=-720;i<=720;i+=3){const t=new Date(now.getTime()+i*60000);const a=SunCalc.getMoonPosition(t,mrLat,mrLon).altitude;if(a>maxA){maxA=a;trT=t;}}
+    document.getElementById('mr-val-rise').textContent=mrFmt(times&&times.rise?times.rise:null);
+    document.getElementById('mr-val-transit').textContent=mrFmt(trT);
+    document.getElementById('mr-val-set').textContent=mrFmt(times&&times.set?times.set:null);
+    document.getElementById('mr-val-alt').textContent=altDeg+'°';
+  }catch(e){console.warn('mrUpdate:',e);}
 }
 function mrRequestGeo(){
   if(!navigator.geolocation){return;}
@@ -2023,7 +2024,7 @@ function initMoonrise(){
   document.getElementById('mr-loc-note').textContent=isEN?'Default: Madrid, Spain':'Por defecto: Madrid, España';
   document.getElementById('mr-geo-btn').textContent=isEN?'Use my location':'Usar mi ubicación';
   document.getElementById('mr-more-link').textContent=isEN?'View trajectory →':'Ver trayectoria →';
-  document.getElementById('mr-more-link').href=isEN?'/moon-today':'/moon-today';
+  document.getElementById('mr-more-link').href='/moon-today.html';
   document.getElementById('moonrise-heading').textContent=isEN?"Tonight's moon times":'Salida y puesta de la luna hoy';
   document.getElementById('mr-label-rise').textContent=isEN?'Moonrise':'Salida';
   document.getElementById('mr-label-transit').textContent=isEN?'Transit':'Tránsito';
