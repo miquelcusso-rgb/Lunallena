@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" type="image/png" href="/icon-192.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP40DHXG3L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  var gid = location.hostname.includes('nextfullmoon') ? 'G-V220YHYXVZ' : 'G-CP40DHXG3L';
+  gtag('config', gid);
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pg-title">La luna hoy: salida, tránsito y puesta · Lunallena</title>
+<meta name="description" id="pg-desc" content="Consulta la trayectoria de la luna hoy: hora de salida, tránsito, puesta y altitud actual. Visualización en tiempo real adaptada a tu ubicación.">
+<link rel="canonical" id="pg-canonical" href="https://www.lunallena.co/luna-hoy">
+<link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-hoy">
+<link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/moon-today">
+<link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/luna-hoy">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" id="og-site" content="Lunallena">
+<meta property="og:title" id="og-title" content="La luna hoy · Trayectoria y horarios · Lunallena">
+<meta property="og:description" id="og-desc" content="Salida, tránsito y puesta de la luna hoy. Posición en tiempo real.">
+<meta property="og:url" id="og-url" content="https://www.lunallena.co/luna-hoy">
+<meta property="og:image" id="og-image" content="https://www.lunallena.co/og-moon.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="La luna hoy · Lunallena">
+<meta name="twitter:description" id="tw-desc" content="Salida, tránsito y puesta de la luna hoy.">
+<meta name="twitter:image" content="https://www.lunallena.co/og-moon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959" crossorigin="anonymous"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#030304;font-family:'Cormorant Garamond',Georgia,serif;color:rgba(236,232,245,.72);min-height:100vh;padding:3.5rem 1.5rem 5rem;line-height:1.75;}
+.wrap{max-width:680px;margin:0 auto;}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:3rem;}
+.back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(196,196,255,.35);text-decoration:none;transition:color .2s;}
+.back:hover{color:rgba(196,196,255,.65);}
+.site-name{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(196,196,255,.22);text-decoration:none;}
+.share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}
+.share-btn:hover{color:rgba(196,196,255,.88);border-color:rgba(196,196,255,.42);background:rgba(196,196,255,.05);}
+.eyebrow{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.6rem;}
+h1{font-family:'Cinzel',serif;font-weight:300;font-size:clamp(1.7rem,4vw,2.5rem);color:rgba(255,255,255,.88);letter-spacing:.04em;margin-bottom:.5rem;}
+.subtitle{font-size:1.05rem;font-style:italic;color:rgba(196,196,255,.42);margin-bottom:2rem;}
+hr{border:none;border-top:1px solid rgba(196,196,255,.07);margin:2rem 0;}
+h2{font-family:'Cinzel',serif;font-weight:400;font-size:.82rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:1.8rem 0 .8rem;}
+p{font-size:1.02rem;margin-bottom:.85rem;color:rgba(220,216,240,.6);}
+.arc-container{margin:1.5rem 0 1rem;background:rgba(196,196,255,.02);border:1px solid rgba(196,196,255,.06);border-radius:4px;padding:1.2rem;overflow:hidden;}
+#arc-svg{width:100%;max-width:600px;display:block;margin:0 auto;}
+.time-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.2rem 0;}
+.time-card{background:rgba(196,196,255,.04);border:1px solid rgba(196,196,255,.07);border-radius:3px;padding:.9rem 1rem;text-align:center;}
+.time-card-label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.3);margin-bottom:.3rem;}
+.time-card-value{font-family:'Cinzel',serif;font-size:1.1rem;color:rgba(255,255,255,.72);letter-spacing:.04em;}
+.altitude-bar-wrap{margin:1rem 0 1.4rem;}
+.altitude-label{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.3);display:flex;justify-content:space-between;margin-bottom:.4rem;}
+.altitude-track{height:2px;background:rgba(196,196,255,.08);border-radius:1px;}
+.altitude-fill{height:100%;background:linear-gradient(90deg,rgba(196,196,255,.2),rgba(220,220,255,.55));border-radius:1px;transition:width 1.2s ease;}
+.loc-note{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,196,255,.25);text-align:center;margin:.6rem 0;}
+.loc-btn{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.5);background:none;border:1px solid rgba(196,196,255,.15);padding:.3rem .8rem;border-radius:2px;cursor:pointer;transition:all .2s;display:block;margin:.6rem auto;}
+.loc-btn:hover{color:rgba(196,196,255,.85);border-color:rgba(196,196,255,.35);}
+.below-horizon{opacity:.45;}
+.ad-slot{width:100%;max-width:728px;margin:2rem auto;text-align:center;}
+footer{margin-top:3.5rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.18);text-align:center;}
+footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,255,.1);}
+.nav-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+.nav-pill{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.4);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.22rem .55rem;border-radius:2px;transition:all .2s;}
+.nav-pill:hover{color:rgba(196,196,255,.75);border-color:rgba(196,196,255,.28);}
+@media(max-width:420px){.time-cards{grid-template-columns:1fr 1fr;}.time-cards .time-card:last-child{grid-column:1/-1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" id="back-link" href="/">← Lunallena</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
+      <a class="site-name" id="site-link" href="/">lunallena.co</a>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a class="nav-pill" href="/moon-phases" id="nav-phases">Fases lunares</a>
+    <a class="nav-pill" href="/lunas-llenas" id="nav-lunas">Las 12 lunas</a>
+    <a class="nav-pill" href="/moon-signs" id="nav-signs">Luna en tu signo</a>
+    <a class="nav-pill" href="/mindfulness" id="nav-mindfulness">Mindfulness</a>
+  </div>
+
+  <p class="eyebrow" id="eyebrow">Hoy</p>
+  <h1 id="h1">La luna hoy</h1>
+  <p class="subtitle" id="subtitle">Trayectoria, horarios y altitud actual — actualizado cada minuto</p>
+
+  <div class="arc-container">
+    <svg id="arc-svg" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ground line -->
+      <line x1="20" y1="185" x2="500" y2="185" stroke="rgba(196,196,255,.12)" stroke-width="1"/>
+      <!-- Horizon label -->
+      <text x="12" y="189" fill="rgba(196,196,255,.18)" font-family="Cinzel,serif" font-size="7" letter-spacing="1">O</text>
+      <text x="500" y="189" fill="rgba(196,196,255,.18)" font-family="Cinzel,serif" font-size="7" letter-spacing="1">O</text>
+      <!-- Compass -->
+      <text x="26" y="200" fill="rgba(196,196,255,.22)" font-family="Cinzel,serif" font-size="7.5" letter-spacing="1" id="lbl-e">E</text>
+      <text x="252" y="205" fill="rgba(196,196,255,.22)" font-family="Cinzel,serif" font-size="7.5" letter-spacing="1" text-anchor="middle" id="lbl-s">S</text>
+      <text x="492" y="200" fill="rgba(196,196,255,.22)" font-family="Cinzel,serif" font-size="7.5" letter-spacing="1" text-anchor="end" id="lbl-w">W</text>
+      <!-- Arc path above ground -->
+      <path id="arc-path" d="" fill="none" stroke="rgba(196,196,255,.18)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- Arc path below ground (dashed dimmer) -->
+      <path id="arc-path-below" d="" fill="none" stroke="rgba(196,196,255,.07)" stroke-width="1" stroke-dasharray="2 4"/>
+      <!-- Key markers -->
+      <g id="marker-rise"></g>
+      <g id="marker-transit"></g>
+      <g id="marker-set"></g>
+      <!-- Moon dot -->
+      <g id="moon-dot"></g>
+    </svg>
+  </div>
+
+  <div class="time-cards">
+    <div class="time-card">
+      <div class="time-card-label" id="lbl-rise">Salida</div>
+      <div class="time-card-value" id="val-rise">—</div>
+    </div>
+    <div class="time-card">
+      <div class="time-card-label" id="lbl-transit">Tránsito</div>
+      <div class="time-card-value" id="val-transit">—</div>
+    </div>
+    <div class="time-card">
+      <div class="time-card-label" id="lbl-set">Puesta</div>
+      <div class="time-card-value" id="val-set">—</div>
+    </div>
+  </div>
+
+  <div class="altitude-bar-wrap">
+    <div class="altitude-label">
+      <span id="lbl-alt">Altitud actual</span>
+      <span id="val-alt">—°</span>
+    </div>
+    <div class="altitude-track"><div class="altitude-fill" id="alt-fill" style="width:0%"></div></div>
+  </div>
+
+  <p class="loc-note" id="loc-note">Usando ubicación: Madrid, España (por defecto)</p>
+  <button class="loc-btn" id="loc-btn" onclick="requestGeo()">Usar mi ubicación</button>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6498215334315959" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+
+  <hr>
+  <h2 id="h-about">Cómo funciona esta visualización</h2>
+  <p id="p-about-1">El arco que ves en la pantalla representa el cielo desde tu horizonte este hasta tu horizonte oeste, pasando por el punto más alto (cénit relativo). La luna sigue una trayectoria curva a través del cielo: sale por el este, alcanza su punto más alto al sur (en el hemisferio norte) y se pone por el oeste. El punto exacto de salida y puesta cambia cada día: en luna llena sale cerca del este exacto, mientras que en los cuartos puede desviarse notablemente.</p>
+  <p id="p-about-2">La altitud que se muestra es el ángulo de la luna sobre el horizonte en grados: 0° es el horizonte exacto, 90° es el punto directamente sobre tu cabeza (cénit). En latitudes medias como Madrid, la luna raramente supera los 60-65° de altitud. Cuando la luna está por debajo del horizonte, la posición se muestra en la parte inferior del arco con un estilo diferente.</p>
+  <p id="p-about-3">Los cálculos se realizan usando la biblioteca SunCalc, basada en los algoritmos de Jean Meeus publicados en su obra "Astronomical Algorithms". La precisión es de ±2 minutos para los horarios y ±1° para la altitud, suficiente para planificación práctica pero no para astronomía de precisión.</p>
+
+  <hr>
+  <footer>
+    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.9.0/suncalc.min.js"></script>
+<script>
+const EN = location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
+
+// --- i18n ---
+const T = {
+  es:{
+    title:'La luna hoy: salida, tránsito y puesta · Lunallena',
+    eyebrow:'Hoy', h1:'La luna hoy',
+    subtitle:'Trayectoria, horarios y altitud actual — actualizado cada minuto',
+    lbl_rise:'Salida', lbl_transit:'Tránsito', lbl_set:'Puesta',
+    lbl_alt:'Altitud actual',
+    loc_note_default:'Usando ubicación: Madrid, España (por defecto)',
+    loc_note_custom:'Tu ubicación activa',
+    loc_btn:'Usar mi ubicación',
+    loc_denied:'Permiso denegado — usando Madrid por defecto',
+    lbl_e:'E', lbl_s:'S', lbl_w:'O',
+    above:'sobre el horizonte', below:'bajo el horizonte',
+    footer_privacy:'Privacidad',
+    h_about:'Cómo funciona esta visualización',
+    back:'← Lunallena',
+    nav_phases:'Fases lunares', nav_lunas:'Las 12 lunas', nav_signs:'Luna en tu signo', nav_mindfulness:'Mindfulness',
+    p_about1:'El arco que ves en la pantalla representa el cielo desde tu horizonte este hasta tu horizonte oeste. La luna sale por el este, alcanza su punto más alto al sur (hemisferio norte) y se pone por el oeste. La altitud muestra los grados sobre el horizonte.',
+  },
+  en:{
+    title:'Moon today: moonrise, transit and moonset · Next Full Moon',
+    eyebrow:'Today', h1:'The moon today',
+    subtitle:'Trajectory, times and current altitude — updated every minute',
+    lbl_rise:'Moonrise', lbl_transit:'Transit', lbl_set:'Moonset',
+    lbl_alt:'Current altitude',
+    loc_note_default:'Using location: Madrid, Spain (default)',
+    loc_note_custom:'Your location active',
+    loc_btn:'Use my location',
+    loc_denied:'Permission denied — using Madrid as default',
+    lbl_e:'E', lbl_s:'S', lbl_w:'W',
+    above:'above horizon', below:'below horizon',
+    footer_privacy:'Privacy',
+    h_about:'How this visualisation works',
+    back:'← Next Full Moon',
+    nav_phases:'Moon phases', nav_lunas:'The 12 moons', nav_signs:'Moon sign', nav_mindfulness:'Mindfulness',
+    p_about1:'The arc shown represents the sky from your eastern to your western horizon. The moon rises in the east, reaches its highest point in the south (northern hemisphere) and sets in the west. Altitude shows the degrees above the horizon.',
+  }
+};
+const L = EN ? T.en : T.es;
+
+// Apply static i18n
+if(EN){
+  document.documentElement.lang='en';
+  document.getElementById('pg-canonical').href='https://www.nextfullmoon.co/moon-today';
+  document.getElementById('og-url').content='https://www.nextfullmoon.co/moon-today';
+  document.getElementById('og-site').content='Next Full Moon';
+  document.getElementById('og-image').content='https://www.nextfullmoon.co/og-moon.png';
+  document.getElementById('footer-privacy').href='/privacy';
+}
+document.getElementById('pg-title').textContent=L.title;
+document.getElementById('eyebrow').textContent=L.eyebrow;
+document.getElementById('h1').textContent=L.h1;
+document.getElementById('subtitle').textContent=L.subtitle;
+document.getElementById('lbl-rise').textContent=L.lbl_rise;
+document.getElementById('lbl-transit').textContent=L.lbl_transit;
+document.getElementById('lbl-set').textContent=L.lbl_set;
+document.getElementById('lbl-alt').textContent=L.lbl_alt;
+document.getElementById('loc-note').textContent=L.loc_note_default;
+document.getElementById('loc-btn').textContent=L.loc_btn;
+document.getElementById('lbl-e').textContent=L.lbl_e;
+document.getElementById('lbl-s').textContent=L.lbl_s;
+document.getElementById('lbl-w').textContent=L.lbl_w;
+document.getElementById('h-about').textContent=L.h_about;
+document.getElementById('back-link').textContent=L.back;
+document.getElementById('nav-phases').textContent=L.nav_phases;
+document.getElementById('nav-lunas').textContent=L.nav_lunas;
+document.getElementById('nav-signs').textContent=L.nav_signs;
+document.getElementById('nav-mindfulness').textContent=L.nav_mindfulness;
+document.getElementById('footer-privacy').textContent=L.footer_privacy;
+document.getElementById('footer-link').textContent=EN?'Next Full Moon':'Lunallena';
+document.getElementById('p-about-1').textContent=L.p_about1;
+document.getElementById('site-link').textContent=EN?'nextfullmoon.co':'lunallena.co';
+
+// --- Geo ---
+let lat = 40.4168, lon = -3.7038; // Madrid default
+
+function fmt(date){
+  if(!date||isNaN(date)) return '—';
+  return date.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+}
+
+function updateDisplay(){
+  const now = new Date();
+  const times = SunCalc.getMoonTimes(now, lat, lon);
+  const pos = SunCalc.getMoonPosition(now, lat, lon);
+  const altDeg = pos.altitude * 180 / Math.PI;
+  const altPct = Math.max(0, Math.min(100, (altDeg + 90) / 90 * 100));
+
+  // Transit: highest point. Approximate by scanning ±12h
+  let maxAlt=-99, transitTime=null;
+  for(let i=-720;i<=720;i+=2){
+    const t=new Date(now.getTime()+i*60000);
+    const a=SunCalc.getMoonPosition(t,lat,lon).altitude;
+    if(a>maxAlt){maxAlt=a;transitTime=t;}
+  }
+
+  document.getElementById('val-rise').textContent = fmt(times.rise);
+  document.getElementById('val-transit').textContent = fmt(transitTime);
+  document.getElementById('val-set').textContent = fmt(times.set);
+  document.getElementById('val-alt').textContent = altDeg.toFixed(1)+'°';
+  document.getElementById('alt-fill').style.width = altPct+'%';
+
+  drawArc(now, times, transitTime, altDeg);
+}
+
+function drawArc(now, times, transitTime, altNow){
+  const svg = document.getElementById('arc-svg');
+  const W=520, GY=185, cx=260, bot=210;
+  const R=160; // arc radius
+
+  // Compute normalized position on arc for a given time (0=rise, 0.5=transit, 1=set)
+  function arcPoint(t){
+    if(!t||isNaN(t)) return null;
+    const pos = SunCalc.getMoonPosition(t, lat, lon);
+    const alt = pos.altitude * 180 / Math.PI;
+    const az = pos.azimuth * 180 / Math.PI + 180; // 0=N, 90=E, 180=S, 270=W
+    // Map azimuth: E=20, S=260, W=500 (x from left)
+    // az: 90=E -> x=20, 180=S -> x=260, 270=W -> x=500
+    const xPos = ((az - 90) / 180) * 480 + 20;
+    const yPos = alt >= 0 ? GY - (alt / 90) * (GY - 20) : GY + ((-alt) / 90) * (bot - GY);
+    return {x:Math.max(10,Math.min(510,xPos)), y:yPos, alt, az};
+  }
+
+  // Build arc path by sampling times throughout the day
+  const riseT = times.rise instanceof Date ? times.rise : null;
+  const setT = times.set instanceof Date ? times.set : null;
+
+  let pathAbove='', pathBelow='';
+  let prevAbove=null, prevBelow=null;
+
+  for(let h=0;h<=24;h+=0.25){
+    const t=new Date(now);
+    t.setHours(0,0,0,0);
+    t.setTime(t.getTime()+h*3600000);
+    const pt=arcPoint(t);
+    if(!pt) continue;
+    if(pt.alt>=0){
+      pathAbove += (prevAbove===null?'M':'L')+pt.x.toFixed(1)+' '+pt.y.toFixed(1);
+      prevAbove=pt;
+    } else {
+      pathBelow += (prevBelow===null?'M':'L')+pt.x.toFixed(1)+' '+pt.y.toFixed(1);
+      prevBelow=pt;
+    }
+  }
+
+  document.getElementById('arc-path').setAttribute('d', pathAbove);
+  document.getElementById('arc-path-below').setAttribute('d', pathBelow);
+
+  // Markers
+  function markerSVG(id, pt, label, highlight){
+    const g = document.getElementById(id);
+    if(!pt){g.innerHTML='';return;}
+    const col = highlight ? 'rgba(255,255,255,.75)' : 'rgba(196,196,255,.35)';
+    g.innerHTML=`
+      <circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="3" fill="none" stroke="${col}" stroke-width="1.2"/>
+      <text x="${pt.x.toFixed(1)}" y="${(pt.y-8).toFixed(1)}" text-anchor="middle" fill="${col}" font-family="Cinzel,serif" font-size="7.5" letter-spacing=".5">${label}</text>`;
+  }
+
+  markerSVG('marker-rise', riseT ? arcPoint(riseT) : null, fmt(riseT||null), false);
+  markerSVG('marker-transit', transitTime ? arcPoint(transitTime) : null, fmt(transitTime), true);
+  markerSVG('marker-set', setT ? arcPoint(setT) : null, fmt(setT||null), false);
+
+  // Moon current position
+  const moonPt = arcPoint(now);
+  const moonG = document.getElementById('moon-dot');
+  if(moonPt){
+    const glow = moonPt.alt >= 0 ? 'rgba(230,230,200,.45)' : 'rgba(196,196,255,.15)';
+    const fill = moonPt.alt >= 0 ? 'rgba(230,230,200,.9)' : 'rgba(196,196,255,.3)';
+    moonG.innerHTML=`
+      <circle cx="${moonPt.x.toFixed(1)}" cy="${moonPt.y.toFixed(1)}" r="9" fill="${glow}" opacity=".4"/>
+      <circle cx="${moonPt.x.toFixed(1)}" cy="${moonPt.y.toFixed(1)}" r="6" fill="${fill}"/>
+      <circle cx="${moonPt.x.toFixed(1)}" cy="${moonPt.y.toFixed(1)}" r="6" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1"/>`;
+  }
+}
+
+function requestGeo(){
+  if(!navigator.geolocation){
+    document.getElementById('loc-note').textContent=L.loc_denied;
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(pos=>{
+    lat=pos.coords.latitude;
+    lon=pos.coords.longitude;
+    document.getElementById('loc-note').textContent=L.loc_note_custom+' ('+lat.toFixed(2)+', '+lon.toFixed(2)+')';
+    updateDisplay();
+  }, ()=>{
+    document.getElementById('loc-note').textContent=L.loc_denied;
+  });
+}
+
+function shareApp(){
+  const d=document.querySelector('meta[name="description"]');
+  const data={title:document.title,text:d?d.getAttribute('content'):'',url:window.location.href};
+  if(navigator.share){navigator.share(data).catch(()=>{});}
+  else{
+    (navigator.clipboard?navigator.clipboard.writeText(data.url):Promise.reject())
+    .then(()=>{const b=document.getElementById('share-btn');const o=b.textContent;b.textContent='✓';setTimeout(()=>b.textContent=o,2e3);})
+    .catch(()=>{window.open('https://x.com/intent/tweet?url='+encodeURIComponent(data.url),'_blank');});
+  }
+}
+
+// Wait for SunCalc to load
+window.addEventListener('load', ()=>{
+  if(typeof SunCalc !== 'undefined'){
+    updateDisplay();
+    setInterval(updateDisplay, 60000);
+  }
+});
+</script>
+
+<!-- ─ cookie consent ─ -->
+<div id="ck" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(3,3,6,.97);border-top:1px solid rgba(196,196,255,.1);padding:.75rem 1.5rem;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:space-between;font-family:'Cinzel',serif;">
+  <span id="ck-t" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.95rem;color:rgba(196,192,230,.55);flex:1;min-width:200px;line-height:1.5;"></span>
+  <div style="display:flex;gap:.5rem;flex-shrink:0;">
+    <button onclick="llConsent(1)" id="ck-y" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:rgba(196,196,255,.07);border:1px solid rgba(196,196,255,.22);color:rgba(196,196,255,.75);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+    <button onclick="llConsent(0)" id="ck-n" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:none;border:1px solid rgba(196,196,255,.1);color:rgba(196,196,255,.35);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+  </div>
+</div>
+<script>
+(function(){
+  const K='ll-consent';
+  const EN2=location.hostname.includes('nextfullmoon');
+  const T2={
+    en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
+    es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
+  };
+  function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});}
+  function hide(){document.getElementById('ck').style.display='none';}
+  window.llConsent=function(v){localStorage.setItem(K,String(v));hide();if(Number(v))push1();};
+  const tt=T2[EN2?'en':'es'];
+  document.getElementById('ck-t').innerHTML=tt.t;
+  document.getElementById('ck-y').textContent=tt.y;
+  document.getElementById('ck-n').textContent=tt.n;
+  const v=localStorage.getItem(K);
+  if(v==='1')push1();
+  else if(!v)document.getElementById('ck').style.display='flex';
+})();
+</script>
+</body>
+</html>

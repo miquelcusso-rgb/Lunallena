@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" type="image/png" href="/icon-192.png">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CP40DHXG3L"></script>
 <script>
@@ -13,8 +15,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title id="pg-title">Mindfulness lunar · Meditación y respiración con la luna · Lunallena</title>
-<meta name="description" id="pg-desc" content="Técnicas de mindfulness basadas en el ciclo lunar: respiración 4-4-6, meditación de luna llena y ritual de intención en luna nueva. La luna como ancla para la presencia.">
+<title id="pg-title">Mindfulness lunar: meditaciones y rituales para cada fase · Lunallena</title>
+<meta name="description" id="pg-desc" content="Meditaciones prácticas para luna nueva, cuarto creciente, luna llena y cuarto menguante. Journaling lunar, rituales de culturas antiguas y respiración 4-4-6. Guía completa de mindfulness con la luna.">
 <link rel="canonical" id="pg-canonical" href="https://www.lunallena.co/mindfulness">
 <link rel="alternate" hreflang="es" href="https://www.lunallena.co/mindfulness">
 <link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/mindfulness">
@@ -23,7 +25,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" id="og-site" content="Lunallena">
 <meta property="og:title" id="og-title" content="Mindfulness lunar · Meditación y respiración con la luna">
-<meta property="og:description" id="og-desc" content="Técnicas de mindfulness basadas en el ciclo lunar: respiración 4-4-6, meditación de luna llena y ritual de intención en luna nueva.">
+<meta property="og:description" id="og-desc" content="Meditaciones prácticas para cada fase lunar, journaling lunar y rituales de culturas antiguas.">
 <meta property="og:url" id="og-url" content="https://www.lunallena.co/mindfulness">
 <meta property="og:image" id="og-image" content="https://www.lunallena.co/og-moon.png">
 <meta property="og:image:width" content="1200">
@@ -31,10 +33,10 @@
 <meta property="og:image:alt" id="og-image-alt" content="Luna llena sobre el cielo nocturno">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" id="tw-title" content="Mindfulness lunar · Meditación y respiración con la luna · Lunallena">
-<meta name="twitter:description" id="tw-desc" content="Técnicas de mindfulness basadas en el ciclo lunar: respiración 4-4-6, meditación de luna llena y ritual de intención en luna nueva.">
+<meta name="twitter:description" id="tw-desc" content="Meditaciones prácticas para cada fase lunar, journaling lunar y rituales de culturas antiguas.">
 <meta name="twitter:image" content="https://www.lunallena.co/og-moon.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Mindfulness lunar — meditación y respiración con la luna","description":"Técnicas de mindfulness basadas en el ciclo lunar: respiración 4-4-6, meditación de luna llena, ritual de intención en luna nueva y la luna como espejo.","url":"https://www.lunallena.co/mindfulness","publisher":{"@type":"Organization","name":"Lunallena","url":"https://www.lunallena.co"},"inLanguage":"es"}
+{"@context":"https://schema.org","@type":"Article","headline":"Mindfulness lunar: meditaciones y rituales para cada fase","description":"Meditaciones prácticas para luna nueva, cuarto creciente, luna llena y cuarto menguante. Journaling lunar, rituales de culturas antiguas y respiración 4-4-6.","url":"https://www.lunallena.co/mindfulness","publisher":{"@type":"Organization","name":"Lunallena","url":"https://www.lunallena.co"},"inLanguage":"es"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +45,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#030304;font-family:'Cormorant Garamond',Georgia,serif;color:rgba(236,232,245,.72);min-height:100vh;padding:3.5rem 1.5rem 5rem;line-height:1.75;}
-.wrap{max-width:680px;margin:0 auto;}
+.wrap{max-width:720px;margin:0 auto;}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:3rem;}
 .back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(196,196,255,.35);text-decoration:none;transition:color .2s;}
 .back:hover{color:rgba(196,196,255,.65);}
@@ -53,15 +55,26 @@ h1{font-family:'Cinzel',serif;font-weight:300;font-size:clamp(1.7rem,4vw,2.5rem)
 .subtitle{font-size:1.1rem;font-style:italic;color:rgba(196,196,255,.42);margin-bottom:2.5rem;}
 hr{border:none;border-top:1px solid rgba(196,196,255,.07);margin:2.2rem 0;}
 h2{font-family:'Cinzel',serif;font-weight:400;font-size:.86rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:2rem 0 .8rem;}
+h3{font-family:'Cinzel',serif;font-weight:400;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42);margin:1.6rem 0 .5rem;}
 p{font-size:1.05rem;margin-bottom:.9rem;color:rgba(220,216,240,.6);}
 .breath-box{border:1px solid rgba(196,196,255,.1);border-radius:3px;padding:1.5rem;margin:1.2rem 0;background:rgba(196,196,255,.03);}
 .breath-steps{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem;}
 .step{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.5);background:rgba(196,196,255,.06);border:1px solid rgba(196,196,255,.1);padding:.4rem .9rem;border-radius:2px;}
+.phase-card{border:1px solid rgba(196,196,255,.08);border-radius:3px;padding:1.5rem 1.6rem;margin-bottom:1.4rem;background:rgba(196,196,255,.02);}
+.phase-card-title{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.8rem;}
+.journal-list{list-style:none;margin:0 0 .8rem;padding:0;}
+.journal-list li{font-size:1.02rem;color:rgba(196,196,220,.55);padding:.35rem 0;border-bottom:1px solid rgba(196,196,255,.04);padding-left:1rem;position:relative;}
+.journal-list li::before{content:'—';position:absolute;left:0;color:rgba(196,196,255,.2);}
+.journal-list li:last-child{border-bottom:none;}
+.culture-card{border-left:2px solid rgba(196,196,255,.12);padding:.8rem 1.2rem;margin:.8rem 0;}
 .ad-slot{width:100%;max-width:728px;margin:2rem auto;text-align:center;}
 footer{margin-top:4rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.18);text-align:center;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,255,.1);}
 .share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}
 .share-btn:hover{color:rgba(196,196,255,.88);border-color:rgba(196,196,255,.42);background:rgba(196,196,255,.05);}
+.nav-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+.nav-pill{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.4);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.22rem .55rem;border-radius:2px;transition:all .2s;}
+.nav-pill:hover{color:rgba(196,196,255,.75);border-color:rgba(196,196,255,.28);}
 </style>
 </head>
 <body>
@@ -74,12 +87,19 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
     </div>
   </div>
 
+  <div class="nav-links">
+    <a class="nav-pill" href="/moon-phases" id="nav-phases">Fases lunares</a>
+    <a class="nav-pill" href="/lunas-llenas" id="nav-lunas">Las 12 lunas</a>
+    <a class="nav-pill" href="/moon-signs" id="nav-signs">Luna en tu signo</a>
+    <a class="nav-pill" href="/moon-today" id="nav-today">Luna hoy</a>
+  </div>
+
   <p class="eyebrow" id="eyebrow">Bienestar</p>
   <h1 id="h1">Mindfulness lunar</h1>
-  <p class="subtitle" id="subtitle">La luna como ancla para la presencia</p>
+  <p class="subtitle" id="subtitle">La luna como ancla para la presencia — una práctica para cada fase</p>
 
   <h2 id="h-respira">Respiración 4-4-6</h2>
-  <p id="p-respira">Técnica de coherencia cardíaca adaptada al ciclo lunar. Reduce el cortisol, activa el sistema nervioso parasimpático y conecta con el ritmo natural de los ciclos.</p>
+  <p id="p-respira">Técnica de coherencia cardíaca adaptada al ciclo lunar. Reduce el cortisol, activa el sistema nervioso parasimpático y conecta con el ritmo natural de los ciclos. Practica esta respiración en momentos de transición: al despertar, antes de dormir o cuando la ansiedad sube. El patrón inhala-sostén-exhala imita la estructura del propio ciclo lunar: expansión, plenitud y soltar.</p>
   <div class="breath-box">
     <div class="breath-steps">
       <span class="step" id="step1">Inhala · 4 seg</span>
@@ -89,21 +109,112 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
     <p style="margin-top:.9rem;font-size:.95rem;" id="p-cycles">Repite 5 ciclos. Practica en luna llena o luna nueva para amplificar el efecto del ciclo.</p>
   </div>
 
+  <hr>
+  <h2 id="h-med-fases">Meditaciones para cada fase lunar</h2>
+  <p id="p-intro-med">Cada una de las cuatro fases principales del ciclo lunar tiene una energía distinta, y las prácticas de mindfulness ganan profundidad cuando se alinean con ese ritmo natural. No se trata de superstición: la luna afecta las mareas oceánicas, los patrones de luz nocturna y, según algunos estudios preliminares, incluso la calidad del sueño. Usarla como ancla temporal para la práctica personal es simplemente inteligente diseño de hábitos.</p>
+
+  <div class="phase-card">
+    <div class="phase-card-title" id="h-new-moon">Luna Nueva — Siembra interior</div>
+    <p id="p-new-1">La luna nueva es oscuridad total: el disco lunar no refleja luz visible desde la Tierra. Este es el momento de mayor potencial latente, la semilla antes de germinar. La práctica de mindfulness en luna nueva trabaja con la intención y el silencio. Encuentra un lugar oscuro y tranquilo, siéntate en una postura cómoda y permite que los ojos se cierren suavemente.</p>
+    <p id="p-new-2">En lugar de vaciar la mente —lo que resulta imposible para la mayoría— dirige la atención hacia dentro: ¿qué quieres cultivar en este ciclo? No formulaciones abstractas como "más paz" o "más éxito", sino algo concreto y observable: una conversación que tienes pendiente, un hábito que quieres instalar, una tarea que has evitado. La oscuridad de la luna nueva es el espacio antes del inicio, el silencio antes de que comience la música.</p>
+    <p id="p-new-3">Permanece en ese espacio interior durante al menos diez minutos. Observa los pensamientos que emergen sin aferrarte a ninguno. Cuando termines, escribe en papel —no en pantalla— una sola intención para el ciclo que comienza. Dóblalo y guárdalo. Revisar esa nota en la próxima luna llena, dos semanas después, puede ser uno de los ejercicios de autoconocimiento más simples y reveladores que existen.</p>
+    <p id="p-new-4">La ciencia del comportamiento respalda esta práctica de manera indirecta: los estudios sobre "implementation intentions" (intenciones de implementación) de Peter Gollwitzer muestran que formular intenciones específicas en momentos de baja estimulación aumenta significativamente la probabilidad de llevarlas a cabo. La luna nueva ofrece ese espacio de bajo estímulo de manera natural, cada 29,5 días.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-card-title" id="h-first-q">Cuarto Creciente — Acción consciente</div>
+    <p id="p-fq-1">A siete días de la luna nueva, la luna presenta exactamente la mitad de su disco iluminada. Es el punto de la primera resistencia: la intención del inicio choca con la fricción de la realidad. Este es el momento en que los propósitos se abandonan con más frecuencia, no por falta de deseo, sino por exceso de inercia.</p>
+    <p id="p-fq-2">La práctica de mindfulness en cuarto creciente es activa, no contemplativa. Se trata de llevar atención plena al movimiento: una caminata de veinte minutos sin móvil ni música, prestando atención total a cada paso, al contacto del pie con el suelo, al peso del cuerpo desplazándose. O bien una tarea de trabajo manual —fregar, ordenar, cocinar— realizada con presencia total, sin distracción paralela.</p>
+    <p id="p-fq-3">La energía del cuarto creciente es yang: expansiva, orientada hacia afuera. Aprovéchala para dar un primer paso concreto en la dirección de la intención sembrada en luna nueva. No el paso completo, no el proyecto terminado: el primer movimiento. Los estudios sobre inercia conductual muestran que el comienzo es el obstáculo más difícil; una vez iniciado el movimiento, continuarlo requiere mucha menos energía.</p>
+    <p id="p-fq-4">Al final del día de cuarto creciente, haz una revisión de dos minutos: ¿tomé al menos un paso hacia mi intención del ciclo? ¿Qué obstáculo encontré? ¿Qué necesito el obstáculo para ceder? Esta revisión breve, hecha con curiosidad y sin juicio, es más valiosa que horas de reflexión sin ancla temporal.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-card-title" id="h-full-moon">Luna Llena — Iluminación y liberación</div>
+    <p id="p-fl-1">La luna llena es el climax del ciclo: máxima luz, máxima visibilidad, máxima intensidad emocional. No es casualidad que "luna llena" esté asociada en docenas de culturas con rituales de celebración, con sueño perturbado, con comportamientos más extremos. La luz intensa de la luna llena ilumina lo que normalmente permanece en sombras —dentro y fuera de nosotros.</p>
+    <p id="p-fl-2">La meditación de luna llena clásica trabaja con la visualización de luz. Siéntate cómodamente frente a una ventana o al exterior, donde puedas ver la luna o imaginarla si está cubierta. Cierra los ojos y visualiza su luz descendiendo sobre ti como lluvia plateada y fría. Con cada inhalación, recibes esa luz en el cuerpo; con cada exhalación, dejas ir algo que ya no necesitas. No necesitas saber qué estás liberando: el cuerpo lo sabe.</p>
+    <p id="p-fl-3">Una variante más avanzada: dedica cinco minutos a escribir sin filtro (free writing) todo lo que ha surgido desde la luna nueva. Sin editar, sin releer, sin juzgar. Simplemente vacia. Luego relee lo escrito con la misma distancia con que leerías la carta de un extraño, con curiosidad y sin defensa. Lo que emerge en ese momento de revisión es información valiosa sobre tu estado interior actual.</p>
+    <p id="p-fl-4">La luna llena también es un momento fisiológicamente relevante: varios estudios, incluido uno publicado en Current Biology en 2013, encontraron que la calidad del sueño disminuía en los días alrededor de la luna llena incluso en condiciones de oscuridad total de laboratorio. Si notas mayor dificultad para dormir en luna llena, es información, no debilidad: puedes diseñar ese día con menos estimulación nocturna y aceptar que el descanso puede ser diferente.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-card-title" id="h-last-q">Cuarto Menguante — Integración y soltar</div>
+    <p id="p-lq-1">El cuarto menguante completa el ciclo: la luna ya alcanzó su plenitud y ahora regresa gradualmente a la oscuridad. La energía de esta fase es yin, introspectiva, orientada hacia adentro. Es el momento de integrar lo que ha ocurrido, de soltar lo que no funcionó, de agradecer lo que sí.</p>
+    <p id="p-lq-2">La práctica recomendada en cuarto menguante es el body scan progresivo: acostado con los ojos cerrados, lleva la atención lentamente desde los pies hasta la cabeza, notando las sensaciones físicas sin intentar cambiarlas. Tensión, calor, hormigueo, pesadez: simplemente observa y nombra. Esta práctica conecta con la energía descendente del cuarto menguante, que invita a descender del pensamiento hacia la experiencia corporal directa.</p>
+    <p id="p-lq-3">Después del body scan, dedica unos minutos a identificar tres cosas que quieres dejar atrás antes de la próxima luna nueva: un resentimiento que ya no te sirve, una expectativa que ha demostrado ser irreal, un hábito que has comprobado que no funciona. No es necesario "resolver" nada; simplemente reconocer y nombrar tiene un efecto liberador documentado en psicología cognitiva. El cuarto menguante es el espacio natural para este trabajo.</p>
+  </div>
+
   <div class="ad-slot">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6498215334315959" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
   </div>
 
   <hr>
-  <h2 id="h-med">Meditación de luna llena</h2>
-  <p id="p-med">Siéntate cómodo frente a una ventana o al exterior. Observa la luna o imagínala si es de día. Visualiza su luz descendiendo sobre ti como lluvia plateada. Con cada exhalación, suelta algo que ya no necesitas. La luna llena es el momento de máxima iluminación — también interior.</p>
+  <h2 id="h-journal">Journaling lunar</h2>
+  <p id="p-journal-intro">Llevar un diario basado en fases lunares es una de las herramientas más efectivas para el autoconocimiento a lo largo del tiempo. A diferencia del diario diario, que puede convertirse en una carga, el journaling lunar requiere solo cuatro entradas por ciclo (una por fase), lo que lo hace sostenible a largo plazo. Lo que sí requiere es honestidad y especificidad: las preguntas vagas producen respuestas vagas.</p>
+
+  <h3 id="h-j-new">Prompts para Luna Nueva</h3>
+  <ul class="journal-list" id="jl-new">
+    <li>¿Qué quiero cultivar en los próximos 29 días? Sé específico: no "más energía" sino "levantarme a las 7h tres días por semana".</li>
+    <li>¿Qué he aprendido del ciclo que acaba de terminar que quiero aplicar en el nuevo?</li>
+    <li>¿Qué estoy evitando enfrentar? ¿Cuál sería el primer paso más pequeño posible para comenzar?</li>
+    <li>¿Qué necesitaría soltar para hacer espacio a lo que quiero invitar?</li>
+    <li>Si este ciclo lunar fuese perfecto, ¿cómo sería la última noche de luna llena dentro de 15 días?</li>
+  </ul>
+
+  <h3 id="h-j-first">Prompts para Cuarto Creciente</h3>
+  <ul class="journal-list" id="jl-first">
+    <li>¿Qué pasos concretos he dado hacia mi intención de luna nueva? ¿Cuántos de ellos los tomé realmente o los solo planeé?</li>
+    <li>¿Qué obstáculos han aparecido? ¿Son circunstanciales o revelan algo más profundo?</li>
+    <li>¿Qué recurso o apoyo necesitaría que todavía no he pedido?</li>
+    <li>¿En qué momento del día tengo más energía para trabajar en esto?</li>
+    <li>¿Qué me está diciendo el cuerpo sobre el ritmo que llevo?</li>
+  </ul>
+
+  <h3 id="h-j-full">Prompts para Luna Llena</h3>
+  <ul class="journal-list" id="jl-full">
+    <li>¿Qué ha "iluminado" este ciclo que antes no veía con claridad?</li>
+    <li>¿Qué intención de luna nueva se ha manifestado, aunque sea parcialmente? ¿Qué lo hizo posible?</li>
+    <li>¿Qué relación o situación merece ser celebrada y reconocida en este momento?</li>
+    <li>¿Qué estoy sosteniendo que me pesa y que podría soltar en esta fase?</li>
+    <li>Escribe libremente durante 5 minutos sin levantar el bolígrafo. Luego subraya la frase más importante.</li>
+  </ul>
+
+  <h3 id="h-j-last">Prompts para Cuarto Menguante</h3>
+  <ul class="journal-list" id="jl-last">
+    <li>¿Qué ha terminado en este ciclo que merece ser reconocido como tal?</li>
+    <li>¿Qué patrón has observado en ti mismo durante estas cuatro semanas?</li>
+    <li>¿De qué persona, situación o expectativa necesitas despedirte antes del próximo ciclo?</li>
+    <li>¿Qué aprendizaje de este ciclo quieres llevar al siguiente como semilla?</li>
+    <li>¿Cómo ha estado tu cuerpo durante este ciclo? ¿Ha habido señales que has ignorado?</li>
+  </ul>
 
   <hr>
-  <h2 id="h-ritual">Ritual de intención en luna nueva</h2>
-  <p id="p-ritual">La luna nueva marca el inicio del ciclo. Escribe en papel tres intenciones específicas. No deseos vagos — acciones concretas. Dóblalo y guárdalo. Revísalo en la próxima luna llena para ver qué germinó.</p>
+  <h2 id="h-historia">Rituales a través de la historia</h2>
+  <p id="p-hist-intro">La observación de la luna llena como momento de ritual colectivo es una de las constantes más universales de la cultura humana. Independientemente de la geografía, la época o la tradición religiosa, prácticamente todas las civilizaciones han desarrollado prácticas específicas para la luna llena. Lo que sigue es un recorrido por cuatro de las tradiciones más ricas.</p>
 
-  <hr>
-  <h2 id="h-espejo">La luna como espejo</h2>
-  <p id="p-espejo">La luna no tiene luz propia: refleja la del sol. Una práctica contemplativa consiste en preguntarse: ¿qué reflejo en mi vida? ¿Qué luz ajena estoy haciendo brillar? ¿Y cuál es la mía propia?</p>
+  <div class="culture-card">
+    <h3 id="h-aztec">Cultura azteca: Metztli y el calendario lunar</h3>
+    <p id="p-aztec">Los aztecas veneraban a Metztli, divinidad de la luna, cuyo culto estaba integrado en el Tonalpohualli, el calendario sagrado de 260 días que servía tanto para augurios como para organizar los ritmos agrícolas. La luna llena en el mes Quecholli (vinculado a la caza) era ocasión para grandes cacerías rituales precedidas de ayuno y purificación. La sangre de los animales cazados se ofrecía a Metztli como agradecimiento por la luz nocturna que guiaba a los cazadores. Para los aztecas, la luna y el sol estaban en una competición eterna: la luna crecía robándole luz al sol, y la luna menguante era el resultado de esa batalla. Las sacerdotisas lunares, llamadas cihuatlampa, realizaban ceremonias de purificación a la luz de la luna llena con incienso de copal, danzas circulares y ofrendas de agua sagrada recogida precisamente esa noche.</p>
+  </div>
+
+  <div class="culture-card">
+    <h3 id="h-egypt">Cultura egipcia: Khonsu y el tiempo medido</h3>
+    <p id="p-egypt">En el panteón egipcio, Khonsu era el dios de la luna y del tiempo, frecuentemente representado como un joven con cabeza de halcón tocado con un disco lunar. El templo de Khonsu en Karnak, construido en el Imperio Nuevo, era el escenario de rituales lunares nocturnos que incluían procisones de sacerdotes con linternas representando las fases del ciclo. La luna llena en el calendario egipcio coincidía con el "Día del Plenilunio", uno de los más importantes del año litúrgico: se abrían los graneros, se redistribuían los alimentos almacenados y se organizaban los grandes banquetes comunitarios. Los astrónomos-sacerdotes egipcios fueron de los primeros en documentar con precisión el ciclo lunar de 29,5 días, información que usaban para predecir las crecidas del Nilo y planificar la siembra. Para ellos, la luna no era solo un símbolo religioso, sino un instrumento de precisión astronómica.</p>
+  </div>
+
+  <div class="culture-card">
+    <h3 id="h-celtic">Cultura celta: Esbats y las trece lunas</h3>
+    <p id="p-celtic">Las comunidades celtas de las Islas Británicas y la Galia organizaban su vida ceremonial alrededor de las lunas llenas, llamadas Esbats (diferenciadas de los Sabbats, que eran las festividades solares). Cada luna llena del año tenía un nombre y una función: la Luna del Roble (junio) era el momento para honrar a los árboles sagrados; la Luna de la Sangre (noviembre) marcaba el sacrificio del ganado excedente antes del invierno. Las druidas, la casta sacerdotal celta, realizaban sus ritos más importantes en los claros del bosque a la luz de la luna llena, aprovechando la visibilidad nocturna para sus ceremonias que incluían fuego, música, danza y el uso de plantas medicinales recolectadas al anochecer. Los calendarios celtas contaban los años en lunas, no en años solares: el año nuevo celta comenzaba en la primera luna nueva de noviembre, con el festival de Samhain. Trece lunas formaban el ciclo anual, y la decimotercera luna, cuando aparecía, era considerada especialmente poderosa.</p>
+  </div>
+
+  <div class="culture-card">
+    <h3 id="h-japan">Cultura japonesa: Tsukimi, contemplar la luna</h3>
+    <p id="p-japan">Tsukimi (月見, "contemplar la luna") es una de las tradiciones más refinadas del mundo en torno a la luna llena. Originada en la corte Heian del siglo X, la práctica de Tsukimi consiste en reunirse al aire libre durante la luna llena de septiembre (Jugo-ya, la "decimoquinta noche" del octavo mes lunar) para contemplar la luna en silencio, recitar poesía, tocar música suave y ofrecer mochi (pasteles de arroz redondos que imitan la forma de la luna) junto a ramas de pampas grass (susuki). La tradición no es religiosa en sentido estricto, sino estética: el concepto de mono no aware, la belleza melancólica de las cosas pasajeras, se encarna perfectamente en la luna llena, que alcanza su plenitud por una sola noche antes de comenzar a menguar. El Tsukimi es también ocasión de agradecimiento por la cosecha de otoño, por lo que se ofrecen también castañas, boniatos y otros productos de temporada. En Japón contemporáneo sigue siendo una festividad popular que mezcla tradición y modernidad, con empresas de comida rápida lanzando ediciones limitadas de "Tsukimi burgers" con huevo redondo que evoca la luna.</p>
+  </div>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6498215334315959" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
 
   <hr>
   <footer>
@@ -125,38 +236,77 @@ function shareApp(){
 const EN = location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
 if(EN){
   document.documentElement.lang='en';
-  document.getElementById('pg-title').textContent='Lunar Mindfulness · Meditation and breathwork with the moon · Next Full Moon';
-  document.getElementById('pg-desc').content='Mindfulness techniques based on the lunar cycle: 4-4-6 breathing, full moon meditation and new moon intention ritual. The moon as an anchor for presence.';
+  document.getElementById('pg-title').textContent='Lunar Mindfulness: meditations and rituals for each phase · Next Full Moon';
+  document.getElementById('pg-desc').content='Practical meditations for new moon, first quarter, full moon and last quarter. Lunar journaling, ancient culture rituals and 4-4-6 breathing. Complete lunar mindfulness guide.';
   document.getElementById('pg-canonical').href='https://www.nextfullmoon.co/mindfulness';
   document.getElementById('og-title').content='Lunar Mindfulness · Meditation and breathwork with the moon';
-  document.getElementById('og-desc').content='Mindfulness techniques based on the lunar cycle: 4-4-6 breathing, full moon meditation and new moon intention ritual.';
+  document.getElementById('og-desc').content='Practical meditations for each lunar phase, lunar journaling and ancient culture rituals.';
   document.getElementById('og-url').content='https://www.nextfullmoon.co/mindfulness';
   document.getElementById('og-image').content='https://www.nextfullmoon.co/og-moon.png';
   document.getElementById('og-image-alt').content='Full moon in the night sky';
   document.getElementById('og-site').content='Next Full Moon';
   document.getElementById('tw-title').content='Lunar Mindfulness · Meditation and breathwork with the moon · Next Full Moon';
-  document.getElementById('tw-desc').content='Mindfulness techniques based on the lunar cycle: 4-4-6 breathing, full moon meditation and new moon intention ritual.';
+  document.getElementById('tw-desc').content='Practical meditations for each lunar phase, lunar journaling and ancient culture rituals.';
   document.getElementById('share-btn').textContent='↗ Share';
   document.getElementById('back-link').textContent='← Next Full Moon';
   document.getElementById('site-link').textContent='nextfullmoon.co';
   document.getElementById('eyebrow').textContent='Wellbeing';
   document.getElementById('h1').textContent='Lunar Mindfulness';
-  document.getElementById('subtitle').textContent='The moon as an anchor for presence';
+  document.getElementById('subtitle').textContent='The moon as an anchor for presence — a practice for each phase';
   document.getElementById('h-respira').textContent='4-4-6 Breathing';
-  document.getElementById('p-respira').textContent='A cardiac coherence technique adapted to the lunar cycle. Reduces cortisol, activates the parasympathetic nervous system and connects you to the natural rhythm of cycles.';
+  document.getElementById('p-respira').textContent='A cardiac coherence technique adapted to the lunar cycle. Reduces cortisol, activates the parasympathetic nervous system and connects you to the natural rhythm of cycles. Practice this breathing during transitional moments: upon waking, before sleep, or when anxiety rises. The inhale-hold-exhale pattern mirrors the lunar cycle itself: expansion, fullness and release.';
   document.getElementById('step1').textContent='Inhale · 4 sec';
   document.getElementById('step2').textContent='Hold · 4 sec';
   document.getElementById('step3').textContent='Exhale · 6 sec';
   document.getElementById('p-cycles').textContent='Repeat 5 cycles. Practise on the full moon or new moon to amplify the effect of the cycle.';
-  document.getElementById('h-med').textContent='Full moon meditation';
-  document.getElementById('p-med').textContent="Sit comfortably facing a window or outdoors. Observe the moon or visualise it if it's daytime. Picture its light descending on you like silver rain. With each exhalation, release something you no longer need. The full moon is the moment of maximum illumination — including within.";
-  document.getElementById('h-ritual').textContent='New moon intention ritual';
-  document.getElementById('p-ritual').textContent="The new moon marks the start of the cycle. Write three specific intentions on paper. Not vague wishes — concrete actions. Fold it and put it away. Review it at the next full moon to see what has grown.";
-  document.getElementById('h-espejo').textContent='The moon as a mirror';
-  document.getElementById('p-espejo').textContent="The moon has no light of its own: it reflects the sun's. A contemplative practice is to ask yourself: what am I reflecting in my life? Whose light am I making shine? And what is my own?";
+  document.getElementById('h-med-fases').textContent='Meditations for each lunar phase';
+  document.getElementById('p-intro-med').textContent="Each of the four main phases of the lunar cycle has a distinct energy, and mindfulness practices gain depth when aligned with that natural rhythm. This isn't superstition: the moon affects ocean tides, nocturnal light patterns and, according to some preliminary studies, even sleep quality. Using it as a temporal anchor for personal practice is simply intelligent habit design.";
+  document.getElementById('h-new-moon').textContent='New Moon — Inner planting';
+  document.getElementById('p-new-1').textContent="The new moon is total darkness: the lunar disk reflects no visible light from Earth. This is the moment of greatest latent potential — the seed before germination. Mindfulness practice on the new moon works with intention and silence. Find a dark, quiet place, sit in a comfortable posture and allow your eyes to gently close.";
+  document.getElementById('p-new-2').textContent="Rather than emptying the mind — which most people find impossible — direct attention inward: what do you want to cultivate in this cycle? Not abstract formulations like 'more peace' or 'more success', but something concrete and observable: a conversation you've been avoiding, a habit you want to install, a task you've put off. The darkness of the new moon is the space before a beginning, the silence before music starts.";
+  document.getElementById('p-new-3').textContent="Remain in that inner space for at least ten minutes. Observe thoughts as they arise without attaching to any. When you finish, write on paper — not a screen — a single intention for the cycle that is beginning. Fold it and put it away. Revisiting that note at the next full moon, two weeks later, can be one of the simplest and most revealing self-knowledge exercises there is.";
+  document.getElementById('p-new-4').textContent="Behavioural science supports this practice indirectly: Peter Gollwitzer's studies on implementation intentions show that formulating specific intentions during low-stimulation moments significantly increases the likelihood of carrying them out. The new moon offers that low-stimulus space naturally, every 29.5 days.";
+  document.getElementById('h-first-q').textContent='First Quarter — Conscious action';
+  document.getElementById('p-fq-1').textContent="Seven days after the new moon, exactly half the lunar disk is illuminated. This is the point of first resistance: the intention from the start collides with the friction of reality. This is the moment when purposes are most frequently abandoned — not for lack of desire, but for excess of inertia.";
+  document.getElementById('p-fq-2').textContent="The first quarter mindfulness practice is active, not contemplative. It means bringing full attention to movement: a twenty-minute walk without phone or music, paying total attention to each step, to the contact of foot with ground, to the weight of the body shifting. Or a manual task — washing up, tidying, cooking — performed with total presence, without parallel distraction.";
+  document.getElementById('p-fq-3').textContent="The energy of the first quarter is yang: expansive, outward-oriented. Use it to take a concrete first step in the direction of the intention planted at new moon. Not the complete step, not the finished project: the first movement. Research on behavioural inertia shows that starting is the hardest obstacle; once movement has begun, continuing it requires far less energy.";
+  document.getElementById('p-fq-4').textContent="At the end of first quarter day, do a two-minute review: did I take at least one step towards my cycle intention? What obstacle did I encounter? What does the obstacle need in order to yield? This brief review, done with curiosity and without judgement, is more valuable than hours of reflection without temporal anchor.";
+  document.getElementById('h-full-moon').textContent='Full Moon — Illumination and release';
+  document.getElementById('p-fl-1').textContent="The full moon is the climax of the cycle: maximum light, maximum visibility, maximum emotional intensity. It is no coincidence that 'full moon' is associated in dozens of cultures with celebration rituals, disturbed sleep and more extreme behaviour. The intense light of the full moon illuminates what normally remains in shadow — both inside and outside us.";
+  document.getElementById('p-fl-2').textContent="Classic full moon meditation works with light visualisation. Sit comfortably facing a window or outdoors where you can see the moon or imagine it if it's overcast. Close your eyes and picture its light descending on you like cold silver rain. With each inhale, you receive that light into the body; with each exhale, you release something you no longer need. You don't need to know what you're releasing: the body knows.";
+  document.getElementById('p-fl-3').textContent="A more advanced variation: spend five minutes writing without filter (free writing) everything that has surfaced since the new moon. Without editing, re-reading or judging. Simply empty. Then re-read what you wrote with the same distance as you'd read a stranger's letter — with curiosity and without defence. What emerges in that moment of review is valuable information about your current inner state.";
+  document.getElementById('p-fl-4').textContent="The full moon is also physiologically relevant: several studies, including one published in Current Biology in 2013, found that sleep quality decreased in the days around the full moon even under total darkness conditions in laboratory settings. If you notice greater difficulty sleeping during the full moon, this is information, not weakness — you can design that day with less evening stimulation and accept that rest may simply be different.";
+  document.getElementById('h-last-q').textContent='Last Quarter — Integration and release';
+  document.getElementById('p-lq-1').textContent="The last quarter completes the cycle: the moon has reached its fullness and is now gradually returning to darkness. The energy of this phase is yin, introspective, inward-oriented. It is the time to integrate what has happened, to release what didn't work, to give thanks for what did.";
+  document.getElementById('p-lq-2').textContent="The recommended practice at the last quarter is the progressive body scan: lying down with eyes closed, move attention slowly from feet to head, noticing physical sensations without trying to change them. Tension, heat, tingling, heaviness — simply observe and name. This practice connects with the descending energy of the last quarter, which invites a move from thought to direct bodily experience.";
+  document.getElementById('p-lq-3').textContent="After the body scan, spend a few minutes identifying three things you want to leave behind before the next new moon: a resentment that no longer serves you, an expectation that has proved unrealistic, a habit that has shown it doesn't work. You don't need to 'resolve' anything; simply recognising and naming has a documented liberating effect in cognitive psychology. The last quarter is the natural space for this work.";
+  document.getElementById('h-journal').textContent='Lunar journaling';
+  document.getElementById('p-journal-intro').textContent="Keeping a journal based on lunar phases is one of the most effective tools for self-knowledge over time. Unlike daily journaling, which can become a burden, lunar journaling requires only four entries per cycle (one per phase), making it sustainable long-term. What it does require is honesty and specificity: vague questions produce vague answers.";
+  document.getElementById('h-j-new').textContent='Prompts for New Moon';
+  document.getElementById('jl-new').innerHTML='<li>What do I want to cultivate in the next 29 days? Be specific: not "more energy" but "get up at 7am three days a week".</li><li>What have I learnt from the cycle that just ended that I want to apply to the new one?</li><li>What am I avoiding facing? What would be the smallest possible first step to begin?</li><li>What would I need to release to make space for what I want to invite?</li><li>If this lunar cycle were perfect, what would the last night of the full moon look like in 15 days?</li>';
+  document.getElementById('h-j-first').textContent='Prompts for First Quarter';
+  document.getElementById('jl-first').innerHTML='<li>What concrete steps have I taken towards my new moon intention? How many did I actually take vs. merely plan?</li><li>What obstacles have appeared? Are they circumstantial or do they reveal something deeper?</li><li>What resource or support do I need that I haven\'t yet asked for?</li><li>At what time of day do I have most energy to work on this?</li><li>What is my body telling me about the pace I\'m keeping?</li>';
+  document.getElementById('h-j-full').textContent='Prompts for Full Moon';
+  document.getElementById('jl-full').innerHTML='<li>What has this cycle "illuminated" that I couldn\'t see clearly before?</li><li>Which new moon intention has manifested, even partially? What made it possible?</li><li>What relationship or situation deserves to be celebrated and recognised right now?</li><li>What am I holding that weighs on me and that I could release in this phase?</li><li>Write freely for 5 minutes without lifting your pen. Then underline the most important sentence.</li>';
+  document.getElementById('h-j-last').textContent='Prompts for Last Quarter';
+  document.getElementById('jl-last').innerHTML='<li>What has ended in this cycle that deserves to be acknowledged as such?</li><li>What pattern have you noticed in yourself during these four weeks?</li><li>From what person, situation or expectation do you need to say goodbye before the next cycle?</li><li>What learning from this cycle do you want to carry into the next as a seed?</li><li>How has your body been during this cycle? Were there signals you ignored?</li>';
+  document.getElementById('h-historia').textContent='Rituals through history';
+  document.getElementById('p-hist-intro').textContent="Observing the full moon as a moment of collective ritual is one of the most universal constants of human culture. Regardless of geography, era or religious tradition, virtually every civilisation has developed specific practices for the full moon. What follows is a journey through four of the richest traditions.";
+  document.getElementById('h-aztec').textContent='Aztec culture: Metztli and the lunar calendar';
+  document.getElementById('p-aztec').textContent="The Aztecs venerated Metztli, deity of the moon, whose cult was integrated into the Tonalpohualli, the 260-day sacred calendar used both for auguries and to organise agricultural rhythms. The full moon in the month of Quecholli (linked to hunting) was an occasion for great ritual hunts preceded by fasting and purification. The blood of hunted animals was offered to Metztli in gratitude for the moonlight that guided hunters. For the Aztecs, the moon and sun were in eternal competition: the waxing moon grew by stealing light from the sun, and the waning moon was the result of that battle. Lunar priestesses called cihuatlampa performed purification ceremonies by the light of the full moon with copal incense, circular dances and offerings of sacred water collected precisely on that night.";
+  document.getElementById('h-egypt').textContent='Egyptian culture: Khonsu and measured time';
+  document.getElementById('p-egypt').textContent="In the Egyptian pantheon, Khonsu was the god of the moon and of time, frequently depicted as a young man with a falcon's head crowned with a lunar disk. The Temple of Khonsu at Karnak, built in the New Kingdom, was the scene of nocturnal lunar rituals including processions of priests with lanterns representing the phases of the cycle. The full moon in the Egyptian calendar coincided with the 'Day of the Full Moon', one of the most important in the liturgical year: granaries were opened, stored food redistributed and great communal feasts organised. The Egyptian astronomer-priests were among the first to accurately document the 29.5-day lunar cycle, information they used to predict the flooding of the Nile and plan sowing. For them, the moon was not merely a religious symbol but an instrument of astronomical precision.";
+  document.getElementById('h-celtic').textContent='Celtic culture: Esbats and the thirteen moons';
+  document.getElementById('p-celtic').textContent="Celtic communities of the British Isles and Gaul organised their ceremonial life around full moons, called Esbats (distinguished from Sabbats, which were solar festivals). Each full moon of the year had a name and a function: the Oak Moon (June) was the time to honour sacred trees; the Blood Moon (November) marked the ritual slaughter of surplus livestock before winter. The druids, the Celtic priestly caste, performed their most important rites in forest clearings by the light of the full moon, using the night visibility for ceremonies that included fire, music, dance and the use of medicinal plants gathered at nightfall. Celtic calendars counted years in moons, not solar years: the Celtic new year began on the first new moon of November, with the festival of Samhain. Thirteen moons formed the annual cycle, and the thirteenth moon, when it appeared, was considered especially powerful.";
+  document.getElementById('h-japan').textContent='Japanese culture: Tsukimi, viewing the moon';
+  document.getElementById('p-japan').textContent="Tsukimi (月見, 'moon viewing') is one of the world's most refined traditions around the full moon. Originating in the Heian court of the 10th century, the practice of Tsukimi consists of gathering outdoors during the September full moon (Jugo-ya, the 'fifteenth night' of the eighth lunar month) to contemplate the moon in silence, recite poetry, play soft music and offer mochi (round rice cakes that mirror the moon's shape) alongside pampas grass branches (susuki). The tradition is not strictly religious but aesthetic: the concept of mono no aware — the melancholic beauty of passing things — is perfectly embodied by the full moon, which reaches its fullness for only one night before beginning to wane. Tsukimi is also an occasion to give thanks for the autumn harvest, so chestnuts, sweet potatoes and other seasonal produce are also offered. In contemporary Japan it remains a popular festival blending tradition and modernity, with fast-food companies releasing limited-edition 'Tsukimi burgers' featuring a round egg that evokes the moon.";
   document.getElementById('footer-link').textContent='Next Full Moon';
   document.getElementById('footer-privacy').textContent='Privacy';
   document.getElementById('footer-privacy').href='/privacy';
+  document.getElementById('nav-phases').textContent='Moon phases';
+  document.getElementById('nav-lunas').textContent='The 12 moons';
+  document.getElementById('nav-signs').textContent='Moon sign';
+  document.getElementById('nav-today').textContent='Moon today';
 }
 </script>
 

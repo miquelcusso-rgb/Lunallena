@@ -450,6 +450,7 @@ body.phase-waning-crescent{--bg-gradient:
 })();
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.9.0/suncalc.min.js"></script>
 </head>
 <body>
 <canvas id="starfield"></canvas>
@@ -551,6 +552,34 @@ body.phase-waning-crescent{--bg-gradient:
          data-ad-slot=""
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
+  </div>
+
+  <div class="lunar-divider"></div>
+
+  <!-- MOONRISE / MOONSET -->
+  <div class="moonrise-section" id="moonrise-section" style="width:100%;max-width:640px;text-align:center;animation:fsi 2s cubic-bezier(.16,1,.3,1) .65s both;">
+    <p class="section-heading" id="moonrise-heading">Salida y puesta de la luna hoy</p>
+    <div class="moonrise-cards" id="moonrise-cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:.5rem 0 .9rem;">
+      <div style="background:rgba(255,255,255,.02);border:1px solid rgba(196,196,240,.055);border-radius:2px;padding:.8rem .5rem;">
+        <div id="mr-label-rise" style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.3rem;">Salida</div>
+        <div id="mr-val-rise" style="font-family:'Cinzel',serif;font-size:1.05rem;color:rgba(255,255,255,.65);">—</div>
+      </div>
+      <div style="background:rgba(255,255,255,.02);border:1px solid rgba(196,196,240,.055);border-radius:2px;padding:.8rem .5rem;">
+        <div id="mr-label-transit" style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.3rem;">Tránsito</div>
+        <div id="mr-val-transit" style="font-family:'Cinzel',serif;font-size:1.05rem;color:rgba(255,255,255,.65);">—</div>
+      </div>
+      <div style="background:rgba(255,255,255,.02);border:1px solid rgba(196,196,240,.055);border-radius:2px;padding:.8rem .5rem;">
+        <div id="mr-label-set" style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.3rem;">Puesta</div>
+        <div id="mr-val-set" style="font-family:'Cinzel',serif;font-size:1.05rem;color:rgba(255,255,255,.65);">—</div>
+      </div>
+      <div style="background:rgba(255,255,255,.02);border:1px solid rgba(196,196,240,.055);border-radius:2px;padding:.8rem .5rem;">
+        <div id="mr-label-alt" style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.3rem;">Altitud</div>
+        <div id="mr-val-alt" style="font-family:'Cinzel',serif;font-size:1.05rem;color:rgba(255,255,255,.65);">—</div>
+      </div>
+    </div>
+    <p id="mr-loc-note" style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(196,196,255,.2);margin:.3rem 0 .5rem;"></p>
+    <button id="mr-geo-btn" onclick="mrRequestGeo()" style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.42);background:none;border:1px solid rgba(196,196,255,.12);padding:.26rem .65rem;border-radius:2px;cursor:pointer;transition:all .2s;">Usar mi ubicación</button>
+    <a href="/moon-today" id="mr-more-link" style="display:inline-block;margin-left:.7rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.35);text-decoration:none;border-bottom:1px solid rgba(196,196,255,.12);padding-bottom:1px;transition:color .2s;">Ver trayectoria →</a>
   </div>
 
   <div class="lunar-divider"></div>
@@ -1953,7 +1982,50 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co'){currentLang='en';}
   applyLang();
   window.addEventListener('resize',()=>updateSlidePos());
+  // Moonrise init
+  initMoonrise();
 });
+
+// ── MOONRISE / MOONSET ──
+let mrLat=40.4168, mrLon=-3.7038;
+function mrFmt(d){if(!d||isNaN(d))return'—';return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
+function mrUpdate(){
+  if(typeof SunCalc==='undefined') return;
+  const now=new Date();
+  const times=SunCalc.getMoonTimes(now,mrLat,mrLon);
+  const pos=SunCalc.getMoonPosition(now,mrLat,mrLon);
+  const altDeg=(pos.altitude*180/Math.PI).toFixed(1);
+  // Transit: highest point scan
+  let maxA=-99,trT=null;
+  for(let i=-720;i<=720;i+=3){const t=new Date(now.getTime()+i*60000);const a=SunCalc.getMoonPosition(t,mrLat,mrLon).altitude;if(a>maxA){maxA=a;trT=t;}}
+  document.getElementById('mr-val-rise').textContent=mrFmt(times.rise);
+  document.getElementById('mr-val-transit').textContent=mrFmt(trT);
+  document.getElementById('mr-val-set').textContent=mrFmt(times.set);
+  document.getElementById('mr-val-alt').textContent=altDeg+'°';
+}
+function mrRequestGeo(){
+  if(!navigator.geolocation){return;}
+  navigator.geolocation.getCurrentPosition(p=>{
+    mrLat=p.coords.latitude;mrLon=p.coords.longitude;
+    const isEN=location.hostname.includes('nextfullmoon');
+    document.getElementById('mr-loc-note').textContent=(isEN?'Your location':'Tu ubicación')+' ('+mrLat.toFixed(2)+', '+mrLon.toFixed(2)+')';
+    mrUpdate();
+  },()=>{});
+}
+function initMoonrise(){
+  const isEN=location.hostname.includes('nextfullmoon');
+  document.getElementById('mr-loc-note').textContent=isEN?'Default: Madrid, Spain':'Por defecto: Madrid, España';
+  document.getElementById('mr-geo-btn').textContent=isEN?'Use my location':'Usar mi ubicación';
+  document.getElementById('mr-more-link').textContent=isEN?'View trajectory →':'Ver trayectoria →';
+  document.getElementById('mr-more-link').href=isEN?'/moon-today':'/moon-today';
+  document.getElementById('moonrise-heading').textContent=isEN?"Tonight's moon times":'Salida y puesta de la luna hoy';
+  document.getElementById('mr-label-rise').textContent=isEN?'Moonrise':'Salida';
+  document.getElementById('mr-label-transit').textContent=isEN?'Transit':'Tránsito';
+  document.getElementById('mr-label-set').textContent=isEN?'Moonset':'Puesta';
+  document.getElementById('mr-label-alt').textContent=isEN?'Altitude':'Altitud';
+  if(typeof SunCalc!=='undefined'){mrUpdate();setInterval(mrUpdate,60000);}
+  else{window.addEventListener('load',()=>{if(typeof SunCalc!=='undefined'){mrUpdate();setInterval(mrUpdate,60000);}});}
+}
 </script>
 
 <!-- ─ cookie consent ─ -->
