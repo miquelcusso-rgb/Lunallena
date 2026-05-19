@@ -87,13 +87,15 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 #menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 #nav-menu{position:fixed;top:0;right:0;bottom:0;z-index:240;width:min(300px,85vw);background:rgba(4,4,14,.97);backdrop-filter:blur(28px);border-left:1px solid rgba(196,196,255,.07);transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;padding:5rem 2rem 3rem;pointer-events:none;}
 #nav-menu.open{transform:translateX(0);pointer-events:all;}
-.nav-menu-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.3);margin-bottom:1.8rem;}
-.menu-nav-item{display:flex;align-items:center;gap:.85rem;padding:.9rem 0;border-bottom:1px solid rgba(196,196,255,.05);transition:opacity .2s;text-decoration:none;}
-.menu-nav-item:hover{opacity:.7;}
-.menu-nav-item:last-child{border:none;}
-.menu-nav-icon{font-size:1.1rem;width:1.4rem;text-align:center;opacity:.5;}
-.menu-nav-label{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(236,232,245,.75);}
-#nav-close{position:absolute;top:1.2rem;right:1.3rem;background:none;border:none;color:rgba(196,196,255,.35);font-size:1.1rem;cursor:pointer;}
+.nav-menu-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.3);margin-bottom:2rem;}
+.nav-item{display:flex;align-items:center;gap:.9rem;padding:1rem 0;border-bottom:1px solid rgba(196,196,255,.05);cursor:pointer;transition:opacity .2s;text-decoration:none;}
+.nav-item:hover{opacity:.7;}
+.nav-item:last-child{border:none;}
+.nav-icon{font-size:1.2rem;width:1.5rem;text-align:center;}
+.nav-label{font-family:'Cinzel',serif;font-size:1.0rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(236,232,245,.75);}
+.nav-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;color:rgba(196,196,220,.38);margin-top:.12rem;}
+.nav-close{position:absolute;top:1.2rem;right:1.3rem;background:none;border:none;color:rgba(196,196,255,.35);font-size:1.1rem;cursor:pointer;}
+.nav-close:hover{color:rgba(196,196,255,.7);}
 #nav-backdrop{display:none;position:fixed;inset:0;z-index:235;background:rgba(0,0,10,.5);backdrop-filter:blur(2px);}
 #nav-backdrop.open{display:block;}
 </style>
@@ -116,15 +118,36 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 </nav>
 <div id="nav-backdrop"></div>
 <div id="nav-menu">
-  <button id="nav-close">✕</button>
-  <p class="nav-menu-title" id="menu-title">Explorar</p>
-  <a class="menu-nav-item" href="/"><span class="menu-nav-icon">◎</span><span class="menu-nav-label" id="mnav-home">Inicio</span></a>
-  <a class="menu-nav-item" href="/lunas-llenas.html"><span class="menu-nav-icon">○</span><span class="menu-nav-label" id="mnav-lunas">Las 12 lunas</span></a>
-  <a class="menu-nav-item" href="/moon-phases.html"><span class="menu-nav-icon">◑</span><span class="menu-nav-label" id="mnav-phases">Fases lunares</span></a>
-  <a class="menu-nav-item" href="/moon-today.html"><span class="menu-nav-icon">◐</span><span class="menu-nav-label" id="mnav-today">Luna hoy</span></a>
-  <a class="menu-nav-item" href="/moon-signs.html"><span class="menu-nav-icon">✦</span><span class="menu-nav-label" id="mnav-signs">Signos lunares</span></a>
-  <a class="menu-nav-item" href="/eclipses.html"><span class="menu-nav-icon">◌</span><span class="menu-nav-label" id="mnav-eclipses">Eclipses</span></a>
-  <a class="menu-nav-item" href="/mindfulness.html"><span class="menu-nav-icon">☽</span><span class="menu-nav-label" id="mnav-mindfulness">Mindfulness</span></a>
+  <button class="nav-close" id="nav-close">✕</button>
+  <p class="nav-menu-title">Explorar</p>
+  <a class="nav-item" href="/lunas-llenas.html">
+    <span class="nav-icon">🌕</span>
+    <div><div class="nav-label" id="nav-lunas-label">Las 12 lunas llenas</div><div class="nav-sub" id="nav-lunas-sub">Nombres, significados y magia</div></div>
+  </a>
+  <a class="nav-item" href="/eclipses.html">
+    <span class="nav-icon">🌑</span>
+    <div><div class="nav-label" id="nav-eclipses-label">Eclipses</div><div class="nav-sub" id="nav-eclipses-sub">Lunares y solares · Próximos</div></div>
+  </a>
+  <a class="nav-item" href="/moon-phases.html">
+    <span class="nav-icon">🌓</span>
+    <div><div class="nav-label" id="nav-phases-label">Fases lunares</div><div class="nav-sub" id="nav-phases-sub">Las 8 fases del ciclo lunar</div></div>
+  </a>
+  <a class="nav-item" href="/moon-today.html">
+    <span class="nav-icon">📍</span>
+    <div><div class="nav-label" id="nav-today-label">Luna hoy</div><div class="nav-sub" id="nav-today-sub">Trayectoria y horarios por ubicación</div></div>
+  </a>
+  <a class="nav-item" href="/moon-signs.html">
+    <span class="nav-icon">♑</span>
+    <div><div class="nav-label" id="nav-signs-label">Signos lunares</div><div class="nav-sub" id="nav-signs-sub">La luna en el zodiaco hoy</div></div>
+  </a>
+  <a class="nav-item" href="/mindfulness.html">
+    <span class="nav-icon">🧘</span>
+    <div><div class="nav-label" id="nav-mindfulness-label">Mindfulness lunar</div><div class="nav-sub" id="nav-mindfulness-sub">Meditación y respiración</div></div>
+  </a>
+  <a class="nav-item" href="/apoya.html">
+    <span class="nav-icon">☽</span>
+    <div><div class="nav-label" id="nav-apoya-label">Apoya</div><div class="nav-sub" id="nav-apoya-sub">Mantén la luna encendida</div></div>
+  </a>
 </div>
 <!-- compat stubs so existing EN-block JS doesn't error -->
 <span id="back-link" style="display:none;"></span>
@@ -387,14 +410,21 @@ function toggleLang(){
   if(!location.hostname.includes('nextfullmoon'))return;
   document.getElementById('topbar-logo-text').textContent='Next Full Moon';
   document.getElementById('lang-toggle').textContent='ES';
-  document.getElementById('menu-title').textContent='Explore';
-  document.getElementById('mnav-home').textContent='Home';
-  document.getElementById('mnav-lunas').textContent='The 12 moons';
-  document.getElementById('mnav-phases').textContent='Moon phases';
-  document.getElementById('mnav-today').textContent='Moon today';
-  document.getElementById('mnav-signs').textContent='Moon signs';
-  document.getElementById('mnav-eclipses').textContent='Eclipses';
-  document.getElementById('mnav-mindfulness').textContent='Mindfulness';
+  document.querySelector('.nav-menu-title').textContent='Explore';
+  document.getElementById('nav-lunas-label')&&(document.getElementById('nav-lunas-label').textContent='The 12 Full Moons');
+  document.getElementById('nav-lunas-sub')&&(document.getElementById('nav-lunas-sub').textContent='Names, meanings and magic');
+  document.getElementById('nav-eclipses-label')&&(document.getElementById('nav-eclipses-label').textContent='Eclipses');
+  document.getElementById('nav-eclipses-sub')&&(document.getElementById('nav-eclipses-sub').textContent='Lunar & solar · Upcoming');
+  document.getElementById('nav-phases-label')&&(document.getElementById('nav-phases-label').textContent='Moon phases');
+  document.getElementById('nav-phases-sub')&&(document.getElementById('nav-phases-sub').textContent='The 8 phases of the lunar cycle');
+  document.getElementById('nav-today-label')&&(document.getElementById('nav-today-label').textContent='Moon today');
+  document.getElementById('nav-today-sub')&&(document.getElementById('nav-today-sub').textContent='Trajectory and times by location');
+  document.getElementById('nav-signs-label')&&(document.getElementById('nav-signs-label').textContent='Moon signs');
+  document.getElementById('nav-signs-sub')&&(document.getElementById('nav-signs-sub').textContent='The moon in the zodiac today');
+  document.getElementById('nav-mindfulness-label')&&(document.getElementById('nav-mindfulness-label').textContent='Lunar Mindfulness');
+  document.getElementById('nav-mindfulness-sub')&&(document.getElementById('nav-mindfulness-sub').textContent='Meditation and breathwork');
+  document.getElementById('nav-apoya-label')&&(document.getElementById('nav-apoya-label').textContent='Support');
+  document.getElementById('nav-apoya-sub')&&(document.getElementById('nav-apoya-sub').textContent='Keep the moon lit');
 })();
 initStars();
 initMenu();
