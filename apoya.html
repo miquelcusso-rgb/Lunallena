@@ -68,6 +68,9 @@ ul li::before{content:'·';position:absolute;left:0;color:rgba(196,196,255,.3);}
 .sister-name{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.06em;color:rgba(255,220,160,.65);}
 footer{margin-top:4rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.18);text-align:center;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,255,.1);}
+.nav-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+.nav-pill{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.4);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.22rem .55rem;border-radius:2px;transition:all .2s;}
+.nav-pill:hover{color:rgba(196,196,255,.75);border-color:rgba(196,196,255,.28);}
 .share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}
 .share-btn:hover{color:rgba(196,196,255,.88);border-color:rgba(196,196,255,.42);background:rgba(196,196,255,.05);}
 </style>
@@ -88,6 +91,15 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
   <p class="eyebrow" id="eyebrow">Comunidad</p>
   <h1 id="h1">Apoya Lunallena</h1>
   <p class="subtitle" id="subtitle">Lunallena es libre, bonita y sin trackers</p>
+
+  <div class="nav-links">
+    <a class="nav-pill" href="/lunas-llenas.html" id="nav-lunas">Las 12 lunas</a>
+    <a class="nav-pill" href="/eclipses.html" id="nav-eclipses">Eclipses</a>
+    <a class="nav-pill" href="/moon-phases.html" id="nav-phases">Fases lunares</a>
+    <a class="nav-pill" href="/moon-today.html" id="nav-today">Luna hoy</a>
+    <a class="nav-pill" href="/moon-signs.html" id="nav-signs">Signos lunares</a>
+    <a class="nav-pill" href="/mindfulness.html" id="nav-mindfulness">Mindfulness</a>
+  </div>
 
   <p id="p-intro">Si Lunallena te aporta algo — un momento de calma, curiosidad o conexión con los ciclos naturales — considera mantenerla encendida con una pequeña aportación.</p>
 
@@ -115,7 +127,7 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 
   <hr>
   <footer>
-    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad.html" id="footer-privacy">Privacidad</a></p>
   </footer>
 </div>
 
@@ -162,6 +174,12 @@ if(EN){
   document.getElementById('footer-privacy').href='/privacy';
   document.getElementById('sister-eyebrow').textContent='Also follow';
   document.getElementById('sister-name').textContent='Next Eclipse →';
+  document.getElementById('nav-lunas').textContent='The 12 moons';
+  document.getElementById('nav-eclipses').textContent='Eclipses';
+  document.getElementById('nav-phases').textContent='Moon phases';
+  document.getElementById('nav-today').textContent='Moon today';
+  document.getElementById('nav-signs').textContent='Moon signs';
+  document.getElementById('nav-mindfulness').textContent='Mindfulness';
 }
 </script>
 </body>

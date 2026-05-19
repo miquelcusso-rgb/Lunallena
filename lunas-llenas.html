@@ -94,7 +94,8 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
     <a class="nav-pill" href="/moon-phases.html" id="nav-phases">Fases lunares</a>
     <a class="nav-pill" href="/moon-today.html" id="nav-today">Luna hoy</a>
     <a class="nav-pill" href="/moon-signs.html" id="nav-signs">Luna en tu signo</a>
-    <a class="nav-pill" href="/mindfulness" id="nav-mindfulness">Mindfulness</a>
+    <a class="nav-pill" href="/eclipses.html" id="nav-eclipses">Eclipses</a>
+    <a class="nav-pill" href="/mindfulness.html" id="nav-mindfulness">Mindfulness</a>
   </div>
 
   <p class="eyebrow" id="eyebrow">Ciclo lunar</p>
@@ -196,7 +197,7 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 
   <hr>
   <footer>
-    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad.html" id="footer-privacy">Privacidad</a></p>
   </footer>
 </div>
 
@@ -241,6 +242,7 @@ if(EN){
   document.getElementById('nav-today').textContent='Moon today';
   document.getElementById('nav-signs').textContent='Moon sign';
   document.getElementById('nav-mindfulness').textContent='Mindfulness';
+    document.getElementById('nav-eclipses').textContent='Eclipses';
   document.getElementById('p-azul-1').textContent="When two full moons occur in the same calendar month, the second is called a Blue Moon. This happens roughly every two and a half years, hence the phrase 'once in a blue moon'. The mathematical reason is simple: the lunar cycle lasts 29.5 days, and most months have 30 or 31 days, so occasionally the full cycle fits twice within a single month.";
   document.getElementById('p-azul-2').textContent="But there is a second, older definition: a Blue Moon can also refer to the third full moon in a season that has four full moons instead of the usual three. This definition comes from 19th-century North American agricultural almanacs, where farmers needed to precisely identify which moon marked the start of each season. If a season had four moons, the third was 'extra' and received the Blue Moon name to preserve the order of traditional names.";
   document.getElementById('p-azul-3').textContent="Despite its poetic name, the Blue Moon has no blue colour whatsoever. The moon can appear bluish or grey in exceptional conditions — such as when volcanic smoke or ash particles filter certain light wavelengths — but this is an optical phenomenon independent of the lunar cycle. The next Blue Moon can be calculated easily: it will always occur in a month with at least 31 days whose first full moon falls within the first two days.";
@@ -288,7 +290,7 @@ if(EN){
   const EN=location.hostname.includes('nextfullmoon');
   const T={
     en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
-    es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
+    es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad.html" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
   };
   function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});}
   function hide(){document.getElementById('ck').style.display='none';}

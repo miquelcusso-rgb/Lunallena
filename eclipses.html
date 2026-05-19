@@ -67,6 +67,17 @@ p{font-size:1.05rem;margin-bottom:.9rem;color:rgba(220,216,240,.6);}
 .ad-slot{width:100%;max-width:728px;margin:2rem auto;text-align:center;}
 footer{margin-top:4rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.18);text-align:center;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,255,.1);}
+.nav-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+.nav-pill{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.4);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.22rem .55rem;border-radius:2px;transition:all .2s;}
+.nav-pill:hover{color:rgba(196,196,255,.75);border-color:rgba(196,196,255,.28);}
+/* next-eclipse.com banner */
+.ne-banner{display:block;text-decoration:none;margin:1.5rem 0;border:1px solid rgba(220,160,50,.22);border-radius:4px;background:linear-gradient(135deg,rgba(220,160,50,.06) 0%,rgba(220,160,50,.02) 100%);transition:border-color .2s,background .2s;}
+.ne-banner:hover{border-color:rgba(220,160,50,.42);background:linear-gradient(135deg,rgba(220,160,50,.1) 0%,rgba(220,160,50,.04) 100%);}
+.ne-banner-inner{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;}
+.ne-banner-icon{font-size:1.6rem;flex-shrink:0;}
+.ne-banner-text{flex:1;}
+.ne-banner-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(220,160,50,.85);margin-bottom:.25rem;}
+.ne-banner-sub{font-size:.95rem;color:rgba(196,196,220,.52);line-height:1.45;}
 </style>
 </head>
 <body>
@@ -86,6 +97,14 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
   <h1 id="h1">Eclipses lunares y solares</h1>
   <p class="subtitle" id="subtitle">Cuando el sol, la Tierra y la luna se alinean</p>
 
+  <div class="nav-links">
+    <a class="nav-pill" href="/lunas-llenas.html" id="nav-lunas">Las 12 lunas</a>
+    <a class="nav-pill" href="/moon-phases.html" id="nav-phases">Fases lunares</a>
+    <a class="nav-pill" href="/moon-today.html" id="nav-today">Luna hoy</a>
+    <a class="nav-pill" href="/moon-signs.html" id="nav-signs">Signos lunares</a>
+    <a class="nav-pill" href="/mindfulness.html" id="nav-mindfulness">Mindfulness</a>
+  </div>
+
   <h2 id="h-upcoming">Próximos eclipses</h2>
   <div class="grid" id="grid-upcoming">
     <div class="card"><div class="card-name">🌑 Eclipse lunar total</div><div class="card-desc">3 de marzo de 2026. Visible en Europa, África, Asia y partes de América. La luna tomará un tono rojizo intenso durante la totalidad.</div></div>
@@ -93,6 +112,17 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
     <div class="card"><div class="card-name">🌕 Eclipse lunar parcial</div><div class="card-desc">28 de agosto de 2026. Eclipse penumbral leve visible en gran parte del hemisferio occidental.</div></div>
     <div class="card"><div class="card-name">☀️ Eclipse solar anular</div><div class="card-desc">17 de febrero de 2027. El "anillo de fuego" será visible desde el sur de América del Sur y partes de África occidental.</div></div>
   </div>
+
+  <!-- next-eclipse.com banner -->
+  <a href="https://www.next-eclipse.com" target="_blank" rel="noopener" class="ne-banner" id="ne-banner" aria-label="Next Eclipse — Guía completa del eclipse solar de España 2026">
+    <div class="ne-banner-inner">
+      <div class="ne-banner-icon">☀️🌑</div>
+      <div class="ne-banner-text">
+        <div class="ne-banner-title" id="ne-banner-title">Eclipse Solar España · 12 agosto 2026</div>
+        <div class="ne-banner-sub" id="ne-banner-sub">Guía completa, ciudades, countdown y mapa de visibilidad en next-eclipse.com →</div>
+      </div>
+    </div>
+  </a>
 
   <div class="ad-slot">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6498215334315959" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -178,6 +208,14 @@ if(EN){
     <div class="card"><div class="card-name">💍 Annular · Ring of fire</div><div class="card-desc">When the moon is at apogee, its disc is smaller and leaves a bright ring of sunlight visible around it.</div></div>
     <div class="card"><div class="card-name">🌓 Partial</div><div class="card-desc">The moon covers only part of the solar disc. Visible over a wide area, but considerably less spectacular.</div></div>
     <div class="card"><div class="card-name">⚡ Hybrid</div><div class="card-desc">The rarest type: starts as annular, becomes total along the path, and ends as annular again — due to Earth's curvature.</div></div>`;
+  document.getElementById('ne-banner-title').textContent='Solar Eclipse Spain · 12 August 2026';
+  document.getElementById('ne-banner-sub').textContent='Full guide, cities, countdown and visibility map at next-eclipse.com →';
+  document.getElementById('ne-banner').setAttribute('aria-label','Next Eclipse — Full guide to the Solar Eclipse Spain 2026');
+  document.getElementById('nav-lunas').textContent='The 12 moons';
+  document.getElementById('nav-phases').textContent='Moon phases';
+  document.getElementById('nav-today').textContent='Moon today';
+  document.getElementById('nav-signs').textContent='Moon signs';
+  document.getElementById('nav-mindfulness').textContent='Mindfulness';
 }
 </script>
 
