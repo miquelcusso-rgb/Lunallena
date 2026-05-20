@@ -652,7 +652,7 @@ body.phase-waning-crescent{--bg-gradient:
 </a>
 
 <footer>
-  <p>© 2026 Furiosa Studio · <span id="footer-calc">Cálculos astronómicos precisos</span> · <a href="/privacidad.html" id="footer-privacy-link"><span id="footer-privacy">Privacidad</span></a> · <a href="https://www.next-eclipse.com" target="_blank" rel="noopener" id="footer-eclipse-link"><span id="footer-eclipse">Próximo eclipse →</span></a></p>
+  <p>© 2026 Furiosa Studio · <span id="footer-calc">Cálculos astronómicos precisos</span> · <a href="/privacidad.html" id="footer-privacy-link"><span id="footer-privacy">Privacidad</span></a> · <a href="/companion.html" id="footer-companion-link"><span id="footer-companion">Instalar como app</span></a> · <a href="https://www.next-eclipse.com" target="_blank" rel="noopener" id="footer-eclipse-link"><span id="footer-eclipse">Próximo eclipse →</span></a></p>
 </footer>
 
 <!-- PANELS -->
@@ -1748,6 +1748,7 @@ function applyLang(){
   const fc=document.getElementById('footer-calc'),fp=document.getElementById('footer-privacy');
   if(fc)fc.textContent=L.footerCalc;if(fp)fp.textContent=L.footerPrivacy;
   const fe=document.getElementById('footer-eclipse');if(fe)fe.textContent=L.footerEclipse;
+  const fcomp=document.getElementById('footer-companion');if(fcomp)fcomp.textContent=L.footerCompanion||'Install as app';
 
   // Sister box
   const sey=document.getElementById('eclipse-sister-eyebrow'),sen=document.getElementById('eclipse-sister-name');
