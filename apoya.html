@@ -58,6 +58,13 @@ ul li::before{content:'·';position:absolute;left:0;color:rgba(196,196,255,.3);}
 .btn-stripe:hover{background:rgba(196,196,255,.15);}
 .btn-stripe-5{background:rgba(196,196,255,.04);border-color:rgba(196,196,255,.35);color:rgba(196,196,255,.92);}
 .note{font-size:.9rem;font-style:italic;color:rgba(196,196,255,.28);margin-top:.4rem;}
+/* Premium no-ads tier */
+.premium-tier{margin:2rem 0 .5rem;border:1px solid rgba(220,160,50,.32);border-radius:4px;background:rgba(220,160,50,.04);padding:1.4rem 1.5rem;position:relative;}
+.premium-tier-badge{position:absolute;top:-.7rem;left:1.2rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;background:#0d0b08;border:1px solid rgba(220,160,50,.4);color:rgba(220,160,50,.85);padding:.15rem .55rem;border-radius:2px;}
+.premium-tier h2{font-family:'Cinzel',serif;font-weight:400;font-size:.86rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(220,160,50,.75);margin:0 0 .6rem;}
+.premium-tier p{font-size:1rem;color:rgba(220,200,155,.55);margin-bottom:.8rem;}
+.btn-premium{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;padding:.78rem 2rem;border-radius:2px;cursor:pointer;text-decoration:none;text-align:center;display:inline-block;background:rgba(220,160,50,.09);border:1px solid rgba(220,160,50,.35);color:rgba(220,160,50,.9);transition:background .2s,border-color .2s;}
+.btn-premium:hover{background:rgba(220,160,50,.18);border-color:rgba(220,160,50,.55);}
 .sister-box{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:2rem;padding:1.2rem 1.5rem;border:1px solid rgba(220,160,50,.12);border-radius:3px;background:rgba(220,160,50,.02);text-decoration:none;transition:border-color .2s,background .2s;}
 .sister-box:hover{border-color:rgba(220,160,50,.25);background:rgba(220,160,50,.05);}
 .sister-eyebrow{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(220,160,50,.38);margin-bottom:.4rem;}
@@ -175,10 +182,18 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
   </ul>
 
   <div class="btn-wrap">
-    <a class="btn btn-stripe" href="https://buy.stripe.com/4gM3cx75U5zx5Sna769R600" target="_blank" rel="noopener" id="btn-stripe">💳 €2</a>
-    <a class="btn btn-stripe btn-stripe-5" href="https://buy.stripe.com/bJefZjdui8LJgx16UU9R60a" target="_blank" rel="noopener" id="btn-stripe-5">💳 €5</a>
+    <a class="btn btn-stripe" href="https://buy.stripe.com/4gM3cx75U5zx5Sna769R600" target="_blank" rel="noopener" id="btn-stripe" onclick="dataLayer.push({event:'support_click',value:2,currency:'EUR'})">💳 €2</a>
+    <a class="btn btn-stripe btn-stripe-5" href="https://buy.stripe.com/bJefZjdui8LJgx16UU9R60a" target="_blank" rel="noopener" id="btn-stripe-5" onclick="dataLayer.push({event:'support_click',value:5,currency:'EUR'})">💳 €5</a>
   </div>
   <p class="note" id="note">Tu aportación se destina directamente a mantener Lunallena activa. Gracias.</p>
+
+  <!-- Premium no-ads tier -->
+  <div class="premium-tier" id="premium-tier">
+    <span class="premium-tier-badge" id="premium-badge">★ NUEVO</span>
+    <h2 id="premium-h2">Sin Publicidad — €5 / año</h2>
+    <p id="premium-desc">Accede a Luna Llena y Next Full Moon sin anuncios durante 1 año. Tu soporte mantiene el proyecto vivo y te libera de la publicidad en todos los dispositivos.</p>
+    <a class="btn-premium" href="https://buy.stripe.com/PLACEHOLDER_5EUR_YEAR" target="_blank" rel="noopener" id="btn-premium" onclick="dataLayer.push({event:'support_click',value:5,currency:'EUR',type:'yearly_noadv'})">✦ Activar sin publicidad — €5/año</a>
+  </div>
 
   <a class="sister-box" href="https://www.next-eclipse.com" target="_blank" rel="noopener" id="sister-box">
     <div>
@@ -243,7 +258,24 @@ if(EN){
   document.getElementById('nav-today').textContent='Moon today';
   document.getElementById('nav-signs').textContent='Moon signs';
   document.getElementById('nav-mindfulness').textContent='Mindfulness';
+  // EN premium tier
+  document.getElementById('premium-h2').textContent='No Ads — €5 / year';
+  document.getElementById('premium-desc').textContent='Access Luna Llena and Next Full Moon ad-free for 1 year. Your support keeps the project running and removes ads across all your devices.';
+  document.getElementById('btn-premium').textContent='✦ Go ad-free — €5/year';
+  document.getElementById('premium-badge').textContent='★ NEW';
 }
+// Premium detection: if user arrives from Stripe success URL with ?premium=1
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('premium') === '1'){
+    localStorage.setItem('ll-premium','1');
+    // Show a thank-you message
+    const tier = document.getElementById('premium-tier');
+    if(tier){
+      tier.innerHTML = '<p style="font-family:\'Cinzel\',serif;font-size:.9rem;letter-spacing:.12em;color:rgba(220,160,50,.85);text-align:center;padding:.5rem 0;">✦ Sin publicidad activado. Gracias por tu apoyo.</p>';
+    }
+  }
+})();
 </script>
 
 <script>

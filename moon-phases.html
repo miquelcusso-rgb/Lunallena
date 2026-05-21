@@ -451,13 +451,21 @@ if(EN){
     en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
     es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad.html" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
   };
-  function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});(adsbygoogle=window.adsbygoogle||[]).push({});(adsbygoogle=window.adsbygoogle||[]).push({});}
+  // Premium: skip ads if user paid
+  const isPremium = localStorage.getItem('ll-premium') === '1';
+  function push1(){
+    if(isPremium) return;
+    (adsbygoogle=window.adsbygoogle||[]).push({});
+    (adsbygoogle=window.adsbygoogle||[]).push({});
+    (adsbygoogle=window.adsbygoogle||[]).push({});
+  }
   function hide(){document.getElementById('ck').style.display='none';}
   window.llConsent=function(v){localStorage.setItem(K,String(v));hide();if(Number(v))push1();};
   const tt=T[EN?'en':'es'];
   document.getElementById('ck-t').innerHTML=tt.t;
   document.getElementById('ck-y').textContent=tt.y;
   document.getElementById('ck-n').textContent=tt.n;
+  if(isPremium){hide();return;}
   const v=localStorage.getItem(K);
   if(v==='1')push1();
   else if(!v)document.getElementById('ck').style.display='flex';
@@ -524,6 +532,13 @@ function toggleLang(){
 })();
 initStars();
 initMenu();
+</script>
+<script>
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
 </script>
 </body>
 </html>

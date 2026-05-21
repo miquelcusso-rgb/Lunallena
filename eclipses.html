@@ -72,6 +72,14 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 .ne-banner-text{flex:1;}
 .ne-banner-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(220,160,50,.85);margin-bottom:.25rem;}
 .ne-banner-sub{font-size:.95rem;color:rgba(196,196,220,.52);line-height:1.45;}
+/* Eclipse promo banner */
+.eclipse-promo{display:flex;align-items:center;gap:1rem;text-decoration:none;margin:1.8rem 0 1.5rem;padding:.9rem 1.2rem;border:1px solid rgba(220,160,50,.22);border-radius:4px;background:rgba(220,160,50,.04);transition:border-color .2s,background .2s;}
+.eclipse-promo:hover{border-color:rgba(220,160,50,.44);background:rgba(220,160,50,.08);}
+.eclipse-disc-css{width:36px;height:36px;border-radius:50%;background:#030304;flex-shrink:0;box-shadow:0 0 0 1px rgba(255,150,20,.25),0 0 10px 4px rgba(255,110,10,.35),0 0 24px 10px rgba(200,70,0,.2);}
+.eclipse-promo-body{flex:1;min-width:0;}
+.eclipse-promo-title{font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(220,160,50,.85);margin-bottom:.2rem;}
+.eclipse-promo-sub{font-size:.95rem;color:rgba(196,196,220,.5);line-height:1.4;}
+.eclipse-promo-arrow{font-family:'Cinzel',serif;font-size:1.1rem;color:rgba(220,160,50,.55);flex-shrink:0;}
 
 #starfield{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 #topbar{position:fixed;top:0;left:0;right:0;z-index:250;display:flex;align-items:center;justify-content:space-between;padding:clamp(.85rem,2.2vw,1.2rem) clamp(1rem,4vw,2.4rem);background:linear-gradient(180deg,rgba(5,5,13,.92) 0%,transparent 100%);pointer-events:none;}
@@ -167,6 +175,16 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
     <a class="nav-pill" href="/moon-signs.html" id="nav-signs">Signos lunares</a>
     <a class="nav-pill" href="/mindfulness.html" id="nav-mindfulness">Mindfulness</a>
   </div>
+
+  <!-- Eclipse Solar España 2026 promo banner -->
+  <a href="https://www.next-eclipse.com" target="_blank" rel="noopener" class="eclipse-promo" id="eclipse-promo" aria-label="Descubre el Eclipse Solar Total sobre España 2026 en next-eclipse.com">
+    <div class="eclipse-disc-css"></div>
+    <div class="eclipse-promo-body">
+      <div class="eclipse-promo-title" id="promo-title" data-es="Eclipse Solar Total sobre España" data-en="Total Solar Eclipse over Spain">Eclipse Solar Total sobre España</div>
+      <div class="eclipse-promo-sub" id="promo-sub">12 agosto 2026 · Zamora · Salamanca · Galicia</div>
+    </div>
+    <div class="eclipse-promo-arrow">→</div>
+  </a>
 
   <h2 id="h-upcoming">Próximos eclipses</h2>
   <div class="grid" id="grid-upcoming">
@@ -298,13 +316,16 @@ if(EN){
     en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
     es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
   };
-  function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});}
+  // Premium: skip ads if user paid
+  const isPremium = localStorage.getItem('ll-premium') === '1';
+  function push1(){if(isPremium)return;(adsbygoogle=window.adsbygoogle||[]).push({});}
   function hide(){document.getElementById('ck').style.display='none';}
   window.llConsent=function(v){localStorage.setItem(K,String(v));hide();if(Number(v))push1();};
   const tt=T[EN?'en':'es'];
   document.getElementById('ck-t').innerHTML=tt.t;
   document.getElementById('ck-y').textContent=tt.y;
   document.getElementById('ck-n').textContent=tt.n;
+  if(isPremium){hide();return;}
   const v=localStorage.getItem(K);
   if(v==='1')push1();
   else if(!v)document.getElementById('ck').style.display='flex';
@@ -312,6 +333,15 @@ if(EN){
 </script>
 
 <script>
+// EN translation for promo banner
+(function(){
+  if(location.hostname.includes('nextfullmoon')){
+    const t=document.getElementById('promo-title');
+    const s=document.getElementById('promo-sub');
+    if(t)t.textContent='Total Solar Eclipse over Spain';
+    if(s)s.textContent='12 August 2026 · Zamora · Salamanca · Galicia';
+  }
+})();
 function initStars(){
   const cv=document.getElementById('starfield'),ctx=cv.getContext('2d');
   let W,H,S,P,shooters=[];let nextShoot=0;
@@ -371,6 +401,13 @@ function toggleLang(){
 })();
 initStars();
 initMenu();
+</script>
+<script>
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
 </script>
 </body>
 </html>
