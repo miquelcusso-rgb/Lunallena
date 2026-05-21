@@ -65,6 +65,18 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-e
 @media(max-width:500px){
   .phases-grid{grid-template-columns:repeat(4,1fr);gap:.7rem;}
 }
+
+/* ── readability patch: +2px body text, higher contrast ── */
+p,li{font-size:1.13rem;line-height:1.8;}
+.curiosity-text{font-size:clamp(1.12rem,1.55vw,1.28rem) !important;opacity:.85 !important;}
+.full-moon-date{opacity:.60 !important;}
+.countdown-caption{opacity:.88 !important;}
+.nav-label{color:rgba(236,232,245,.88) !important;}
+.nav-sub{color:rgba(196,196,220,.65) !important;font-size:1.1rem !important;}
+.event-title{opacity:.85;}
+.eclipse-name{opacity:.85;}
+.moon-fact{font-size:1.08rem;opacity:.78;}
+.tip-text,.hint-text,.info-text{font-size:1.1rem;opacity:.80;}
 </style>
 </head>
 <body>
