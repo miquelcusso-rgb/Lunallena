@@ -1,9 +1,9 @@
 {
   "rewrites": [
     { "source": "/lunas-llenas",   "destination": "/lunas-llenas.html" },
-    { "source": "/fases-lunares",  "destination": "/moon-phases.html" },
-    { "source": "/luna-hoy",       "destination": "/moon-today.html" },
-    { "source": "/signos-lunares", "destination": "/moon-signs.html" },
+    { "source": "/fases-lunares",  "destination": "/fases-lunares.html" },
+    { "source": "/luna-hoy",       "destination": "/luna-hoy.html" },
+    { "source": "/signos-lunares", "destination": "/signos-lunares.html" },
     { "source": "/eclipses",       "destination": "/eclipses.html" },
     { "source": "/mindfulness",    "destination": "/mindfulness.html" },
     { "source": "/apoya",          "destination": "/apoya.html" },
