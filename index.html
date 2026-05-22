@@ -79,16 +79,17 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 
 /* ── TOPBAR ── */
 #topbar{
-  position:fixed;top:0;left:0;right:0;z-index:250;
+  position:sticky;top:0;left:0;right:0;z-index:250;
   display:flex;align-items:center;justify-content:space-between;
   padding:clamp(.85rem,2.2vw,1.2rem) clamp(1rem,4vw,2.4rem);
   padding-top:calc(env(safe-area-inset-top) + clamp(.85rem,2.2vw,1.2rem));
-  background:linear-gradient(180deg,rgba(5,5,13,.9) 0%,transparent 100%);
-  pointer-events:none;
+  background:rgba(3,3,4,.96);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(196,196,255,.06);
 }
 /* ── TOPBAR LOGO ── */
 .topbar-logo{
-  pointer-events:all;font-family:'Cinzel',serif;font-weight:400;
+  font-family:'Cinzel',serif;font-weight:400;
   font-size:clamp(1.3rem,2.2vw,1.7rem);letter-spacing:.42em;text-transform:uppercase;
   color:#fff;opacity:.75;text-decoration:none;transition:opacity .25s;
   display:flex;align-items:center;gap:.7rem;line-height:1;
@@ -102,7 +103,6 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 }
 /* ── LANG TOGGLE ── */
 #lang-toggle{
-  pointer-events:all;
   background:none;border:1px solid rgba(196,196,255,.16);
   color:rgba(196,196,255,.5);font-family:'Cinzel',serif;
   font-size:clamp(.72rem,.94vw,.86rem);letter-spacing:.25em;text-transform:uppercase;
@@ -110,17 +110,8 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
   transition:border-color .2s,color .2s;white-space:nowrap;
 }
 #lang-toggle:hover{border-color:rgba(196,196,255,.38);color:rgba(196,196,255,.85);}
-#theme-toggle{
-  pointer-events:all;
-  background:none;border:none;
-  color:rgba(196,196,255,.65);font-size:1.1rem;
-  padding:.2rem .3rem;border-radius:4px;cursor:pointer;
-  transition:opacity .2s;
-}
-#theme-toggle:hover{opacity:1;}
-
 /* ── HAMBURGER MENU ── */
-.topbar-right{pointer-events:all;display:flex;align-items:center;gap:1rem;}
+.topbar-right{display:flex;align-items:center;gap:1rem;}
 #menu-btn{
   background:none;border:none;cursor:pointer;padding:4px;
   display:flex;flex-direction:column;gap:5px;transition:opacity .2s;
@@ -167,7 +158,7 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 #nav-backdrop.open{display:block;}
 
 /* ── MAIN ── */
-main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:clamp(5rem,10vh,7rem) 5vw 10vh;padding-top:calc(env(safe-area-inset-top) + clamp(5rem,10vh,7rem));}
+main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:clamp(2rem,5vh,3.5rem) 5vw 10vh;}
 
 /* ── TITLE ── */
 .title-block{text-align:center;margin-bottom:2vh;animation:fsi 1.4s cubic-bezier(.16,1,.3,1) both;}
@@ -190,8 +181,8 @@ main{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:co
   border-radius:50%;
   /* Radial mask: fades the outer ~10% of the circle to transparent so the
      moon edge dissolves naturally into any background without a visible ring */
-  -webkit-mask-image:radial-gradient(circle closest-side at 50% 50%,black 88%,transparent 100%);
-  mask-image:radial-gradient(circle closest-side at 50% 50%,black 88%,transparent 100%);
+  -webkit-mask-image:radial-gradient(circle closest-side at 50% 50%,black 94%,transparent 100%);
+  mask-image:radial-gradient(circle closest-side at 50% 50%,black 94%,transparent 100%);
   transition:transform .55s cubic-bezier(.16,1,.3,1);
   animation:moonFloat 9s ease-in-out infinite;
 }
@@ -441,83 +432,6 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
 .moon-fact{font-size:1.08rem;opacity:.78;}
 .tip-text,.hint-text,.info-text{font-size:1.1rem;opacity:.80;}
 
-/* ── LIGHT MODE ── */
-[data-theme="light"]{
-  --night:#f0eff8;
-  --silver:#5a4f7a;
-  --gold:#8b6914;
-  --pale:#1a1030;
-  --bg-gradient:
-    radial-gradient(ellipse 70% 50% at 30% 25%,#e0daf0 0%,transparent 65%),
-    radial-gradient(ellipse at 50% 50%,#f0eff8 0%,#ebe8f5 60%,#e4e0f2 100%);
-}
-[data-theme="light"] body{color:#1a1030;background:var(--bg-gradient);}
-[data-theme="light"] body::after{
-  background:
-    radial-gradient(ellipse 35% 28% at 10% 80%,rgba(180,170,210,.18) 0%,transparent 100%),
-    radial-gradient(ellipse 25% 20% at 90% 10%,rgba(160,150,200,.12) 0%,transparent 100%);
-}
-[data-theme="light"] #starfield{opacity:.25;}
-[data-theme="light"] #topbar{background:linear-gradient(180deg,rgba(240,239,248,.95) 0%,transparent 100%);}
-[data-theme="light"] .topbar-logo{color:#1a1030;}
-[data-theme="light"] #lang-toggle{border-color:rgba(90,79,122,.25);color:rgba(90,79,122,.7);}
-[data-theme="light"] #lang-toggle:hover{border-color:rgba(90,79,122,.5);color:rgba(90,79,122,1);}
-[data-theme="light"] #theme-toggle{border-color:rgba(90,79,122,.25);color:rgba(90,79,122,.7);}
-[data-theme="light"] #theme-toggle:hover{border-color:rgba(90,79,122,.5);color:rgba(90,79,122,1);}
-[data-theme="light"] #menu-btn span{background:rgba(90,79,122,.55);}
-[data-theme="light"] .share-btn{color:rgba(90,79,122,.65);border-color:rgba(90,79,122,.2);}
-[data-theme="light"] .share-btn:hover{color:rgba(90,79,122,.9);border-color:rgba(90,79,122,.45);}
-[data-theme="light"] #nav-menu{background:rgba(244,242,252,.98);border-left-color:rgba(90,79,122,.1);}
-[data-theme="light"] .nav-menu-title{color:rgba(90,79,122,.5);}
-[data-theme="light"] .nav-label{color:rgba(26,16,48,.82) !important;}
-[data-theme="light"] .nav-sub{color:rgba(90,79,122,.65) !important;}
-[data-theme="light"] .nav-item{border-bottom-color:rgba(90,79,122,.08);}
-[data-theme="light"] .nav-close{color:rgba(90,79,122,.4);}
-[data-theme="light"] #nav-backdrop{background:rgba(200,195,220,.45);}
-[data-theme="light"] .title-eyebrow{color:#5a4f7a;}
-[data-theme="light"] .phase-label{color:#5a4f7a;}
-[data-theme="light"] .phase-name{color:#1a1030;}
-[data-theme="light"] .illum-label{color:#5a4f7a;}
-[data-theme="light"] .illum-track{background:rgba(90,79,122,.12);}
-[data-theme="light"] .illum-fill{background:linear-gradient(90deg,rgba(90,79,122,.3),#6b4fa0);box-shadow:0 0 6px rgba(107,79,160,.3);}
-[data-theme="light"] .countdown-caption{color:#1a1030;}
-[data-theme="light"] .cd-number{color:#1a1030;text-shadow:0 0 24px rgba(107,79,160,.18);}
-[data-theme="light"] .cd-label{color:#5a4f7a;}
-[data-theme="light"] .cd-sep{color:#5a4f7a;}
-[data-theme="light"] .full-moon-date{color:#5a4f7a;}
-[data-theme="light"] .ical-btn{background:rgba(90,79,122,.06);border-color:rgba(90,79,122,.2);color:rgba(90,79,122,.7);}
-[data-theme="light"] .ical-btn:hover{background:rgba(90,79,122,.12);color:#1a1030;border-color:rgba(90,79,122,.4);}
-[data-theme="light"] .section-heading{color:#5a4f7a;}
-[data-theme="light"] .curiosity-card{background:rgba(255,255,255,.7);border-color:rgba(90,79,122,.1);}
-[data-theme="light"] .curiosity-card::before{background:linear-gradient(90deg,transparent,rgba(107,79,160,.2),transparent);}
-[data-theme="light"] .curiosity-text{color:#1a1030 !important;opacity:.85 !important;}
-[data-theme="light"] .curiosity-source{color:#5a4f7a;}
-[data-theme="light"] .curiosity-source a{color:rgba(107,79,160,.6);border-bottom-color:rgba(107,79,160,.2);}
-[data-theme="light"] .curiosity-source a:hover{color:rgba(107,79,160,.9);}
-[data-theme="light"] .slider-dot{background:rgba(90,79,122,.2);}
-[data-theme="light"] .slider-dot.active{background:rgba(90,79,122,.6);}
-[data-theme="light"] .cycle-heading{color:#5a4f7a;}
-[data-theme="light"] .cycle-phrase{color:rgba(26,16,48,.62);}
-[data-theme="light"] #cycleRingSvg circle[fill="none"]{stroke:rgba(90,79,122,.15);}
-[data-theme="light"] .legend-item{color:rgba(90,79,122,.45);}
-[data-theme="light"] .legend-item.active-phase{color:#1a1030;}
-[data-theme="light"] .eclipse-sister{border-color:rgba(180,130,30,.2);background:rgba(180,130,30,.04);}
-[data-theme="light"] .eclipse-sister-eyebrow{color:rgba(180,130,30,.6);}
-[data-theme="light"] .eclipse-sister-name{color:rgba(140,90,20,.75);}
-[data-theme="light"] footer{color:#5a4f7a;}
-[data-theme="light"] .page-panel{background:rgba(244,242,252,.99);}
-[data-theme="light"] .panel-title{color:#1a1030;}
-[data-theme="light"] .panel-sub{color:rgba(90,79,122,.65);}
-[data-theme="light"] .panel-body{color:rgba(26,16,48,.75);}
-[data-theme="light"] .panel-body h3{color:#1a1030;}
-[data-theme="light"] .moon-type-card{background:rgba(255,255,255,.6);border-color:rgba(90,79,122,.1);}
-[data-theme="light"] .moon-type-name{color:#1a1030;}
-[data-theme="light"] .moon-type-desc{color:rgba(26,16,48,.68);}
-[data-theme="light"] #install-banner{background:rgba(244,242,252,.98);border-top-color:rgba(90,79,122,.1);}
-[data-theme="light"] .install-title{color:#1a1030;}
-[data-theme="light"] .install-desc{color:#5a4f7a;}
-[data-theme="light"] .btn-install{background:rgba(90,79,122,.09);border-color:rgba(90,79,122,.22);color:#1a1030;}
-[data-theme="light"] #page-overlay{background:rgba(220,216,236,.82);}
 </style>
 <script>
 (function(){
@@ -606,7 +520,6 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
   <a class="topbar-logo" href="#"><span class="topbar-logo-dot"></span>Lunallena</a>
   <div class="topbar-right">
     <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
-    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">☀️</button>
     <button id="lang-toggle" onclick="toggleLang()" aria-label="Cambiar idioma">EN</button>
     <button id="menu-btn" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -1350,10 +1263,9 @@ function dialMoonUrl(){
 }
 
 function drawNasaPhoto(ctx,cx,cy,r,img){
-  // Scale image ~4.5% larger than canvas so the moon disk fills edge-to-edge,
-  // pushing the NASA frame's dark background border outside the canvas.
-  // CSS border-radius:50% then clips cleanly with no visible dark ring.
-  const s=1.045,d=r*2*s,o=(d-r*2)/2;
+  // Scale image ~7% larger than canvas so the NASA frame's dark background
+  // border is pushed outside the mask fade zone — eliminates visible dark ring.
+  const s=1.07,d=r*2*s,o=(d-r*2)/2;
   ctx.drawImage(img,-o,-o,d,d);
 }
 
@@ -1752,19 +1664,6 @@ const LANG={
   }
 };
 let currentLang='es';
-function toggleTheme(){
-  var cur=document.documentElement.getAttribute('data-theme')||'dark';
-  var next=cur==='dark'?'light':'dark';
-  document.documentElement.setAttribute('data-theme',next);
-  localStorage.setItem('lunallena-theme',next);
-  var btn=document.getElementById('theme-toggle');
-  if(btn)btn.textContent=next==='dark'?'☀️':'🌙';
-}
-(function(){
-  var t=document.documentElement.getAttribute('data-theme')||'dark';
-  var btn=document.getElementById('theme-toggle');
-  if(btn)btn.textContent=t==='dark'?'☀️':'🌙';
-})();
 function shareApp(){
   const d=document.querySelector('meta[name="description"]');
   const data={title:document.title,text:d?d.getAttribute('content'):'',url:window.location.href};
