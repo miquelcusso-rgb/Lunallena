@@ -121,7 +121,7 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 #menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
 #menu-btn.open span:nth-child(2){opacity:0;}
 #menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-.share-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}
+.share-btn{display:flex;align-items:center;gap:.35rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.55);background:none;border:1px solid rgba(196,196,255,.2);padding:.24rem .58rem;border-radius:2px;cursor:pointer;transition:all .2s;}.share-icon{flex-shrink:0;display:block;}.share-btn .share-label{display:inline;}@media(max-width:768px){.share-btn{border:none;padding:.3rem .4rem;gap:0;}.share-btn .share-label{display:none;}.share-icon{width:18px;height:18px;}}
 .share-btn:hover{color:rgba(196,196,255,.88);border-color:rgba(196,196,255,.42);background:rgba(196,196,255,.05);}
 
 /* ── DROPDOWN MENU ── */
@@ -519,7 +519,7 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
 <nav id="topbar">
   <a class="topbar-logo" href="#"><span class="topbar-logo-dot"></span>Lunallena</a>
   <div class="topbar-right">
-    <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
+    <button class="share-btn" id="share-btn" onclick="shareApp()"><svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span class="share-label" id="share-label">Compartir</span></button>
     <button id="lang-toggle" onclick="toggleLang()" aria-label="Cambiar idioma">EN</button>
     <button id="menu-btn" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -1670,7 +1670,7 @@ function shareApp(){
   if(navigator.share){navigator.share(data).catch(()=>{});}
   else{
     (navigator.clipboard?navigator.clipboard.writeText(data.url):Promise.reject())
-    .then(()=>{const b=document.getElementById('share-btn');const o=b.textContent;b.textContent='✓';setTimeout(()=>b.textContent=o,2e3);})
+    .then(()=>{const sl=document.getElementById('share-label');const o=sl?sl.textContent:'';if(sl){sl.textContent='✓';setTimeout(()=>sl.textContent=o,2e3);}})
     .catch(()=>{window.open('https://x.com/intent/tweet?url='+encodeURIComponent(data.url),'_blank');});
   }
 }
@@ -1697,8 +1697,8 @@ function applyLang(){
   const il=document.getElementById('ical-label');
   if(il)il.textContent=L.icalLabel;
   document.getElementById('lang-toggle').textContent=L.btn;
-  const sb=document.getElementById('share-btn');
-  if(sb)sb.textContent=currentLang==='en'?'↗ Share':'↗ Compartir';
+  const sb=document.getElementById('share-label');
+  if(sb)sb.textContent=currentLang==='en'?'Share':'Compartir';
   // Panel translations
   if(currentLang==='en'){
     document.querySelector('#panel-lunas .panel-title').textContent='The 12 Full Moons';
