@@ -118,6 +118,14 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
   transition:border-color .2s,color .2s;white-space:nowrap;
 }
 #lang-toggle:hover{border-color:rgba(196,196,255,.38);color:rgba(196,196,255,.85);}
+#theme-toggle{
+  pointer-events:all;
+  background:none;border:none;
+  color:rgba(196,196,255,.65);font-size:1.1rem;
+  padding:.2rem .3rem;border-radius:4px;cursor:pointer;
+  transition:opacity .2s;
+}
+#theme-toggle:hover{opacity:1;}
 
 /* ── HAMBURGER MENU ── */
 .topbar-right{pointer-events:all;display:flex;align-items:center;gap:1rem;}
@@ -567,6 +575,7 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
   <a class="topbar-logo" href="#"><span class="topbar-logo-dot"></span>Lunallena</a>
   <div class="topbar-right">
     <button class="share-btn" id="share-btn" onclick="shareApp()">↗ Compartir</button>
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">☀️</button>
     <button id="lang-toggle" onclick="toggleLang()" aria-label="Cambiar idioma">EN</button>
     <button id="menu-btn" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -1712,6 +1721,19 @@ const LANG={
   }
 };
 let currentLang='es';
+function toggleTheme(){
+  var cur=document.documentElement.getAttribute('data-theme')||'dark';
+  var next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('lunallena-theme',next);
+  var btn=document.getElementById('theme-toggle');
+  if(btn)btn.textContent=next==='dark'?'☀️':'🌙';
+}
+(function(){
+  var t=document.documentElement.getAttribute('data-theme')||'dark';
+  var btn=document.getElementById('theme-toggle');
+  if(btn)btn.textContent=t==='dark'?'☀️':'🌙';
+})();
 function shareApp(){
   const d=document.querySelector('meta[name="description"]');
   const data={title:document.title,text:d?d.getAttribute('content'):'',url:window.location.href};
