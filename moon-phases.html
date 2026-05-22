@@ -7,15 +7,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="icon" type="image/png" href="/icon-192.png">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP40DHXG3L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  var gid = location.hostname.includes('nextfullmoon') ? 'G-V220YHYXVZ' : 'G-CP40DHXG3L';
-  gtag('config', gid);
-</script>
+<!-- GA4 managed via GTM — no direct gtag.js script needed -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title id="pg-title">Las 8 fases lunares: ciencia y astronomía · Lunallena</title>
@@ -112,6 +104,27 @@ p,li{font-size:1.13rem;line-height:1.8;}
 .moon-fact{font-size:1.08rem;opacity:.78;}
 .tip-text,.hint-text,.info-text{font-size:1.1rem;opacity:.80;}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Lunallena",
+  "url": "https://www.lunallena.co",
+  "alternateName": ["Next Full Moon", "Próxima Luna Llena"],
+  "description": "Calcula cuándo es la próxima luna llena. Fases lunares, eclipses y calendario lunar en tiempo real.",
+  "inLanguage": ["es", "en"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.lunallena.co/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Furiosa Studio",
+    "url": "https://www.lunallena.co"
+  }
+}
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
