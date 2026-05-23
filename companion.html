@@ -282,7 +282,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
 
   <hr>
   <footer>
-    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+    <p>© 2026 Furiosa Studio · <span data-en="Precise astronomical calculations" data-es="Cálculos astronómicos precisos">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link" data-en="Privacy" data-es="Privacidad">Privacidad</a> · <a href="/companion.html" data-en="Install as app" data-es="Instalar como app">Instalar como app</a></p>
   </footer>
 </div>
 
@@ -310,9 +310,6 @@ if(EN){
   document.getElementById('tw-title').content='Install Next Full Moon on your phone';
   document.getElementById('tw-desc').content='Add Next Full Moon to your home screen. No App Store.';
   document.getElementById('share-label').textContent='Share';
-  document.getElementById('footer-link').textContent='Next Full Moon';
-  document.getElementById('footer-privacy').textContent='Privacy';
-  document.getElementById('footer-privacy').href='/privacy';
   document.getElementById('eyebrow').textContent='Companion';
   document.getElementById('h1').textContent='Next Full Moon on your home screen';
   document.getElementById('subtitle').textContent='No App Store. No downloads. Just save the shortcut with the moon icon.';
@@ -434,6 +431,15 @@ initMenu();
   const v=localStorage.getItem(K);
   if(v==='1')push1();
   else if(!v)document.getElementById('ck').style.display='flex';
+})();
+</script>
+<script>
+/* ── lunallena footer + share i18n (host-based: nextfullmoon.co = EN) ── */
+(function(){
+  var EN=location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
+  document.querySelectorAll('footer [data-en][data-es]').forEach(function(el){el.textContent=EN?el.getAttribute('data-en'):el.getAttribute('data-es');});
+  var pl=document.getElementById('footer-privacy-link');if(pl)pl.setAttribute('href',EN?'/privacy':'/privacidad');
+  if(EN){var sl=document.getElementById('share-label');if(sl)sl.textContent='Share';}
 })();
 </script>
 </body>

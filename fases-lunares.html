@@ -376,7 +376,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
 
   <hr>
   <footer>
-    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+    <p>© 2026 Furiosa Studio · <span data-en="Precise astronomical calculations" data-es="Cálculos astronómicos precisos">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link" data-en="Privacy" data-es="Privacidad">Privacidad</a> · <a href="/companion.html" data-en="Install as app" data-es="Instalar como app">Instalar como app</a></p>
   </footer>
 </div>
 
@@ -454,9 +454,6 @@ if(EN){
   document.getElementById('p-nat-3').textContent="Plant growth and lunar agriculture are the subject of active scientific debate. The most rigorous studies, such as those by Dr L. Kolisko in the 1930s-1970s, and more recent work from the FiBL (Research Institute of Organic Agriculture), have found statistical correlations between lunar phase and germination, foliage growth and yield of certain crops. The main hypothesis is that variations in nocturnal illumination affect plants' circadian clocks, especially those regulating photosynthesis and transpiration. However, the effects are modest and not always replicable, keeping the debate open.";
   document.getElementById('p-nat-4').textContent="Marine animals have behaviours linked to the lunar cycle that are much clearer. Corals on the Great Barrier Reef release their gametes synchronously on the night after the spring full moon: a synchronisation that guarantees massive cross-fertilisation of millions of organisms. Horseshoe crabs (Limulus polyphemus) on the US east coast emerge en masse to reproduce during the full and new moons of May and June. Several fish species change their feeding activity based on lunar phase — something experienced fishermen have long known, though science was slow to formally document it.";
   document.getElementById('p-nat-5').textContent="Human sleep and the moon is one of the most recently studied topics. The most cited study, published in Current Biology in 2013 by Cajochen et al., monitored the sleep of 33 participants in a completely controlled laboratory (no sunlight, no phase information) over several weeks and found that around the full moon: deep sleep time (delta waves) decreased by 30%, total sleep time decreased by 20 minutes, melatonin levels were lower and participants took longer to fall asleep. The researchers propose an endogenous circalunar clock mechanism that could be an evolutionary vestige from when nocturnal moonlight was relevant for survival. Subsequent studies have obtained mixed results, but the question remains scientifically active and relevant.";
-  document.getElementById('footer-link').textContent='Next Full Moon';
-  document.getElementById('footer-privacy').textContent='Privacy';
-  document.getElementById('footer-privacy').href='/privacy';
 }
 </script>
 
@@ -476,10 +473,7 @@ if(EN){
     en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
     es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
   };
-  // Premium: skip ads if user paid
-  const isPremium = localStorage.getItem('ll-premium') === '1';
   function push1(){
-    if(isPremium) return;
     (adsbygoogle=window.adsbygoogle||[]).push({});
     (adsbygoogle=window.adsbygoogle||[]).push({});
     (adsbygoogle=window.adsbygoogle||[]).push({});
@@ -490,7 +484,6 @@ if(EN){
   document.getElementById('ck-t').innerHTML=tt.t;
   document.getElementById('ck-y').textContent=tt.y;
   document.getElementById('ck-n').textContent=tt.n;
-  if(isPremium){hide();return;}
   const v=localStorage.getItem(K);
   if(v==='1')push1();
   else if(!v)document.getElementById('ck').style.display='flex';
@@ -564,6 +557,15 @@ if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
+</script>
+<script>
+/* ── lunallena footer + share i18n (host-based: nextfullmoon.co = EN) ── */
+(function(){
+  var EN=location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
+  document.querySelectorAll('footer [data-en][data-es]').forEach(function(el){el.textContent=EN?el.getAttribute('data-en'):el.getAttribute('data-es');});
+  var pl=document.getElementById('footer-privacy-link');if(pl)pl.setAttribute('href',EN?'/privacy':'/privacidad');
+  if(EN){var sl=document.getElementById('share-label');if(sl)sl.textContent='Share';}
+})();
 </script>
 </body>
 </html>

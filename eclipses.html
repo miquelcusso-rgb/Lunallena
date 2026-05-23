@@ -256,7 +256,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <hr>
   <p class="source" id="source">Fuente: NASA Goddard Space Flight Center · <a href="https://eclipse.gsfc.nasa.gov" target="_blank" rel="noopener">eclipse.gsfc.nasa.gov</a></p>
   <footer>
-    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+    <p>© 2026 Furiosa Studio · <span data-en="Precise astronomical calculations" data-es="Cálculos astronómicos precisos">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link" data-en="Privacy" data-es="Privacidad">Privacidad</a> · <a href="/companion.html" data-en="Install as app" data-es="Instalar como app">Instalar como app</a></p>
   </footer>
 </div>
 
@@ -297,9 +297,6 @@ if(EN){
   document.getElementById('p-lunar-intro').textContent="A lunar eclipse occurs when Earth moves between the Sun and the full moon, casting its shadow on the lunar surface. They can only happen at full moon, but not every full moon — the lunar orbit is tilted 5° relative to the ecliptic.";
   document.getElementById('p-solar-intro').textContent="A solar eclipse occurs when the new moon moves between the Sun and Earth. The coincidence is remarkable: the Sun is 400 times larger than the Moon, but also 400 times farther away — so their apparent discs are nearly identical in the sky.";
   document.getElementById('source').innerHTML='Source: NASA Goddard Space Flight Center · <a href="https://eclipse.gsfc.nasa.gov" target="_blank" rel="noopener">eclipse.gsfc.nasa.gov</a>';
-  document.getElementById('footer-link').textContent='Next Full Moon';
-  document.getElementById('footer-privacy').textContent='Privacy';
-  document.getElementById('footer-privacy').href='/privacy';
   document.getElementById('grid-upcoming').innerHTML=`
     <div class="card"><div class="card-name">🌑 Total lunar eclipse</div><div class="card-desc">March 3, 2026. Visible across Europe, Africa, Asia and parts of the Americas. The moon will turn a deep red during totality.</div></div>
     <div class="card"><div class="card-name">☀️ Total solar eclipse</div><div class="card-desc">August 12, 2026. The path of totality crosses Greenland, Iceland, Spain and northern Africa. Maximum duration: 2 min 18 sec.</div></div>
@@ -341,16 +338,13 @@ if(EN){
     en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
     es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
   };
-  // Premium: skip ads if user paid
-  const isPremium = localStorage.getItem('ll-premium') === '1';
-  function push1(){if(isPremium)return;(adsbygoogle=window.adsbygoogle||[]).push({});}
+  function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});}
   function hide(){document.getElementById('ck').style.display='none';}
   window.llConsent=function(v){localStorage.setItem(K,String(v));hide();if(Number(v))push1();};
   const tt=T[EN?'en':'es'];
   document.getElementById('ck-t').innerHTML=tt.t;
   document.getElementById('ck-y').textContent=tt.y;
   document.getElementById('ck-n').textContent=tt.n;
-  if(isPremium){hide();return;}
   const v=localStorage.getItem(K);
   if(v==='1')push1();
   else if(!v)document.getElementById('ck').style.display='flex';
@@ -433,6 +427,15 @@ if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
+</script>
+<script>
+/* ── lunallena footer + share i18n (host-based: nextfullmoon.co = EN) ── */
+(function(){
+  var EN=location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
+  document.querySelectorAll('footer [data-en][data-es]').forEach(function(el){el.textContent=EN?el.getAttribute('data-en'):el.getAttribute('data-es');});
+  var pl=document.getElementById('footer-privacy-link');if(pl)pl.setAttribute('href',EN?'/privacy':'/privacidad');
+  if(EN){var sl=document.getElementById('share-label');if(sl)sl.textContent='Share';}
+})();
 </script>
 </body>
 </html>

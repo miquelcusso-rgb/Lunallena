@@ -90,28 +90,28 @@ body.moon-focused #page-overlay{opacity:1;pointer-events:all;}
 /* ── TOPBAR LOGO ── */
 .topbar-logo{
   font-family:'Cinzel',serif;font-weight:400;
-  font-size:clamp(1.3rem,2.2vw,1.7rem);letter-spacing:.42em;text-transform:uppercase;
+  font-size:clamp(1rem,1.8vw,1.35rem);letter-spacing:.42em;text-transform:uppercase;
   color:#fff;opacity:.75;text-decoration:none;transition:opacity .25s;
-  display:flex;align-items:center;gap:.7rem;line-height:1;
+  display:flex;align-items:center;gap:.6rem;line-height:1;
 }
 .topbar-logo:hover{opacity:1;}
 .topbar-logo-dot{
-  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  width:14px;height:14px;border-radius:50%;flex-shrink:0;
   background:radial-gradient(circle at 36% 36%,#e4e4ff,#8888b0);
   box-shadow:0 0 10px rgba(196,196,255,.4);
-  position:relative;top:-2px;
+  position:relative;top:-1px;
 }
 /* ── LANG TOGGLE ── */
 #lang-toggle{
   background:none;border:1px solid rgba(196,196,255,.16);
   color:rgba(196,196,255,.5);font-family:'Cinzel',serif;
-  font-size:clamp(.72rem,.94vw,.86rem);letter-spacing:.25em;text-transform:uppercase;
-  padding:.28rem .62rem;border-radius:2px;cursor:pointer;
+  font-size:clamp(.68rem,.9vw,.82rem);letter-spacing:.25em;text-transform:uppercase;
+  padding:.28rem .58rem;border-radius:2px;cursor:pointer;
   transition:border-color .2s,color .2s;white-space:nowrap;
 }
 #lang-toggle:hover{border-color:rgba(196,196,255,.38);color:rgba(196,196,255,.85);}
 /* ── HAMBURGER MENU ── */
-.topbar-right{display:flex;align-items:center;gap:1rem;}
+.topbar-right{display:flex;align-items:center;gap:.75rem;}
 #menu-btn{
   background:none;border:none;cursor:pointer;padding:4px;
   display:flex;flex-direction:column;gap:5px;transition:opacity .2s;
@@ -804,7 +804,7 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
     <div class="panel-divider"></div>
     <div class="panel-body" id="donacion-body">
       <h3 id="donacion-body-h3">¿Para qué sirve tu aportación?</h3>
-      <p id="donacion-body-p">Dominio · Mejoras de diseño · Versión en inglés · Sin publicidad invasiva para siempre.</p>
+      <p id="donacion-body-p">Dominio · Mejoras de diseño · Versión en inglés.</p>
     </div>
     <div style="margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
       <button class="donate-main-btn" id="btn-kofi" style="flex:1">☕ Ko-fi</button>
@@ -1628,7 +1628,7 @@ const LANG={
     mainTitle:'Luna llena',
     btn:'EN',title:'Lunallena — La próxima luna llena',
     adLabel:'Publicidad',
-    footerCalc:'Cálculos astronómicos precisos',footerPrivacy:'Privacidad',
+    footerCalc:'Cálculos astronómicos precisos',footerPrivacy:'Privacidad',footerCompanion:'Instalar como app',
     breathTap:'pulsa',breathStart:'Iniciar · 5 ciclos',breathStop:'Detener',breathDone:'Completado',
     breathCycle:(i,t)=>`Ciclo ${i} de ${t}`,
     breathSteps:[
@@ -1652,7 +1652,7 @@ const LANG={
     mainTitle:'Full Moon',
     btn:'ES',title:'Nextfullmoon.co — Next full moon',
     adLabel:'Advertising',
-    footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',
+    footerCalc:'Precise astronomical calculations',footerPrivacy:'Privacy',footerCompanion:'Install as app',
     breathTap:'tap',breathStart:'Start · 5 cycles',breathStop:'Stop',breathDone:'Completed',
     breathCycle:(i,t)=>`Cycle ${i} of ${t}`,
     breathSteps:[
@@ -1928,7 +1928,7 @@ function applyLang(){
   // Panel: donacion body
   const dbh=document.getElementById('donacion-body-h3'),dbp=document.getElementById('donacion-body-p'),df=document.getElementById('donacion-footer');
   if(dbh)dbh.textContent=currentLang==='en'?'What does your contribution support?':'¿Para qué sirve tu aportación?';
-  if(dbp)dbp.textContent=currentLang==='en'?'Domain · Design improvements · English version · No invasive ads ever.':'Dominio · Mejoras de diseño · Versión en inglés · Sin publicidad invasiva para siempre.';
+  if(dbp)dbp.textContent=currentLang==='en'?'Domain · Design improvements · English version.':'Dominio · Mejoras de diseño · Versión en inglés.';
   if(df)df.textContent=currentLang==='en'?'Your contribution goes directly to keeping Lunallena running. Thank you.':'Tu aportación se destina directamente a mantener Lunallena activa. Gracias.';
 }
 
@@ -2136,10 +2136,7 @@ function initMoonrise(){
     en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},
     es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}
   };
-  // Premium: skip ads if user paid
-  const isPremium = localStorage.getItem('ll-premium') === '1';
   function push2(){
-    if(isPremium) return;
     (adsbygoogle=window.adsbygoogle||[]).push({});
     (adsbygoogle=window.adsbygoogle||[]).push({});
   }
@@ -2149,7 +2146,6 @@ function initMoonrise(){
   document.getElementById('ck-t').innerHTML=tt.t;
   document.getElementById('ck-y').textContent=tt.y;
   document.getElementById('ck-n').textContent=tt.n;
-  if(isPremium){hide();return;}
   const v=localStorage.getItem(K);
   if(v==='1')push2();
   else if(!v)document.getElementById('ck').style.display='flex';

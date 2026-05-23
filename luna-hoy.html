@@ -232,7 +232,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
 
   <hr>
   <footer>
-    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+    <p>© 2026 Furiosa Studio · <span data-en="Precise astronomical calculations" data-es="Cálculos astronómicos precisos">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link" data-en="Privacy" data-es="Privacidad">Privacidad</a> · <a href="/companion.html" data-en="Install as app" data-es="Instalar como app">Instalar como app</a></p>
   </footer>
 </div>
 
@@ -288,7 +288,6 @@ if(EN){
   document.getElementById('og-url').content='https://www.nextfullmoon.co/moon-today';
   document.getElementById('og-site').content='Next Full Moon';
   document.getElementById('og-image').content='https://www.nextfullmoon.co/og-moon.jpg';
-  document.getElementById('footer-privacy').href='/privacy';
 }
 document.getElementById('pg-title').textContent=L.title;
 document.getElementById('eyebrow').textContent=L.eyebrow;
@@ -310,8 +309,6 @@ document.getElementById('nav-lunas').textContent=L.nav_lunas;
 document.getElementById('nav-signs').textContent=L.nav_signs;
 document.getElementById('nav-mindfulness').textContent=L.nav_mindfulness;
 document.getElementById('nav-eclipses').textContent=L.nav_eclipses;
-document.getElementById('footer-privacy').textContent=L.footer_privacy;
-document.getElementById('footer-link').textContent=EN?'Next Full Moon':'Lunallena';
 document.getElementById('p-about-1').textContent=L.p_about1;
 document.getElementById('site-link').textContent=EN?'nextfullmoon.co':'lunallena.co';
 
@@ -541,6 +538,15 @@ function toggleLang(){
 })();
 initStars();
 initMenu();
+</script>
+<script>
+/* ── lunallena footer + share i18n (host-based: nextfullmoon.co = EN) ── */
+(function(){
+  var EN=location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
+  document.querySelectorAll('footer [data-en][data-es]').forEach(function(el){el.textContent=EN?el.getAttribute('data-en'):el.getAttribute('data-es');});
+  var pl=document.getElementById('footer-privacy-link');if(pl)pl.setAttribute('href',EN?'/privacy':'/privacidad');
+  if(EN){var sl=document.getElementById('share-label');if(sl)sl.textContent='Share';}
+})();
 </script>
 </body>
 </html>

@@ -285,7 +285,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
 
   <hr>
   <footer>
-    <p>© 2026 Furiosa Studio · <a id="footer-link" href="/">Lunallena</a> · <a href="/privacidad" id="footer-privacy">Privacidad</a></p>
+    <p>© 2026 Furiosa Studio · <span data-en="Precise astronomical calculations" data-es="Cálculos astronómicos precisos">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link" data-en="Privacy" data-es="Privacidad">Privacidad</a> · <a href="/companion.html" data-en="Install as app" data-es="Instalar como app">Instalar como app</a></p>
   </footer>
 </div>
 
@@ -345,9 +345,6 @@ if(EN){
   document.getElementById('cp3').textContent="Cultures that used purely lunar calendars — such as the Islamic Hijri calendar — have 354-day years (12 months of 29-30 days), causing their festivals to drift through all seasons over the years. Cultures that wanted to keep lunar synchrony with agricultural seasons invented lunisolar calendars, which add an intercalary month every few years to realign both cycles. The Hebrew, Chinese, Hindu and Buddhist calendars are all lunar or lunisolar.";
   document.getElementById('cp4').textContent="The Greeks discovered the Metonic cycle around 432 BC: every 19 solar years, the lunar and solar cycles synchronise almost perfectly (235 lunar months = 19 solar years, with an error of just two hours). This discovery was revolutionary because it allowed full moon dates to be predicted decades in advance — crucial for religious and agricultural calendars.";
   document.getElementById('cp5').textContent="Today, tracking the full moons of the year remains relevant beyond the poetic. Fishermen know the moon's effect on tides; organic farmers still use biodynamic calendars based on lunar phases; firefighters in some regions monitor full moon nights because more illuminated nights historically show different activity patterns. And for millions of people worldwide, the cycle of the 12 moons remains a way to connect with the natural rhythm of time — long before clocks or paper calendars existed.";
-  document.getElementById('footer-link').textContent='Next Full Moon';
-  document.getElementById('footer-privacy').textContent='Privacy';
-  document.getElementById('footer-privacy').href='/privacy';
   document.getElementById('grid').innerHTML=`
     <div class="card"><div class="card-name">Wolf Moon — January</div><div class="card-desc">Its name comes from the Algonquin Native American tribes, who heard hungry wolves howling around their villages during the harshest winter nights. Wolves howled more frequently in January because prey was scarce and cold drove them closer to human settlements. This moon marks the darkest point of the annual cycle. Also known as the Old Winter Moon in Europe, it was seen as a sign that nature slept in its deepest slumber. Fascinating fact: wolves actually howl more in winter for social cohesion, not hunger — the timing simply aligned with the worst of winter.</div></div>
     <div class="card"><div class="card-name">Snow Moon — February</div><div class="card-desc">Named by northeastern North American tribes because February brings the deepest and heaviest snowfalls of the year in the northern hemisphere. Hunting became nearly impossible under metres of snow, which also led to the name Hunger Moon among peoples like the Ojibwe. It signals winter's last stand before light begins to reclaim the days. In some European traditions this moon was called the Purification Moon, coinciding with the Celtic festival of Imbolc celebrating the first breath of spring.</div></div>
@@ -453,6 +450,15 @@ function toggleLang(){
 })();
 initStars();
 initMenu();
+</script>
+<script>
+/* ── lunallena footer + share i18n (host-based: nextfullmoon.co = EN) ── */
+(function(){
+  var EN=location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
+  document.querySelectorAll('footer [data-en][data-es]').forEach(function(el){el.textContent=EN?el.getAttribute('data-en'):el.getAttribute('data-es');});
+  var pl=document.getElementById('footer-privacy-link');if(pl)pl.setAttribute('href',EN?'/privacy':'/privacidad');
+  if(EN){var sl=document.getElementById('share-label');if(sl)sl.textContent='Share';}
+})();
 </script>
 </body>
 </html>
