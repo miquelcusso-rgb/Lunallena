@@ -39,14 +39,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959" crossorigin="anonymous"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}html{background:#010101;overflow-x:clip;}body{overflow-x:clip;}
+*{margin:0;padding:0;box-sizing:border-box;}html{background:#010101;overflow-x:clip;scroll-behavior:smooth;}body{overflow-x:clip;}
 body{background:radial-gradient(ellipse 70% 50% at 30% 25%,#040409 0%,transparent 65%),radial-gradient(ellipse at 50% 50%,#030304 0%,#020202 60%,#010101 100%);font-family:'Cormorant Garamond',Georgia,serif;color:rgba(236,232,245,.72);min-height:100vh;padding:0;line-height:1.75;}
 .wrap{max-width:720px;margin:0 auto;position:relative;z-index:1;padding:2rem 1.5rem 0;}
 .eyebrow{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.6rem;}
 h1{font-family:'Cinzel',serif;font-weight:300;font-size:clamp(1.7rem,4vw,2.5rem);color:rgba(255,255,255,.88);letter-spacing:.04em;margin-bottom:.5rem;}
 .subtitle{font-size:1.1rem;font-style:italic;color:rgba(196,196,255,.42);margin-bottom:2.5rem;}
 hr{border:none;border-top:1px solid rgba(196,196,255,.07);margin:2.2rem 0;}
-h2{font-family:'Cinzel',serif;font-weight:400;font-size:.86rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:2rem 0 .8rem;}
+h2{font-family:'Cinzel',serif;font-weight:400;font-size:.86rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:2rem 0 .8rem;scroll-margin-top:5.5rem;}
+.lunar-toc{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.6rem 0 2.5rem;}
+.lunar-toc a{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.62);text-decoration:none;border:1px solid rgba(196,196,255,.16);padding:.45rem .9rem;border-radius:2px;transition:color .2s,border-color .2s,background .2s;}
+.lunar-toc a:hover{color:rgba(196,196,255,.95);border-color:rgba(196,196,255,.4);background:rgba(196,196,255,.05);}
 h3{font-family:'Cinzel',serif;font-weight:400;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42);margin:1.6rem 0 .5rem;}
 p{font-size:1.05rem;margin-bottom:.9rem;color:rgba(220,216,240,.6);}
 .breath-box{border:1px solid rgba(196,196,255,.1);border-radius:3px;padding:1.5rem;margin:1.2rem 0;background:rgba(196,196,255,.03);}
@@ -60,7 +63,7 @@ p{font-size:1.05rem;margin-bottom:.9rem;color:rgba(220,216,240,.6);}
 .journal-list li:last-child{border-bottom:none;}
 .culture-card{border-left:2px solid rgba(196,196,255,.12);padding:.8rem 1.2rem;margin:.8rem 0;}
 .ad-slot{width:100%;max-width:728px;margin:2rem auto;text-align:center;}
-footer{margin-top:4rem;text-align:center;padding:1.2rem 1rem 2rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.19em;color:#c4c4d8;opacity:.19;text-transform:uppercase;}
+footer{margin-top:4rem;width:100vw;margin-left:50%;transform:translateX(-50%);text-align:center;padding:1.2rem 1rem 2rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.19em;color:#c4c4d8;opacity:.19;text-transform:uppercase;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,240,.13);}footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
 .nav-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
 .nav-pill{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.4);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.22rem .55rem;border-radius:2px;transition:all .2s;}
@@ -81,13 +84,13 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
 #menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
 #menu-btn.open span:nth-child(2){opacity:0;}
 #menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-#nav-menu{position:fixed;top:0;right:0;bottom:0;z-index:240;width:min(300px,85vw);background:rgba(4,4,14,.97);backdrop-filter:blur(28px);border-left:1px solid rgba(196,196,255,.07);transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;padding:5rem 2rem 3rem;pointer-events:none;}
+#nav-menu{position:fixed;top:0;right:0;bottom:0;z-index:240;width:min(300px,85vw);background:rgba(4,4,14,.97);backdrop-filter:blur(28px);border-left:1px solid rgba(196,196,255,.07);transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 4rem) 1.8rem calc(env(safe-area-inset-bottom) + 1.5rem);overflow-y:auto;-webkit-overflow-scrolling:touch;pointer-events:none;}
 #nav-menu.open{transform:translateX(0);pointer-events:all;}
-.nav-menu-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(196,196,255,.3);margin-bottom:2rem;}
-.nav-item{display:flex;align-items:center;gap:.9rem;padding:1rem 0;border-bottom:1px solid rgba(196,196,255,.05);cursor:pointer;transition:opacity .2s;text-decoration:none;}
+.nav-menu-title{font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(196,196,255,.3);margin-bottom:1.2rem;flex-shrink:0;}
+.nav-item{display:flex;align-items:center;gap:.8rem;flex-shrink:0;padding:.72rem 0;border-bottom:1px solid rgba(196,196,255,.05);cursor:pointer;transition:opacity .2s;text-decoration:none;}
 .nav-item:hover{opacity:.7;}
 .nav-item:last-child{border:none;}
-.nav-icon{font-size:1.2rem;width:1.5rem;text-align:center;}
+.nav-icon{font-size:1.1rem;width:1.4rem;text-align:center;flex-shrink:0;}
 .nav-label{font-family:'Cinzel',serif;font-size:1.0rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(236,232,245,.75);}
 .nav-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;color:rgba(196,196,220,.38);margin-top:.12rem;}
 .nav-close{position:absolute;top:1.2rem;right:1.3rem;background:none;border:none;color:rgba(196,196,255,.35);font-size:1.1rem;cursor:pointer;}
@@ -172,6 +175,13 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <p class="eyebrow" id="eyebrow">Bienestar</p>
   <h1 id="h1">Mindfulness lunar</h1>
   <p class="subtitle" id="subtitle">La luna como ancla para la presencia — una práctica para cada fase</p>
+
+  <nav class="lunar-toc" aria-label="Índice">
+    <a href="#h-respira" data-en="Breathing 4-4-6" data-es="Respiración 4-4-6">Respiración 4-4-6</a>
+    <a href="#h-med-fases" data-en="Phase meditations" data-es="Meditaciones por fase">Meditaciones por fase</a>
+    <a href="#h-journal" data-en="Journaling" data-es="Journaling">Journaling</a>
+    <a href="#h-historia" data-en="History &amp; rituals" data-es="Rituales e historia">Rituales e historia</a>
+  </nav>
 
   <h2 id="h-respira">Respiración 4-4-6</h2>
   <p id="p-respira">Técnica de coherencia cardíaca adaptada al ciclo lunar. Reduce el cortisol, activa el sistema nervioso parasimpático y conecta con el ritmo natural de los ciclos. Practica esta respiración en momentos de transición: al despertar, antes de dormir o cuando la ansiedad sube. El patrón inhala-sostén-exhala imita la estructura del propio ciclo lunar: expansión, plenitud y soltar.</p>
@@ -477,7 +487,7 @@ initMenu();
 /* ── lunallena footer + share i18n (host-based: nextfullmoon.co = EN) ── */
 (function(){
   var EN=location.hostname==='www.nextfullmoon.co'||location.hostname==='nextfullmoon.co';
-  document.querySelectorAll('footer [data-en][data-es]').forEach(function(el){el.textContent=EN?el.getAttribute('data-en'):el.getAttribute('data-es');});
+  document.querySelectorAll('footer [data-en][data-es],.lunar-toc [data-en][data-es]').forEach(function(el){el.textContent=EN?el.getAttribute('data-en'):el.getAttribute('data-es');});
   var pl=document.getElementById('footer-privacy-link');if(pl)pl.setAttribute('href',EN?'/privacy':'/privacidad');
   if(EN){var sl=document.getElementById('share-label');if(sl)sl.textContent='Share';}
 })();
