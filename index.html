@@ -439,6 +439,7 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
   const isEN=host==='www.nextfullmoon.co'||host==='nextfullmoon.co';
   if(isEN){
     document.documentElement.lang='en';
+    document.title='Next Full Moon — When is the next full moon?';
     const canonical=document.querySelector('link[rel="canonical"]');
     if(canonical)canonical.href='https://www.nextfullmoon.co/';
     const ogUrl=document.querySelector('meta[property="og:url"]');
