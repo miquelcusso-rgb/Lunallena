@@ -1306,26 +1306,24 @@ function initMoonCanvas(age){
   ctx.scale(dpr,dpr);
   const r=cssW/2,cx=r,cy=r;
 
-  // Draw canvas fallback immediately (visible while photo loads)
-  drawRealisticMoon(ctx,cx,cy,r,age);
-
   const url=dialMoonUrl();
-  if(!url)return;
+  if(!url){ drawRealisticMoon(ctx,cx,cy,r,age); return; }
 
+  // No procedural "preview": leave the canvas blank (transparent) until the
+  // NASA photo is ready, then fade it in via canvas alpha (clean, no pop).
+  // Procedural only as a last-resort fallback if the photo fails to load.
   const img=new Image();
   img.src=url;
   img.onload=()=>{
-    // Smooth crossfade procedural → NASA photo (no ugly pop)
     let a=0;
     (function fade(){
-      a=Math.min(1,a+0.09);
+      a=Math.min(1,a+0.12);
       ctx.clearRect(0,0,cssW,cssW);
-      drawRealisticMoon(ctx,cx,cy,r,age);
       ctx.save();ctx.globalAlpha=a;drawNasaPhoto(ctx,cx,cy,r,img);ctx.restore();
       if(a<1)requestAnimationFrame(fade);
     })();
   };
-  // img.onerror → canvas fallback stays
+  img.onerror=()=>{ drawRealisticMoon(ctx,cx,cy,r,age); };
 }
 
 function setShadows(a){
@@ -1984,16 +1982,26 @@ function initMoonFocus(){
   const overlay=document.getElementById('page-overlay');
   const isMob=()=>window.innerWidth<900||'ontouchstart' in window;
   let focused=false;
+  // Marker so we can restore the moon to its original spot inside <main>.
+  const home=document.createComment('moon-home');
+  stage.parentNode.insertBefore(home,stage);
   function setFocus(on){
+    if(on===focused)return;
     focused=on;
+    if(on){
+      // Move the moon out of <main> (which has z-index:2 and traps it below
+      // the overlay) to <body>, so its z-index renders ABOVE the dim/blur
+      // overlay — sharp and bright, floating on top.
+      document.body.appendChild(stage);
+    }else{
+      home.parentNode.insertBefore(stage,home.nextSibling);
+    }
     document.body.classList.toggle('moon-focused',on);
   }
-  // Desktop hover removed
-  // Mobile/tablet tap
+  // Desktop: no focus effect. Mobile/tablet/webapp: tap to float the moon.
   stage.addEventListener('click',e=>{
     if(isMob()){e.stopPropagation();setFocus(!focused);}
   });
-  // Click overlay to close
   overlay.addEventListener('click',()=>setFocus(false));
   document.addEventListener('keydown',e=>{if(e.key==='Escape')setFocus(false);});
 }
