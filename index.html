@@ -55,9 +55,9 @@
     radial-gradient(ellipse at 50% 50%,#030304 0%,#020202 60%,#010101 100%);
   --safe-bottom:env(safe-area-inset-bottom,0px);
 }
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;}html{background:#010101;overflow-x:clip;}body{overflow-x:clip;}
 html{font-size:16px;scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;}
-body{background:var(--bg-gradient);min-height:100vh;font-family:'Cormorant Garamond',Georgia,serif;color:var(--pale);overflow-x:hidden;position:relative;transition:background 2s ease;}
+body{background:var(--bg-gradient);min-height:100vh;font-family:'Cormorant Garamond',Georgia,serif;color:var(--pale);overflow-x:clip;position:relative;transition:background 2s ease;}
 body::after{
   content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
   background:
