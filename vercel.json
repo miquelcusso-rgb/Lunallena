@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/lunas-llenas",   "destination": "/lunas-llenas.html" },
+    { "source": "/luna-fresa",     "destination": "/luna-fresa.html" },
     { "source": "/fases-lunares",  "destination": "/fases-lunares.html" },
     { "source": "/luna-hoy",       "destination": "/luna-hoy.html" },
     { "source": "/signos-lunares", "destination": "/signos-lunares.html" },

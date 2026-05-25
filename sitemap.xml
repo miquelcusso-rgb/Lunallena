@@ -20,6 +20,15 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.lunallena.co/luna-fresa</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-fresa"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/luna-fresa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/luna-fresa"/>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.lunallena.co/fases-lunares</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/fases-lunares"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/moon-phases"/>
