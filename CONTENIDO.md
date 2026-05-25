@@ -54,12 +54,25 @@
 | 6 feb 2027 | Eclipse solar anular | África, Sudamérica |
 | 2 ago 2027 | Eclipse solar **total** | Europa, S/O de Asia, África ("eclipse del siglo", 6m23s) |
 
-### Lluvias de meteoros (2026)
+> **Oro SEO — los tres eclipses solares de España (2026–2028).** España vive tres
+> eclipses solares en tres veranos consecutivos: **total 12 ago 2026** (Galicia,
+> Castilla y León, Baleares), **total 2 ago 2027** (sur peninsular) y **anular
+> 26 ene 2028** ("anillo de fuego"). Es la mayor oportunidad de tráfico nacional
+> del proyecto. Acción: página pilar `/eclipses-espana` que enlace las tres
+> landings y capture "eclipses España 2026 2027 2028"; construir autoridad ya y
+> mantener las páginas vivas entre eventos. (El eclipse de 2026 ya se promociona
+> vía next-eclipse.com.)
+
+### Lluvias de meteoros (evergreen, refresco anual)
+
+Vertical propio con **una URL estable por lluvia** (`/perseidas`, `/geminidas`,
+`/oriónidas`…), refrescando fecha y condiciones de luna cada año. Prioridad:
+Perseidas (verano, máximo volumen) y Gemínidas (la mejor del año).
 
 | Lluvia | Pico | Notas |
 |---|---|---|
 | Líridas | 22–23 abr | — |
-| Perseidas | 12–13 ago | coincide con eclipse solar total; gran año |
+| Perseidas | 12–13 ago | coincide con eclipse solar total; **luna nueva = gran año**. ✅ creada en este PR (`/perseidas`) |
 | Oriónidas | 21–22 oct | — |
 | Leónidas | 16–17 nov | — |
 | Gemínidas | 13–14 dic | la mejor del año |
@@ -75,11 +88,12 @@ sugerida (≈3 semanas antes del evento), prioridad.
 | 1 | **Luna de Fresa jun 2026** | `/luna-fresa` | "luna de fresa" / "strawberry moon" | Artículo evento | ~8 jun 2026 | 🔴 alta |
 | 2 | Luna del Ciervo jul 2026 | `/luna-ciervo` | "luna del ciervo" / "buck moon" | Artículo evento | ~8 jul 2026 | 🟡 media |
 | 3 | Luna del Esturión + eclipse ago | `/luna-esturion` | "luna del esturión" / "sturgeon moon" | Artículo evento + cross-link eclipses | ~7 ago 2026 | 🟡 media |
+| 3b | **Perseidas ago 2026** | `/perseidas` | "perseidas 2026" / "perseids 2026" | Lluvia de meteoros (evergreen) | ~20 jul 2026 | 🔴 alta · ✅ creada |
 | 4 | **Luna de la Cosecha sep 2026** | `/luna-cosecha` | "luna de la cosecha" / "harvest moon" | Artículo evento (pieza estrella) | ~5 sep 2026 | 🔴 alta |
 | 5 | Luna del Cazador oct 2026 | `/luna-cazador` | "luna del cazador" / "hunter's moon" | Artículo evento | ~5 oct 2026 | 🟢 baja |
 | 6 | **Superluna del Castor nov 2026** | `/superluna` | "superluna 2026" / "supermoon 2026" | Artículo evento + evergreen superluna | ~3 nov 2026 | 🔴 alta |
 | 7 | Luna Fría + Superluna de Navidad | `/luna-fria` | "luna fría" / "cold moon" | Artículo evento (ángulo navideño) | ~3 dic 2026 | 🟡 media |
-| 8 | Gemínidas dic 2026 | `/lluvia-meteoros` | "lluvia de meteoros diciembre" / "geminids 2026" | Guía observación (evergreen) | ~25 nov 2026 | 🟡 media |
+| 8 | Gemínidas dic 2026 | `/geminidas` | "gemínidas 2026" / "geminids 2026" | Lluvia de meteoros (evergreen) | ~25 nov 2026 | 🟡 media |
 | 9 | Luna del Lobo ene 2027 | `/luna-lobo` | "luna del lobo" / "wolf moon" | Artículo evento | ~1 ene 2027 | 🟢 baja |
 | 10 | Luna de Nieve feb 2027 | `/luna-nieve` | "luna de nieve" / "snow moon" | Artículo evento | ~30 ene 2027 | 🟢 baja |
 | 11 | Luna del Gusano mar 2027 | `/luna-gusano` | "luna del gusano" / "worm moon" | Artículo evento | ~1 mar 2027 | 🟢 baja |
