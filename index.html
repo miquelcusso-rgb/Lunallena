@@ -301,7 +301,7 @@ body.moon-focused .moon-stage{z-index:20;}
 .eclipse-sister:hover{border-color:rgba(220,160,50,.25);background:rgba(220,160,50,.05);}
 .eclipse-sister-eyebrow{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(220,160,50,.38);margin-bottom:.4rem;}
 .eclipse-sister-name{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.06em;color:rgba(255,220,160,.65);}
-footer{position:relative;z-index:2;text-align:center;padding:1.2rem 1rem 2rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.19em;color:var(--silver);opacity:.19;text-transform:uppercase;}
+footer{position:relative;z-index:2;margin-top:4rem;width:100vw;margin-left:50%;transform:translateX(-50%);text-align:center;padding:1.2rem 1rem 2rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.19em;color:var(--silver);opacity:.19;text-transform:uppercase;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,240,.13);}
 
 @keyframes fsi{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
@@ -1706,8 +1706,9 @@ function shareApp(){
   }
 }
 function toggleLang(){
-  currentLang=currentLang==='es'?'en':'es';
-  applyLang();
+  // Host-based model: switch language by switching domain (consistent with subpages)
+  if(location.hostname.indexOf('nextfullmoon')>-1){location.href=location.href.replace(/nextfullmoon\.co/,'lunallena.co');}
+  else{location.href=location.href.replace(/lunallena\.co/,'nextfullmoon.co');}
 }
 function applyLang(){
   const L=LANG[currentLang];

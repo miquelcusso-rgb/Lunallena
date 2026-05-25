@@ -260,6 +260,8 @@ const T = {
     back:'← Lunallena',
     nav_phases:'Fases lunares', nav_lunas:'Las 12 lunas', nav_signs:'Luna en tu signo', nav_mindfulness:'Mindfulness', nav_eclipses:'Eclipses',
     p_about1:'El arco que ves en la pantalla representa el cielo desde tu horizonte este hasta tu horizonte oeste. La luna sale por el este, alcanza su punto más alto al sur (hemisferio norte) y se pone por el oeste. La altitud muestra los grados sobre el horizonte.',
+    p_about2:'La altitud que se muestra es el ángulo de la luna sobre el horizonte en grados: 0° es el horizonte exacto, 90° es el punto directamente sobre tu cabeza (cénit). En latitudes medias como Madrid, la luna raramente supera los 60-65° de altitud. Cuando la luna está por debajo del horizonte, la posición se muestra en la parte inferior del arco con un estilo diferente.',
+    p_about3:'Los cálculos se realizan usando la biblioteca SunCalc, basada en los algoritmos de Jean Meeus publicados en su obra "Astronomical Algorithms". La precisión es de ±2 minutos para los horarios y ±1° para la altitud, suficiente para planificación práctica pero no para astronomía de precisión.',
   },
   en:{
     title:'Moon today: moonrise, transit and moonset · Next Full Moon',
@@ -278,6 +280,8 @@ const T = {
     back:'← Next Full Moon',
     nav_phases:'Moon phases', nav_lunas:'The 12 moons', nav_signs:'Moon sign', nav_mindfulness:'Mindfulness', nav_eclipses:'Eclipses',
     p_about1:'The arc shown represents the sky from your eastern to your western horizon. The moon rises in the east, reaches its highest point in the south (northern hemisphere) and sets in the west. Altitude shows the degrees above the horizon.',
+    p_about2:'The altitude shown is the angle of the moon above the horizon in degrees: 0° is the exact horizon, 90° is the point directly overhead (zenith). At mid-latitudes like Madrid, the moon rarely exceeds 60-65° of altitude. When the moon is below the horizon, its position is shown in the lower part of the arc with a different style.',
+    p_about3:'The calculations are made using the SunCalc library, based on the algorithms of Jean Meeus published in his work "Astronomical Algorithms". Accuracy is ±2 minutes for the times and ±1° for the altitude, enough for practical planning but not for precision astronomy.',
   }
 };
 const L = EN ? T.en : T.es;
@@ -311,6 +315,8 @@ document.getElementById('nav-signs').textContent=L.nav_signs;
 document.getElementById('nav-mindfulness').textContent=L.nav_mindfulness;
 document.getElementById('nav-eclipses').textContent=L.nav_eclipses;
 document.getElementById('p-about-1').textContent=L.p_about1;
+document.getElementById('p-about-2').textContent=L.p_about2;
+document.getElementById('p-about-3').textContent=L.p_about3;
 document.getElementById('site-link').textContent=EN?'nextfullmoon.co':'lunallena.co';
 
 // --- Geo ---

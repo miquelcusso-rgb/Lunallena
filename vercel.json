@@ -1,25 +1,77 @@
 {
   "rewrites": [
-    { "source": "/lunas-llenas",   "destination": "/lunas-llenas.html" },
-    { "source": "/luna-fresa",     "destination": "/luna-fresa.html" },
-    { "source": "/perseidas",      "destination": "/perseidas.html" },
-    { "source": "/fases-lunares",  "destination": "/fases-lunares.html" },
-    { "source": "/luna-hoy",       "destination": "/luna-hoy.html" },
-    { "source": "/signos-lunares", "destination": "/signos-lunares.html" },
-    { "source": "/eclipses",       "destination": "/eclipses.html" },
-    { "source": "/mindfulness",    "destination": "/mindfulness.html" },
-    { "source": "/apoya",          "destination": "/apoya.html" },
-    { "source": "/privacidad",     "destination": "/privacidad.html" },
-    { "source": "/privacy",        "destination": "/privacy.html" }
+    {
+      "source": "/lunas-llenas",
+      "destination": "/lunas-llenas.html"
+    },
+    {
+      "source": "/luna-fresa",
+      "destination": "/luna-fresa.html"
+    },
+    {
+      "source": "/perseidas",
+      "destination": "/perseidas.html"
+    },
+    {
+      "source": "/fases-lunares",
+      "destination": "/fases-lunares.html"
+    },
+    {
+      "source": "/luna-hoy",
+      "destination": "/luna-hoy.html"
+    },
+    {
+      "source": "/signos-lunares",
+      "destination": "/signos-lunares.html"
+    },
+    {
+      "source": "/eclipses",
+      "destination": "/eclipses.html"
+    },
+    {
+      "source": "/mindfulness",
+      "destination": "/mindfulness.html"
+    },
+    {
+      "source": "/apoya",
+      "destination": "/apoya.html"
+    },
+    {
+      "source": "/privacidad",
+      "destination": "/privacidad.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/luna-de-fresa",
+      "destination": "/luna-fresa",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options",           "value": "SAMEORIGIN" },
-        { "key": "X-Content-Type-Options",    "value": "nosniff" },
-        { "key": "Referrer-Policy",           "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy",        "value": "camera=(), microphone=(), geolocation=(), payment=()" }
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        }
       ]
     }
   ]
