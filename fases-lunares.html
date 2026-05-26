@@ -104,6 +104,31 @@ p,li{font-size:1.13rem;line-height:1.8;}
 .eclipse-name{opacity:.85;}
 .moon-fact{font-size:1.08rem;opacity:.78;}
 .tip-text,.hint-text,.info-text{font-size:1.1rem;opacity:.80;}
+
+/* ── visual moon components (shared) ── */
+.moon-ico{display:inline-block;line-height:0;}
+.moon-ico svg,svg.phase-svg{display:block;width:100%;height:100%;}
+.phase-svg{filter:drop-shadow(0 0 7px rgba(220,220,255,.13));}
+.luna-cal-wrap{border:1px solid rgba(196,196,255,.08);border-radius:7px;padding:1.5rem 1.3rem;background:rgba(196,196,255,.025);margin:1rem 0 1.6rem;}
+.luna-cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;gap:.6rem;}
+.luna-cal-title{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);}
+.luna-cal-nav{display:flex;gap:.4rem;}
+.luna-cal-nav button{width:36px;height:36px;border:1px solid rgba(196,196,255,.18);background:none;color:rgba(196,196,255,.6);border-radius:5px;cursor:pointer;font-size:1.05rem;line-height:1;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.luna-cal-nav button:hover{border-color:rgba(196,196,255,.42);color:#fff;background:rgba(196,196,255,.06);}
+.luna-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.3rem;}
+.luna-cal-dow{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(196,196,255,.3);text-align:center;padding:.1rem 0 .35rem;}
+.luna-cal-day{aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;border-radius:7px;padding:.2rem 0;}
+.luna-cal-day.empty{visibility:hidden;}
+.luna-cal-day .d-num{font-family:'Cinzel',serif;font-size:.62rem;color:rgba(220,216,240,.48);line-height:1;}
+.luna-cal-day .moon-ico{width:clamp(20px,5.4vw,32px);height:clamp(20px,5.4vw,32px);}
+.luna-cal-day.today{background:rgba(201,168,76,.12);outline:1px solid rgba(201,168,76,.42);}
+.luna-cal-day.today .d-num{color:#c9a84c;font-weight:600;}
+.luna-cal-day.principal .d-num{color:rgba(255,255,255,.82);}
+.luna-cal-legend{display:flex;flex-wrap:wrap;gap:.7rem 1.3rem;justify-content:center;margin-top:1.1rem;}
+.luna-cal-legend span{display:flex;align-items:center;gap:.4rem;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(196,196,255,.4);}
+.luna-cal-legend .moon-ico{width:19px;height:19px;}
+@media(max-width:480px){.luna-cal-wrap{padding:1rem .55rem;}.luna-cal-grid{gap:.15rem;}.luna-cal-day .d-num{font-size:.55rem;}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important;}}
 </style>
 <script type="application/ld+json">
 {
