@@ -56,7 +56,19 @@ p{font-size:1.05rem;margin-bottom:.9rem;color:rgba(220,216,240,.6);}
 .breath-steps{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem;}
 .step{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.5);background:rgba(196,196,255,.06);border:1px solid rgba(196,196,255,.1);padding:.4rem .9rem;border-radius:2px;}
 .phase-card{border:1px solid rgba(196,196,255,.08);border-radius:3px;padding:1.5rem 1.6rem;margin-bottom:1.4rem;background:rgba(196,196,255,.02);}
-.phase-card-title{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.8rem;}
+.phase-card-title{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.8rem;display:flex;align-items:center;gap:.85rem;}
+.phase-card-title .pc-moon{width:34px;height:34px;flex-shrink:0;display:block;filter:drop-shadow(0 0 6px rgba(220,220,255,.16));}
+/* interactive breathing circle */
+.breath-visual{display:flex;flex-direction:column;align-items:center;gap:.9rem;margin:1.4rem 0 .4rem;}
+.breathing-circle{width:clamp(120px,38vw,180px);height:clamp(120px,38vw,180px);border-radius:50%;background:radial-gradient(circle,rgba(196,196,255,.12),rgba(196,196,255,.02));border:1px solid rgba(196,196,255,.15);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:rgba(196,196,255,.6);text-transform:uppercase;text-align:center;transition:transform .1s;}
+.breathing-circle.inhale{animation:breatheIn 4s ease-in-out forwards;}
+.breathing-circle.hold{animation:breatheHold 4s linear forwards;}
+.breathing-circle.exhale{animation:breatheOut 6s ease-in-out forwards;}
+@keyframes breatheIn{to{transform:scale(1.4);background:radial-gradient(circle,rgba(196,196,255,.22),rgba(196,196,255,.04));}}
+@keyframes breatheHold{from{transform:scale(1.4);}to{transform:scale(1.4);}}
+@keyframes breatheOut{from{transform:scale(1.4);}to{transform:scale(1);}}
+.breath-btn{background:rgba(196,196,255,.07);border:1px solid rgba(196,196,255,.18);color:#fff;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;padding:.55rem 1.4rem;border-radius:2px;cursor:pointer;transition:background .2s;}
+.breath-btn:hover{background:rgba(196,196,255,.15);}
 .journal-list{list-style:none;margin:0 0 .8rem;padding:0;}
 .journal-list li{font-size:1.02rem;color:rgba(196,196,220,.55);padding:.35rem 0;border-bottom:1px solid rgba(196,196,255,.04);padding-left:1rem;position:relative;}
 .journal-list li::before{content:'—';position:absolute;left:0;color:rgba(196,196,255,.2);}
@@ -192,6 +204,10 @@ p,li{font-size:1.13rem;line-height:1.8;}
       <span class="step" id="step3">Exhala · 6 seg</span>
     </div>
     <p style="margin-top:.9rem;font-size:.95rem;" id="p-cycles">Repite 5 ciclos. Practica en luna llena o luna nueva para amplificar el efecto del ciclo.</p>
+    <div class="breath-visual">
+      <div class="breathing-circle" id="breath-circle" role="img" aria-live="polite"><span id="breath-text">Empieza</span></div>
+      <button class="breath-btn" id="breath-btn" type="button">Iniciar</button>
+    </div>
   </div>
 
   <hr>
@@ -199,7 +215,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <p id="p-intro-med">Cada una de las cuatro fases principales del ciclo lunar tiene una energía distinta, y las prácticas de mindfulness ganan profundidad cuando se alinean con ese ritmo natural. No se trata de superstición: la luna afecta las mareas oceánicas, los patrones de luz nocturna y, según algunos estudios preliminares, incluso la calidad del sueño. Usarla como ancla temporal para la práctica personal es simplemente inteligente diseño de hábitos.</p>
 
   <div class="phase-card">
-    <div class="phase-card-title" id="h-new-moon">Luna Nueva — Siembra interior</div>
+    <div class="phase-card-title"><svg class="pc-moon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#0a0a16" stroke="rgba(196,196,255,.3)" stroke-width="1.2"/></svg><span id="h-new-moon">Luna Nueva — Siembra interior</span></div>
     <p id="p-new-1">La luna nueva es oscuridad total: el disco lunar no refleja luz visible desde la Tierra. Este es el momento de mayor potencial latente, la semilla antes de germinar. La práctica de mindfulness en luna nueva trabaja con la intención y el silencio. Encuentra un lugar oscuro y tranquilo, siéntate en una postura cómoda y permite que los ojos se cierren suavemente.</p>
     <p id="p-new-2">En lugar de vaciar la mente —lo que resulta imposible para la mayoría— dirige la atención hacia dentro: ¿qué quieres cultivar en este ciclo? No formulaciones abstractas como "más paz" o "más éxito", sino algo concreto y observable: una conversación que tienes pendiente, un hábito que quieres instalar, una tarea que has evitado. La oscuridad de la luna nueva es el espacio antes del inicio, el silencio antes de que comience la música.</p>
     <p id="p-new-3">Permanece en ese espacio interior durante al menos diez minutos. Observa los pensamientos que emergen sin aferrarte a ninguno. Cuando termines, escribe en papel —no en pantalla— una sola intención para el ciclo que comienza. Dóblalo y guárdalo. Revisar esa nota en la próxima luna llena, dos semanas después, puede ser uno de los ejercicios de autoconocimiento más simples y reveladores que existen.</p>
@@ -207,7 +223,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   </div>
 
   <div class="phase-card">
-    <div class="phase-card-title" id="h-first-q">Cuarto Creciente — Acción consciente</div>
+    <div class="phase-card-title"><svg class="pc-moon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#0a0a16"/><path d="M24 2v44a22 22 0 0 0 0-44z" fill="rgba(232,230,212,.9)"/><circle cx="24" cy="24" r="22" fill="none" stroke="rgba(196,196,255,.2)" stroke-width="1"/></svg><span id="h-first-q">Cuarto Creciente — Acción consciente</span></div>
     <p id="p-fq-1">A siete días de la luna nueva, la luna presenta exactamente la mitad de su disco iluminada. Es el punto de la primera resistencia: la intención del inicio choca con la fricción de la realidad. Este es el momento en que los propósitos se abandonan con más frecuencia, no por falta de deseo, sino por exceso de inercia.</p>
     <p id="p-fq-2">La práctica de mindfulness en cuarto creciente es activa, no contemplativa. Se trata de llevar atención plena al movimiento: una caminata de veinte minutos sin móvil ni música, prestando atención total a cada paso, al contacto del pie con el suelo, al peso del cuerpo desplazándose. O bien una tarea de trabajo manual —fregar, ordenar, cocinar— realizada con presencia total, sin distracción paralela.</p>
     <p id="p-fq-3">La energía del cuarto creciente es yang: expansiva, orientada hacia afuera. Aprovéchala para dar un primer paso concreto en la dirección de la intención sembrada en luna nueva. No el paso completo, no el proyecto terminado: el primer movimiento. Los estudios sobre inercia conductual muestran que el comienzo es el obstáculo más difícil; una vez iniciado el movimiento, continuarlo requiere mucha menos energía.</p>
@@ -215,7 +231,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   </div>
 
   <div class="phase-card">
-    <div class="phase-card-title" id="h-full-moon">Luna Llena — Iluminación y liberación</div>
+    <div class="phase-card-title"><svg class="pc-moon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="rgba(232,230,212,.92)"/><circle cx="24" cy="24" r="22" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1"/></svg><span id="h-full-moon">Luna Llena — Iluminación y liberación</span></div>
     <p id="p-fl-1">La luna llena es el climax del ciclo: máxima luz, máxima visibilidad, máxima intensidad emocional. No es casualidad que "luna llena" esté asociada en docenas de culturas con rituales de celebración, con sueño perturbado, con comportamientos más extremos. La luz intensa de la luna llena ilumina lo que normalmente permanece en sombras —dentro y fuera de nosotros.</p>
     <p id="p-fl-2">La meditación de luna llena clásica trabaja con la visualización de luz. Siéntate cómodamente frente a una ventana o al exterior, donde puedas ver la luna o imaginarla si está cubierta. Cierra los ojos y visualiza su luz descendiendo sobre ti como lluvia plateada y fría. Con cada inhalación, recibes esa luz en el cuerpo; con cada exhalación, dejas ir algo que ya no necesitas. No necesitas saber qué estás liberando: el cuerpo lo sabe.</p>
     <p id="p-fl-3">Una variante más avanzada: dedica cinco minutos a escribir sin filtro (free writing) todo lo que ha surgido desde la luna nueva. Sin editar, sin releer, sin juzgar. Simplemente vacía. Luego relee lo escrito con la misma distancia con que leerías la carta de un extraño, con curiosidad y sin defensa. Lo que emerge en ese momento de revisión es información valiosa sobre tu estado interior actual.</p>
@@ -223,7 +239,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   </div>
 
   <div class="phase-card">
-    <div class="phase-card-title" id="h-last-q">Cuarto Menguante — Integración y soltar</div>
+    <div class="phase-card-title"><svg class="pc-moon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#0a0a16"/><path d="M24 2v44a22 22 0 0 1 0-44z" fill="rgba(232,230,212,.9)"/><circle cx="24" cy="24" r="22" fill="none" stroke="rgba(196,196,255,.2)" stroke-width="1"/></svg><span id="h-last-q">Cuarto Menguante — Integración y soltar</span></div>
     <p id="p-lq-1">El cuarto menguante completa el ciclo: la luna ya alcanzó su plenitud y ahora regresa gradualmente a la oscuridad. La energía de esta fase es yin, introspectiva, orientada hacia adentro. Es el momento de integrar lo que ha ocurrido, de soltar lo que no funcionó, de agradecer lo que sí.</p>
     <p id="p-lq-2">La práctica recomendada en cuarto menguante es el body scan progresivo: acostado con los ojos cerrados, lleva la atención lentamente desde los pies hasta la cabeza, notando las sensaciones físicas sin intentar cambiarlas. Tensión, calor, hormigueo, pesadez: simplemente observa y nombra. Esta práctica conecta con la energía descendente del cuarto menguante, que invita a descender del pensamiento hacia la experiencia corporal directa.</p>
     <p id="p-lq-3">Después del body scan, dedica unos minutos a identificar tres cosas que quieres dejar atrás antes de la próxima luna nueva: un resentimiento que ya no te sirve, una expectativa que ha demostrado ser irreal, un hábito que has comprobado que no funciona. No es necesario "resolver" nada; simplemente reconocer y nombrar tiene un efecto liberador documentado en psicología cognitiva. El cuarto menguante es el espacio natural para este trabajo.</p>
@@ -344,6 +360,8 @@ if(EN){
   document.getElementById('step2').textContent='Hold · 4 sec';
   document.getElementById('step3').textContent='Exhale · 6 sec';
   document.getElementById('p-cycles').textContent='Repeat 5 cycles. Practise on the full moon or new moon to amplify the effect of the cycle.';
+  var bt=document.getElementById('breath-text');if(bt)bt.textContent='Begin';
+  var bb=document.getElementById('breath-btn');if(bb)bb.textContent='Start';
   document.getElementById('h-med-fases').textContent='Meditations for each lunar phase';
   document.getElementById('p-intro-med').textContent="Each of the four main phases of the lunar cycle has a distinct energy, and mindfulness practices gain depth when aligned with that natural rhythm. This isn't superstition: the moon affects ocean tides, nocturnal light patterns and, according to some preliminary studies, even sleep quality. Using it as a temporal anchor for personal practice is simply intelligent habit design.";
   document.getElementById('h-new-moon').textContent='New Moon — Inner planting';
@@ -482,6 +500,26 @@ function toggleLang(){
 })();
 initStars();
 initMenu();
+// ── interactive 4-4-6 breathing guide ──
+(function(){
+  var circle=document.getElementById('breath-circle'),txt=document.getElementById('breath-text'),btn=document.getElementById('breath-btn');
+  if(!circle||!btn)return;
+  var EN=location.hostname.includes('nextfullmoon');
+  var L=EN?{in:'Inhale',hold:'Hold',out:'Exhale',start:'Start',stop:'Stop',done:'Well done'}
+          :{in:'Inhala',hold:'Sostén',out:'Exhala',start:'Iniciar',stop:'Detener',done:'Bien hecho'};
+  var running=false,cycle=0,timers=[];
+  function clearT(){timers.forEach(clearTimeout);timers=[];}
+  function step(){
+    if(cycle>=5){stop(true);return;}
+    circle.className='breathing-circle inhale';txt.textContent=L.in;
+    timers.push(setTimeout(function(){circle.className='breathing-circle hold';txt.textContent=L.hold;},4000));
+    timers.push(setTimeout(function(){circle.className='breathing-circle exhale';txt.textContent=L.out;},8000));
+    timers.push(setTimeout(function(){cycle++;step();},14000));
+  }
+  function start(){running=true;cycle=0;btn.textContent=L.stop;step();}
+  function stop(done){running=false;clearT();circle.className='breathing-circle';txt.textContent=done?L.done:txt.textContent;btn.textContent=L.start;}
+  btn.addEventListener('click',function(){running?stop(false):start();});
+})();
 </script>
 <script>
 /* ── lunallena footer + share i18n (host-based: nextfullmoon.co = EN) ── */

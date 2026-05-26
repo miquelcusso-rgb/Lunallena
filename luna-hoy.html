@@ -44,6 +44,15 @@ h2{font-family:'Cinzel',serif;font-weight:400;font-size:.82rem;letter-spacing:.2
 p{font-size:1.02rem;margin-bottom:.85rem;color:rgba(220,216,240,.6);}
 .arc-container{margin:1.5rem 0 1rem;background:rgba(196,196,255,.02);border:1px solid rgba(196,196,255,.06);border-radius:4px;padding:1.2rem;overflow:hidden;}
 #arc-svg{width:100%;max-width:600px;display:block;margin:0 auto;}
+/* ── live phase disc card ── */
+.phase-now{display:flex;align-items:center;gap:1.1rem;background:rgba(196,196,255,.03);border:1px solid rgba(196,196,255,.07);border-radius:4px;padding:1.1rem 1.3rem;margin:1.2rem 0;}
+.phase-now-disc{width:64px;height:64px;flex-shrink:0;display:block;}
+.phase-now-body{flex:1;min-width:0;}
+.phase-now-label{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(196,196,255,.32);margin-bottom:.22rem;}
+.phase-now-name{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.06em;color:rgba(255,255,255,.78);margin-bottom:.4rem;}
+.phase-now-illum-track{height:2px;background:rgba(196,196,255,.08);border-radius:1px;}
+.phase-now-illum-fill{height:100%;background:linear-gradient(90deg,rgba(196,196,255,.2),rgba(232,230,212,.85));border-radius:1px;transition:width 1.2s ease;}
+.phase-now-illum-val{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,196,255,.4);margin-top:.3rem;}
 .time-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.2rem 0;}
 .time-card{background:rgba(196,196,255,.04);border:1px solid rgba(196,196,255,.07);border-radius:3px;padding:.9rem 1rem;text-align:center;}
 .time-card-label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.3);margin-bottom:.3rem;}
@@ -195,6 +204,16 @@ p,li{font-size:1.13rem;line-height:1.8;}
     </svg>
   </div>
 
+  <div class="phase-now">
+    <span class="phase-now-disc" id="phase-now-disc" aria-hidden="true"></span>
+    <div class="phase-now-body">
+      <div class="phase-now-label" id="phase-now-label">Fase de hoy</div>
+      <div class="phase-now-name" id="phase-now-name">—</div>
+      <div class="phase-now-illum-track"><div class="phase-now-illum-fill" id="phase-now-fill" style="width:0%"></div></div>
+      <div class="phase-now-illum-val"><span id="phase-now-illum-lbl">Iluminación</span> <span id="phase-now-illum">—</span></div>
+    </div>
+  </div>
+
   <div class="time-cards">
     <div class="time-card">
       <div class="time-card-label" id="lbl-rise">Salida</div>
@@ -249,6 +268,8 @@ const T = {
     subtitle:'Trayectoria, horarios y altitud actual — actualizado cada minuto',
     lbl_rise:'Salida', lbl_transit:'Tránsito', lbl_set:'Puesta',
     lbl_alt:'Altitud actual',
+    phase_label:'Fase de hoy', illum_label:'Iluminación',
+    phases:['Luna nueva','Luna creciente','Cuarto creciente','Gibosa creciente','Luna llena','Gibosa menguante','Cuarto menguante','Luna menguante'],
     loc_note_default:'Usando ubicación: Madrid, España (por defecto)',
     loc_note_custom:'Tu ubicación activa',
     loc_btn:'Usar mi ubicación',
@@ -269,6 +290,8 @@ const T = {
     subtitle:'Trajectory, times and current altitude — updated every minute',
     lbl_rise:'Moonrise', lbl_transit:'Transit', lbl_set:'Moonset',
     lbl_alt:'Current altitude',
+    phase_label:'Phase today', illum_label:'Illumination',
+    phases:['New Moon','Waxing Crescent','First Quarter','Waxing Gibbous','Full Moon','Waning Gibbous','Last Quarter','Waning Crescent'],
     loc_note_default:'Using location: Madrid, Spain (default)',
     loc_note_custom:'Your location active',
     loc_btn:'Use my location',
@@ -302,6 +325,8 @@ document.getElementById('lbl-rise').textContent=L.lbl_rise;
 document.getElementById('lbl-transit').textContent=L.lbl_transit;
 document.getElementById('lbl-set').textContent=L.lbl_set;
 document.getElementById('lbl-alt').textContent=L.lbl_alt;
+document.getElementById('phase-now-label').textContent=L.phase_label;
+document.getElementById('phase-now-illum-lbl').textContent=L.illum_label;
 document.getElementById('loc-note').textContent=L.loc_note_default;
 document.getElementById('loc-btn').textContent=L.loc_btn;
 document.getElementById('lbl-e').textContent=L.lbl_e;
@@ -327,8 +352,39 @@ function fmt(date){
   return date.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
 }
 
+// Render a real illuminated moon disc (fraction 0..1, waxing bool)
+function moonDiscSVG(fraction, waxing){
+  const r=28, cx=32, cy=32;
+  const lit='rgba(232,230,212,.94)', dark='#0a0a16';
+  let inner;
+  if(fraction<=0.02){ inner=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${dark}" stroke="rgba(196,196,255,.22)" stroke-width="1.2"/>`; }
+  else if(fraction>=0.98){ inner=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${lit}"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1"/>`; }
+  else{
+    const k=Math.abs(1-2*fraction), rx=r*k, big=fraction>0.5;
+    let path;
+    if(waxing){ path=`M ${cx} ${cy-r} A ${r} ${r} 0 0 1 ${cx} ${cy+r} A ${rx} ${r} 0 0 ${big?1:0} ${cx} ${cy-r} Z`; }
+    else{ path=`M ${cx} ${cy-r} A ${r} ${r} 0 0 0 ${cx} ${cy+r} A ${rx} ${r} 0 0 ${big?0:1} ${cx} ${cy-r} Z`; }
+    inner=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${dark}"/><path d="${path}" fill="${lit}"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(196,196,255,.18)" stroke-width="1"/>`;
+  }
+  return `<svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" style="filter:drop-shadow(0 0 8px rgba(220,220,255,.18))">${inner}</svg>`;
+}
+function phaseIndex(phase){ // SunCalc phase 0..1 -> 8 phases
+  return Math.round(phase*8)%8;
+}
+function renderPhaseNow(now){
+  const ill = SunCalc.getMoonIllumination(now);
+  const waxing = ill.phase <= 0.5;
+  const idx = phaseIndex(ill.phase);
+  const pct = Math.round(ill.fraction*100);
+  document.getElementById('phase-now-disc').innerHTML = moonDiscSVG(ill.fraction, waxing);
+  document.getElementById('phase-now-name').textContent = L.phases[idx];
+  document.getElementById('phase-now-fill').style.width = pct+'%';
+  document.getElementById('phase-now-illum').textContent = pct+'%';
+}
+
 function updateDisplay(){
   const now = new Date();
+  renderPhaseNow(now);
   const times = SunCalc.getMoonTimes(now, lat, lon);
   const pos = SunCalc.getMoonPosition(now, lat, lon);
   const altDeg = pos.altitude * 180 / Math.PI;

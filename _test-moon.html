@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>moon test</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/moon-visuals.css">
+<style>
+body{background:#06060f;color:#ccc;font-family:'Cormorant Garamond',serif;padding:2rem;}
+h2{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin:2rem 0 1rem;}
+.row{display:flex;flex-wrap:wrap;gap:1.5rem;}
+.cell{width:90px;text-align:center;}
+.cell .moon-ico{width:80px;height:80px;display:block;}
+.cap{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-top:.4rem;}
+</style></head><body>
+<h2>8 canonical phases (age 0 → .875)</h2>
+<div class="row" id="phases"></div>
+
+<h2>Phase strip component</h2>
+<div data-phase-strip></div>
+
+<h2>Fractional: 10% / 35% / 65% / 90% — waxing then waning</h2>
+<div class="row" id="fracs"></div>
+
+<h2>data-moon="today"</h2>
+<div class="cell"><span class="moon-ico" data-moon="today"></span><div class="cap">today</div></div>
+
+<script src="/moon-visuals.js"></script>
+<script>
+var L=window.LunaVisuals;
+var ages=[0,.125,.25,.375,.5,.625,.75,.875];
+var labels=['new','wax cres','first q','wax gib','full','wan gib','last q','wan cres'];
+var p=document.getElementById('phases');
+ages.forEach(function(a,i){
+  var d=document.createElement('div');d.className='cell';
+  d.innerHTML='<span class="moon-ico">'+L.moonSVGfromAge(a)+'</span><div class="cap">'+labels[i]+'</div>';
+  p.appendChild(d);
+});
+var f=document.getElementById('fracs');
+[[.1,0],[.35,0],[.65,0],[.9,0],[.1,1],[.35,1],[.65,1],[.9,1]].forEach(function(x){
+  var d=document.createElement('div');d.className='cell';
+  d.innerHTML='<span class="moon-ico">'+L.moonSVG(x[0],x[1])+'</span><div class="cap">'+(x[0]*100)+'% '+(x[1]?'wan':'wax')+'</div>';
+  f.appendChild(d);
+});
+</script>
+</body></html>

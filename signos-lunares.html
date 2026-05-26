@@ -57,17 +57,26 @@ p{font-size:1.05rem;margin-bottom:.9rem;color:rgba(220,216,240,.6);}
 .sign-meta-item{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.35);}
 .sign-meta-item span{color:rgba(196,196,255,.6);}
 .sign-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;margin:1rem 0;}
-.sign-card{background:rgba(196,196,255,.03);border:1px solid rgba(196,196,255,.07);border-radius:3px;padding:1.3rem 1.4rem;}
-.sign-card.active-sign{border-color:rgba(196,196,255,.22);background:rgba(196,196,255,.05);}
-.sign-card-name{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:.25rem;display:flex;align-items:center;justify-content:space-between;}
+.sign-card{background:rgba(196,196,255,.03);border:1px solid rgba(196,196,255,.07);border-radius:3px;padding:1.3rem 1.4rem;border-left:2px solid var(--el,rgba(196,196,255,.2));transition:border-color .25s,background .25s;}
+.sign-card:hover{background:rgba(196,196,255,.05);}
+.sign-card.active-sign{border-color:rgba(196,196,255,.22);border-left-color:var(--el,rgba(196,196,255,.5));background:rgba(196,196,255,.06);}
+.sign-card-name{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:.25rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;}
+.sign-glyph{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;flex-shrink:0;font-size:1.05rem;color:var(--el,rgba(220,220,255,.8));background:color-mix(in srgb,var(--el,#9090c0) 12%,transparent);border:1px solid color-mix(in srgb,var(--el,#9090c0) 34%,transparent);line-height:1;}
+.sign-card-name-txt{display:flex;align-items:center;gap:.55rem;}
 .sign-card-meta{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,196,255,.28);margin-bottom:.65rem;}
+.sign-card-meta .el-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--el,#9090c0);margin-right:.35rem;vertical-align:middle;}
 .sign-card-desc{font-size:.98rem;color:rgba(196,196,220,.52);line-height:1.65;}
 .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin:1rem 0;}
 .cal-header{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,196,255,.25);text-align:center;padding:.3rem 0;}
-.cal-day{background:rgba(196,196,255,.025);border:1px solid rgba(196,196,255,.05);border-radius:2px;padding:.4rem .2rem;text-align:center;min-height:48px;}
-.cal-day.today{border-color:rgba(196,196,255,.2);background:rgba(196,196,255,.06);}
-.cal-num{font-family:'Cinzel',serif;font-size:.65rem;color:rgba(196,196,255,.38);margin-bottom:.15rem;}
-.cal-sign{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(196,196,220,.45);line-height:1.2;}
+.cal-day{background:rgba(196,196,255,.025);border:1px solid rgba(196,196,255,.05);border-radius:3px;padding:.45rem .2rem;text-align:center;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.2rem;}
+.cal-day.today{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.08);}
+.cal-num{font-family:'Cinzel',serif;font-size:.62rem;color:rgba(196,196,255,.4);line-height:1;}
+.cal-day.today .cal-num{color:#c9a84c;}
+.cal-moon{width:18px;height:18px;display:block;}
+.cal-sign{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.04em;color:var(--el,rgba(196,196,220,.55));line-height:1;}
+.sign-legend{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:center;margin:1.2rem 0 .4rem;}
+.sign-legend span{display:flex;align-items:center;gap:.4rem;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,196,255,.42);}
+.sign-legend .el-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
 .ad-slot{width:100%;max-width:728px;margin:2rem auto;text-align:center;}
 footer{margin-top:4rem;width:100vw;margin-left:50%;transform:translateX(-50%);text-align:center;padding:1.2rem 1rem 2rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.19em;color:#c4c4d8;opacity:.19;text-transform:uppercase;}
 footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196,240,.13);}footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
@@ -293,6 +302,44 @@ const SIGNS = EN ? SIGNS_EN : SIGNS_ES;
 
 const ELEMENTS_ES = {Fire:'Fuego',Earth:'Tierra',Air:'Aire',Water:'Agua'};
 const QUALITIES_ES = {Cardinal:'Cardinal',Fixed:'Fijo',Mutable:'Mutable'};
+// Element colour coding (subtle, night-palette friendly)
+const EL_COLOR = {Fire:'#d98a5c',Earth:'#9fb98a',Air:'#9fb8d9',Water:'#8aa9d9'};
+
+// Render a real moon-phase disc as inline SVG (illumination 0=new,.5=quarter,1=full; waxing bool)
+function phaseSVG(illum, waxing, size){
+  const r=10, cx=12, cy=12;
+  const lit='rgba(232,230,212,.92)', dark='#0a0a14';
+  let inner;
+  if(illum<=0.02){ inner=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${dark}" stroke="rgba(196,196,255,.25)" stroke-width="1"/>`; }
+  else if(illum>=0.98){ inner=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${lit}"/>`; }
+  else {
+    // terminator ellipse: x radius = r*|cos(phaseAngle)|
+    const k=Math.abs(1-2*illum); const rx=r*k;
+    const litRight = waxing; // northern-hemisphere convention
+    // base = dark disc, draw lit region
+    let path;
+    const big = illum>0.5;
+    if(litRight){
+      // lit on right: outer right semicircle + terminator
+      path=`M ${cx} ${cy-r} A ${r} ${r} 0 0 1 ${cx} ${cy+r} A ${rx} ${r} 0 0 ${big?1:0} ${cx} ${cy-r} Z`;
+    } else {
+      path=`M ${cx} ${cy-r} A ${r} ${r} 0 0 0 ${cx} ${cy+r} A ${rx} ${r} 0 0 ${big?0:1} ${cx} ${cy-r} Z`;
+    }
+    inner=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${dark}"/><path d="${path}" fill="${lit}"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(196,196,255,.18)" stroke-width="1"/>`;
+  }
+  return `<svg class="cal-moon" viewBox="0 0 24 24" width="${size||18}" height="${size||18}" aria-hidden="true">${inner}</svg>`;
+}
+// Illumination + waxing for a given date (simple synodic model, matches home)
+function moonIllum(date){
+  const synodic=29.530588853;
+  const ref=new Date('2000-01-06T18:14:00Z'); // known new moon
+  const days=(date-ref)/86400000;
+  let age=days%synodic; if(age<0)age+=synodic;
+  const phaseAngle=age/synodic; // 0..1
+  const illum=(1-Math.cos(2*Math.PI*phaseAngle))/2;
+  const waxing=phaseAngle<0.5;
+  return {illum, waxing};
+}
 
 function signLabel(idx){
   return EN ? SIGNS_EN[idx].name : SIGNS_ES[idx].name;
@@ -322,16 +369,33 @@ document.getElementById('cs-element').innerHTML = (EN?'Element: ':'Elemento: ') 
 document.getElementById('cs-quality').innerHTML = (EN?'Modality: ':'Modalidad: ') + '<span id="cs-quality-val">' + (EN?currentSign.quality:QUALITIES_ES[currentSign.quality]||currentSign.quality) + '</span>';
 document.getElementById('cs-next').innerHTML = (EN?'Next change: ':'Próximo cambio: ') + '<span id="cs-next-val">' + (nextChange ? nextChange.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '—') + '</span>';
 
+// Current sign box: colour + glyph
+const csName=document.getElementById('cs-name');
+if(csName){csName.innerHTML=`<span class="sign-glyph" style="--el:${EL_COLOR[currentSign.element]}">${currentSign.symbol}</span> ${currentSign.name}`;}
+const csBox=document.querySelector('.current-sign-box');
+if(csBox)csBox.style.borderLeft=`2px solid ${EL_COLOR[currentSign.element]}`;
+
 // Sign grid
 const sg = document.getElementById('sign-grid');
 SIGNS.forEach((s,i)=>{
   const el=document.createElement('div');
   el.className='sign-card'+(i===currentIdx?' active-sign':'');
-  el.innerHTML=`<div class="sign-card-name">${s.symbol} ${s.name}${i===currentIdx?'<span style="font-family:\'Cinzel\',serif;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,196,255,.55);">'+(EN?'today':'hoy')+'</span>':''}</div><div class="sign-card-meta">${EN?s.element:ELEMENTS_ES[s.element]||s.element} · ${EN?s.quality:QUALITIES_ES[s.quality]||s.quality}</div><div class="sign-card-desc">${s.desc}</div>`;
+  el.style.setProperty('--el', EL_COLOR[s.element]);
+  el.innerHTML=`<div class="sign-card-name"><span class="sign-card-name-txt"><span class="sign-glyph">${s.symbol}</span>${s.name}</span>${i===currentIdx?'<span style="font-family:\'Cinzel\',serif;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,196,255,.55);">'+(EN?'today':'hoy')+'</span>':''}</div><div class="sign-card-meta"><span class="el-dot"></span>${EN?s.element:ELEMENTS_ES[s.element]||s.element} · ${EN?s.quality:QUALITIES_ES[s.quality]||s.quality}</div><div class="sign-card-desc">${s.desc}</div>`;
   sg.appendChild(el);
 });
 
-// Calendar grid
+// Element legend (above calendar)
+const elLeg=document.getElementById('cal-grid');
+if(elLeg){
+  const legend=document.createElement('div');
+  legend.className='sign-legend';
+  const elNames=EN?{Fire:'Fire',Earth:'Earth',Air:'Air',Water:'Water'}:ELEMENTS_ES;
+  legend.innerHTML=['Fire','Earth','Air','Water'].map(e=>`<span><span class="el-dot" style="background:${EL_COLOR[e]}"></span>${elNames[e]}</span>`).join('');
+  elLeg.parentNode.insertBefore(legend, elLeg);
+}
+
+// Calendar grid — with real moon-phase disc per day
 const cg = document.getElementById('cal-grid');
 const days = EN ? ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'] : ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
 days.forEach(d=>{const h=document.createElement('div');h.className='cal-header';h.textContent=d;cg.appendChild(h);});
@@ -341,9 +405,11 @@ for(let i=0;i<30;i++){
   d.setHours(12,0,0,0);
   d.setDate(d.getDate()+i);
   const si=getSignIdx(getMoonLongitude(d));
+  const ph=moonIllum(d);
   const cell=document.createElement('div');
   cell.className='cal-day'+(i===0?' today':'');
-  cell.innerHTML=`<div class="cal-num">${d.getDate()}</div><div class="cal-sign">${SIGNS[si].symbol}<br>${signLabel(si).slice(0,3)}</div>`;
+  cell.style.setProperty('--el', EL_COLOR[SIGNS[si].element]);
+  cell.innerHTML=`<div class="cal-num">${d.getDate()}</div>${phaseSVG(ph.illum,ph.waxing,18)}<div class="cal-sign">${SIGNS[si].symbol}</div>`;
   cg.appendChild(cell);
 }
 
