@@ -139,6 +139,10 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(196,196
     <span class="nav-icon">🌑</span>
     <div><div class="nav-label" id="nav-eclipses-label">Eclipses</div><div class="nav-sub" id="nav-eclipses-sub">Lunares y solares · Próximos</div></div>
   </a>
+  <a class="nav-item" href="/perseidas">
+    <span class="nav-icon">☄️</span>
+    <div><div class="nav-label" id="nav-perseidas-label">Perseidas</div><div class="nav-sub" id="nav-perseidas-sub">La lluvia de estrellas de agosto</div></div>
+  </a>
   <a class="nav-item" href="/fases-lunares">
     <span class="nav-icon">🌓</span>
     <div><div class="nav-label" id="nav-phases-label">Fases lunares</div><div class="nav-sub" id="nav-phases-sub">Las 8 fases del ciclo lunar</div></div>
@@ -384,7 +388,7 @@ function toggleLang(){
   document.querySelector('.nav-menu-title').textContent='Explore';
   const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
   set('nav-lunas-label','The 12 Full Moons');set('nav-lunas-sub','Names, meanings and magic');
-  set('nav-eclipses-label','Eclipses');set('nav-eclipses-sub','Lunar & solar · Upcoming');
+  set('nav-eclipses-label','Eclipses');set('nav-eclipses-sub','Lunar & solar · Upcoming');set('nav-perseidas-label','Perseids');set('nav-perseidas-sub','August meteor shower');
   set('nav-phases-label','Moon phases');set('nav-phases-sub','The 8 phases of the lunar cycle');
   set('nav-today-label','Moon today');set('nav-today-sub','Trajectory and times by location');
   set('nav-signs-label','Moon signs');set('nav-signs-sub','The moon in the zodiac today');
