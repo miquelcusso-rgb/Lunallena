@@ -48,8 +48,31 @@ h2{font-family:'Cinzel',serif;font-weight:400;font-size:.86rem;letter-spacing:.2
 p{font-size:1.05rem;margin-bottom:.9rem;color:rgba(220,216,240,.6);}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin:1rem 0;}
 .card{background:rgba(196,196,255,.04);border:1px solid rgba(196,196,255,.07);border-radius:3px;padding:1rem 1.1rem;}
-.card-name{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:.4rem;}
+.card-name{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:.4rem;display:flex;align-items:center;gap:.55rem;}
+.card-name .ecl-ico{width:30px;height:30px;flex-shrink:0;display:block;}
 .card-desc{font-size:.95rem;color:rgba(196,196,220,.48);line-height:1.6;}
+
+/* ── eclipse type cards with SVG diagram ── */
+.ecl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin:1rem 0;}
+.ecl-card{background:rgba(196,196,255,.04);border:1px solid rgba(196,196,255,.07);border-radius:3px;padding:1.2rem 1.1rem;display:flex;flex-direction:column;align-items:center;text-align:center;transition:border-color .25s,background .25s;}
+.ecl-card:hover{border-color:rgba(196,196,255,.16);background:rgba(196,196,255,.06);}
+.ecl-card svg{width:78px;height:78px;display:block;margin:.1rem auto .8rem;}
+.ecl-card .card-name{justify-content:center;font-size:.74rem;margin-bottom:.45rem;}
+.ecl-card .card-desc{font-size:.92rem;}
+
+/* ── upcoming eclipse timeline ── */
+.ecl-timeline{margin:1.2rem 0 1.5rem;display:flex;flex-direction:column;gap:0;position:relative;}
+.ecl-tl-item{display:flex;gap:1rem;align-items:flex-start;padding:.95rem 0;border-bottom:1px solid rgba(196,196,255,.06);position:relative;}
+.ecl-tl-item:last-child{border-bottom:none;}
+.ecl-tl-disc{flex-shrink:0;width:46px;height:46px;}
+.ecl-tl-body{flex:1;min-width:0;}
+.ecl-tl-date{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.62);margin-bottom:.18rem;}
+.ecl-tl-name{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.08em;color:rgba(255,255,255,.74);margin-bottom:.28rem;}
+.ecl-tl-desc{font-size:.96rem;color:rgba(196,196,220,.5);line-height:1.55;}
+.ecl-tl-badge{font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;padding:.16rem .5rem;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:.2rem;}
+.ecl-tl-badge.lunar{color:rgba(220,140,120,.8);border:1px solid rgba(220,140,120,.28);}
+.ecl-tl-badge.solar{color:rgba(220,180,90,.85);border:1px solid rgba(220,180,90,.3);}
+@media(max-width:480px){.ecl-tl-badge{display:none;}}
 .source{font-size:.85rem;font-style:italic;color:rgba(196,196,255,.28);margin-top:1rem;}
 .ad-slot{width:100%;max-width:728px;margin:2rem auto;text-align:center;}
 footer{margin-top:4rem;width:100vw;margin-left:50%;transform:translateX(-50%);text-align:center;padding:1.2rem 1rem 2rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.19em;color:#c4c4d8;opacity:.19;text-transform:uppercase;}
@@ -213,11 +236,27 @@ p,li{font-size:1.13rem;line-height:1.8;}
   </a>
 
   <h2 id="h-upcoming">Próximos eclipses</h2>
-  <div class="grid" id="grid-upcoming">
-    <div class="card"><div class="card-name">🌑 Eclipse lunar total</div><div class="card-desc">3 de marzo de 2026. Visible en Europa, África, Asia y partes de América. La luna tomará un tono rojizo intenso durante la totalidad.</div></div>
-    <div class="card"><div class="card-name">☀️ Eclipse solar total</div><div class="card-desc">12 de agosto de 2026. El camino de totalidad cruza Groenlandia, Islandia, España y parte del norte de África. Duración máxima: 2 min 18 seg.</div></div>
-    <div class="card"><div class="card-name">🌕 Eclipse lunar parcial</div><div class="card-desc">28 de agosto de 2026. Eclipse penumbral leve visible en gran parte del hemisferio occidental.</div></div>
-    <div class="card"><div class="card-name">☀️ Eclipse solar anular</div><div class="card-desc">17 de febrero de 2027. El "anillo de fuego" será visible desde el sur de América del Sur y partes de África occidental.</div></div>
+  <div class="ecl-timeline" id="grid-upcoming">
+    <div class="ecl-tl-item">
+      <svg class="ecl-tl-disc" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="#7a2418"/><circle cx="24" cy="24" r="20" fill="url(#bloodGrad)"/><circle cx="24" cy="24" r="20" fill="none" stroke="rgba(220,140,120,.4)" stroke-width="1"/><defs><radialGradient id="bloodGrad" cx="42%" cy="40%" r="65%"><stop offset="0%" stop-color="#c75a3e"/><stop offset="60%" stop-color="#8f2e1c"/><stop offset="100%" stop-color="#5a1a10"/></radialGradient></defs></svg>
+      <div class="ecl-tl-body"><div class="ecl-tl-date">3 mar 2026</div><div class="ecl-tl-name" id="up-1-name">Eclipse lunar total</div><div class="ecl-tl-desc" id="up-1-desc">Visible en Europa, África, Asia y partes de América. La luna tomará un tono rojizo intenso durante la totalidad.</div></div>
+      <span class="ecl-tl-badge lunar" id="up-1-badge">Lunar</span>
+    </div>
+    <div class="ecl-tl-item">
+      <svg class="ecl-tl-disc" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="rgba(255,180,70,.35)" stroke-width="1.5"/><circle cx="24" cy="24" r="14" fill="#030304"/><circle cx="24" cy="24" r="14" fill="none" stroke="rgba(255,150,30,.9)" stroke-width="2"/><circle cx="24" cy="24" r="17" fill="none" stroke="rgba(255,170,50,.25)" stroke-width="6"/></svg>
+      <div class="ecl-tl-body"><div class="ecl-tl-date">12 ago 2026</div><div class="ecl-tl-name" id="up-2-name">Eclipse solar total</div><div class="ecl-tl-desc" id="up-2-desc">El camino de totalidad cruza Groenlandia, Islandia, España y el norte de África. Duración máxima: 2 min 18 s.</div></div>
+      <span class="ecl-tl-badge solar" id="up-2-badge">Solar</span>
+    </div>
+    <div class="ecl-tl-item">
+      <svg class="ecl-tl-disc" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="url(#penGrad)"/><circle cx="24" cy="24" r="20" fill="none" stroke="rgba(196,196,255,.25)" stroke-width="1"/><defs><radialGradient id="penGrad" cx="40%" cy="38%" r="70%"><stop offset="0%" stop-color="#d8d6c4"/><stop offset="100%" stop-color="#9a988a"/></radialGradient></defs></svg>
+      <div class="ecl-tl-body"><div class="ecl-tl-date">28 ago 2026</div><div class="ecl-tl-name" id="up-3-name">Eclipse lunar parcial</div><div class="ecl-tl-desc" id="up-3-desc">Eclipse penumbral leve visible en gran parte del hemisferio occidental.</div></div>
+      <span class="ecl-tl-badge lunar" id="up-3-badge">Lunar</span>
+    </div>
+    <div class="ecl-tl-item">
+      <svg class="ecl-tl-disc" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="rgba(255,180,70,.3)" stroke-width="1.5"/><circle cx="24" cy="24" r="20" fill="none" stroke="url(#ringGrad)" stroke-width="3.5"/><circle cx="24" cy="24" r="16" fill="#030304"/><defs><radialGradient id="ringGrad"><stop offset="0%" stop-color="#ffb43c"/><stop offset="100%" stop-color="#ff7a1e"/></radialGradient></defs></svg>
+      <div class="ecl-tl-body"><div class="ecl-tl-date">17 feb 2027</div><div class="ecl-tl-name" id="up-4-name">Eclipse solar anular</div><div class="ecl-tl-desc" id="up-4-desc">El "anillo de fuego" será visible desde el sur de Sudamérica y partes de África occidental.</div></div>
+      <span class="ecl-tl-badge solar" id="up-4-badge">Solar</span>
+    </div>
   </div>
 
   <!-- next-eclipse.com banner -->
@@ -238,20 +277,41 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <hr>
   <h2 id="h-lunar">Eclipses lunares</h2>
   <p id="p-lunar-intro">Un eclipse lunar ocurre cuando la Tierra se interpone entre el sol y la luna llena, proyectando su sombra sobre la superficie lunar. Solo pueden ocurrir en luna llena, pero no en cada luna llena — la órbita lunar está inclinada 5° respecto a la eclíptica.</p>
-  <div class="grid" id="grid-lunar">
-    <div class="card"><div class="card-name">🌑 Total · Luna de Sangre</div><div class="card-desc">La luna entra completamente en la umbra terrestre. La atmósfera refracta luz roja sobre la luna — el mismo efecto que colorea los amaneceres. Duración de totalidad: hasta 1h 47min.</div></div>
-    <div class="card"><div class="card-name">🌗 Parcial</div><div class="card-desc">Solo parte de la luna entra en la umbra. La porción en sombra aparece notablemente más oscura que el resto del disco lunar iluminado.</div></div>
-    <div class="card"><div class="card-name">🌕 Penumbral</div><div class="card-desc">La luna pasa por la penumbra terrestre, la sombra exterior. El oscurecimiento es sutil y apenas perceptible a simple vista.</div></div>
+  <div class="ecl-grid" id="grid-lunar">
+    <div class="ecl-card">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="30" fill="#7a2418"/><circle cx="40" cy="40" r="30" fill="url(#blood2)"/><circle cx="40" cy="40" r="30" fill="none" stroke="rgba(220,140,120,.45)" stroke-width="1"/><defs><radialGradient id="blood2" cx="42%" cy="40%" r="65%"><stop offset="0%" stop-color="#cf6244"/><stop offset="58%" stop-color="#8f2e1c"/><stop offset="100%" stop-color="#551810"/></radialGradient></defs></svg>
+      <div class="card-name" id="el-1-name">Total · Luna de Sangre</div><div class="card-desc" id="el-1-desc">La luna entra completamente en la umbra terrestre. La atmósfera refracta luz roja sobre ella — el mismo efecto que colorea los amaneceres. Totalidad: hasta 1h 47min.</div>
+    </div>
+    <div class="ecl-card">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><defs><clipPath id="halfClip"><rect x="40" y="0" width="40" height="80"/></clipPath></defs><circle cx="40" cy="40" r="30" fill="url(#litMoon)"/><circle cx="40" cy="40" r="30" fill="#3a1e16" clip-path="url(#halfClip)"/><circle cx="40" cy="40" r="30" fill="none" stroke="rgba(196,196,255,.3)" stroke-width="1"/><radialGradient id="litMoon" cx="40%" cy="38%" r="70%"><stop offset="0%" stop-color="#e8e6d4"/><stop offset="100%" stop-color="#b0ae9e"/></radialGradient></svg>
+      <div class="card-name" id="el-2-name">Parcial</div><div class="card-desc" id="el-2-desc">Solo parte de la luna entra en la umbra. La porción en sombra aparece notablemente más oscura que el resto del disco iluminado.</div>
+    </div>
+    <div class="ecl-card">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="30" fill="url(#penMoon)"/><circle cx="40" cy="40" r="30" fill="none" stroke="rgba(196,196,255,.25)" stroke-width="1"/><radialGradient id="penMoon" cx="40%" cy="38%" r="72%"><stop offset="0%" stop-color="#d4d2c2"/><stop offset="70%" stop-color="#a6a496"/><stop offset="100%" stop-color="#88867a"/></radialGradient></svg>
+      <div class="card-name" id="el-3-name">Penumbral</div><div class="card-desc" id="el-3-desc">La luna pasa por la penumbra terrestre, la sombra exterior. El oscurecimiento es sutil y apenas perceptible a simple vista.</div>
+    </div>
   </div>
 
   <hr>
   <h2 id="h-solar">Eclipses solares</h2>
   <p id="p-solar-intro">Un eclipse solar ocurre cuando la luna nueva se interpone entre el sol y la Tierra. La coincidencia es notable: el sol tiene 400 veces el diámetro de la luna, pero está 400 veces más lejos — por eso sus discos aparentes son casi idénticos en el cielo.</p>
-  <div class="grid" id="grid-solar">
-    <div class="card"><div class="card-name">☀️ Total</div><div class="card-desc">La luna cubre completamente el disco solar. El camino de totalidad mide ~160 km de ancho. El cielo oscurece y la corona solar aparece en todo su esplendor.</div></div>
-    <div class="card"><div class="card-name">💍 Anular · Anillo de fuego</div><div class="card-desc">Cuando la luna está en el apogeo, su disco es más pequeño y deja un anillo brillante de luz solar visible.</div></div>
-    <div class="card"><div class="card-name">🌓 Parcial</div><div class="card-desc">La luna cubre solo una parte del disco solar. Visible en una zona amplia, pero considerablemente menos espectacular.</div></div>
-    <div class="card"><div class="card-name">⚡ Híbrido</div><div class="card-desc">El tipo más raro: comienza como anular, se convierte en total a lo largo del camino y termina como anular, debido a la curvatura de la Tierra.</div></div>
+  <div class="ecl-grid" id="grid-solar">
+    <div class="ecl-card">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="33" fill="none" stroke="url(#corona)" stroke-width="7" opacity=".55"/><circle cx="40" cy="40" r="26" fill="#040405"/><circle cx="40" cy="40" r="26" fill="none" stroke="rgba(255,160,40,.95)" stroke-width="2.2"/><defs><radialGradient id="corona"><stop offset="0%" stop-color="#fff4d8"/><stop offset="100%" stop-color="rgba(255,180,60,0)"/></radialGradient></defs></svg>
+      <div class="card-name" id="es-1-name">Total</div><div class="card-desc" id="es-1-desc">La luna cubre por completo el disco solar. El camino de totalidad mide ~160 km de ancho. El cielo oscurece y la corona solar aparece en todo su esplendor.</div>
+    </div>
+    <div class="ecl-card">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="31" fill="none" stroke="url(#fire)" stroke-width="5"/><circle cx="40" cy="40" r="24" fill="#040405"/><defs><radialGradient id="fire"><stop offset="0%" stop-color="#ffc857"/><stop offset="100%" stop-color="#ff7a1e"/></radialGradient></defs></svg>
+      <div class="card-name" id="es-2-name">Anular · Anillo de fuego</div><div class="card-desc" id="es-2-desc">Cuando la luna está en el apogeo, su disco aparente es más pequeño y deja un anillo brillante de luz solar visible a su alrededor.</div>
+    </div>
+    <div class="ecl-card">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><defs><clipPath id="solClip"><rect x="0" y="0" width="52" height="80"/></clipPath><radialGradient id="sun3"><stop offset="0%" stop-color="#ffe9a8"/><stop offset="100%" stop-color="#ffab2e"/></radialGradient></defs><circle cx="40" cy="40" r="28" fill="url(#sun3)"/><circle cx="52" cy="40" r="28" fill="#040405" clip-path="url(#solClip)"/><circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,180,70,.5)" stroke-width="1"/></svg>
+      <div class="card-name" id="es-3-name">Parcial</div><div class="card-desc" id="es-3-desc">La luna cubre solo una parte del disco solar. Visible en una zona amplia, pero considerablemente menos espectacular.</div>
+    </div>
+    <div class="ecl-card">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="32" fill="none" stroke="url(#hyb)" stroke-width="5.5" opacity=".5"/><circle cx="40" cy="40" r="25" fill="#040405"/><circle cx="40" cy="40" r="25" fill="none" stroke="rgba(255,165,45,.85)" stroke-width="1.6" stroke-dasharray="5 4"/><defs><radialGradient id="hyb"><stop offset="0%" stop-color="#fff0cf"/><stop offset="100%" stop-color="rgba(255,150,40,0)"/></radialGradient></defs></svg>
+      <div class="card-name" id="es-4-name">Híbrido</div><div class="card-desc" id="es-4-desc">El tipo más raro: empieza como anular, se vuelve total a lo largo del camino y termina como anular, por la curvatura de la Tierra.</div>
+    </div>
   </div>
 
   <hr>
@@ -298,20 +358,21 @@ if(EN){
   document.getElementById('p-lunar-intro').textContent="A lunar eclipse occurs when Earth moves between the Sun and the full moon, casting its shadow on the lunar surface. They can only happen at full moon, but not every full moon — the lunar orbit is tilted 5° relative to the ecliptic.";
   document.getElementById('p-solar-intro').textContent="A solar eclipse occurs when the new moon moves between the Sun and Earth. The coincidence is remarkable: the Sun is 400 times larger than the Moon, but also 400 times farther away — so their apparent discs are nearly identical in the sky.";
   document.getElementById('source').innerHTML='Source: NASA Goddard Space Flight Center · <a href="https://eclipse.gsfc.nasa.gov" target="_blank" rel="noopener">eclipse.gsfc.nasa.gov</a>';
-  document.getElementById('grid-upcoming').innerHTML=`
-    <div class="card"><div class="card-name">🌑 Total lunar eclipse</div><div class="card-desc">March 3, 2026. Visible across Europe, Africa, Asia and parts of the Americas. The moon will turn a deep red during totality.</div></div>
-    <div class="card"><div class="card-name">☀️ Total solar eclipse</div><div class="card-desc">August 12, 2026. The path of totality crosses Greenland, Iceland, Spain and northern Africa. Maximum duration: 2 min 18 sec.</div></div>
-    <div class="card"><div class="card-name">🌕 Partial lunar eclipse</div><div class="card-desc">August 28, 2026. Slight penumbral eclipse visible across much of the western hemisphere.</div></div>
-    <div class="card"><div class="card-name">☀️ Annular solar eclipse</div><div class="card-desc">February 17, 2027. The "ring of fire" will be visible from southern South America and parts of western Africa.</div></div>`;
-  document.getElementById('grid-lunar').innerHTML=`
-    <div class="card"><div class="card-name">🌑 Total · Blood Moon</div><div class="card-desc">The moon passes fully into Earth's umbra. The atmosphere refracts red light onto the Moon — the same effect that colours sunrises. Duration of totality: up to 1h 47min.</div></div>
-    <div class="card"><div class="card-name">🌗 Partial</div><div class="card-desc">Only part of the moon enters the umbra. The shadowed portion appears noticeably darker than the rest of the illuminated lunar disc.</div></div>
-    <div class="card"><div class="card-name">🌕 Penumbral</div><div class="card-desc">The moon passes through Earth's penumbra, the outer shadow. The dimming is subtle and barely noticeable to the naked eye.</div></div>`;
-  document.getElementById('grid-solar').innerHTML=`
-    <div class="card"><div class="card-name">☀️ Total</div><div class="card-desc">The moon completely covers the solar disc. The path of totality is ~160 km wide. The sky darkens and the solar corona appears in full glory.</div></div>
-    <div class="card"><div class="card-name">💍 Annular · Ring of fire</div><div class="card-desc">When the moon is at apogee, its disc is smaller and leaves a bright ring of sunlight visible around it.</div></div>
-    <div class="card"><div class="card-name">🌓 Partial</div><div class="card-desc">The moon covers only part of the solar disc. Visible over a wide area, but considerably less spectacular.</div></div>
-    <div class="card"><div class="card-name">⚡ Hybrid</div><div class="card-desc">The rarest type: starts as annular, becomes total along the path, and ends as annular again — due to Earth's curvature.</div></div>`;
+  // Upcoming eclipses (visual timeline — translate text only, keep SVG discs)
+  var elT={
+    'up-1-name':'Total lunar eclipse','up-1-desc':'Visible across Europe, Africa, Asia and parts of the Americas. The moon will turn a deep red during totality.','up-1-badge':'Lunar',
+    'up-2-name':'Total solar eclipse','up-2-desc':'The path of totality crosses Greenland, Iceland, Spain and northern Africa. Maximum duration: 2 min 18 s.','up-2-badge':'Solar',
+    'up-3-name':'Partial lunar eclipse','up-3-desc':'Slight penumbral eclipse visible across much of the western hemisphere.','up-3-badge':'Lunar',
+    'up-4-name':'Annular solar eclipse','up-4-desc':'The "ring of fire" will be visible from southern South America and parts of western Africa.','up-4-badge':'Solar',
+    'el-1-name':'Total · Blood Moon','el-1-desc':"The moon passes fully into Earth's umbra. The atmosphere refracts red light onto it — the same effect that colours sunrises. Totality: up to 1h 47min.",
+    'el-2-name':'Partial','el-2-desc':'Only part of the moon enters the umbra. The shadowed portion appears noticeably darker than the rest of the illuminated disc.',
+    'el-3-name':'Penumbral','el-3-desc':"The moon passes through Earth's penumbra, the outer shadow. The dimming is subtle and barely noticeable to the naked eye.",
+    'es-1-name':'Total','es-1-desc':'The moon completely covers the solar disc. The path of totality is ~160 km wide. The sky darkens and the solar corona appears in full glory.',
+    'es-2-name':'Annular · Ring of fire','es-2-desc':'When the moon is at apogee, its apparent disc is smaller and leaves a bright ring of sunlight visible around it.',
+    'es-3-name':'Partial','es-3-desc':'The moon covers only part of the solar disc. Visible over a wide area, but considerably less spectacular.',
+    'es-4-name':'Hybrid','es-4-desc':"The rarest type: it starts annular, becomes total along the path, and ends annular again — due to Earth's curvature."
+  };
+  Object.keys(elT).forEach(function(k){var e=document.getElementById(k);if(e)e.textContent=elT[k];});
   document.getElementById('ne-banner-title').textContent='Solar Eclipse Spain · 12 August 2026';
   document.getElementById('ne-banner-sub').textContent='Full guide, cities, countdown and visibility map at next-eclipse.com →';
   document.getElementById('ne-banner').setAttribute('aria-label','Next Eclipse — Full guide to the Solar Eclipse Spain 2026');

@@ -37,6 +37,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/moon-visuals.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959" crossorigin="anonymous"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}html{background:#010101;overflow-x:clip;}body{overflow-x:clip;}
@@ -104,6 +105,43 @@ p,li{font-size:1.13rem;line-height:1.8;}
 .eclipse-name{opacity:.85;}
 .moon-fact{font-size:1.08rem;opacity:.78;}
 .tip-text,.hint-text,.info-text{font-size:1.1rem;opacity:.80;}
+
+/* ── visual moon components (shared) ── */
+.moon-ico{display:inline-block;line-height:0;}
+.moon-ico svg,svg.phase-svg{display:block;width:100%;height:100%;}
+.phase-svg{filter:drop-shadow(0 0 7px rgba(220,220,255,.13));}
+.luna-cal-wrap{border:1px solid rgba(196,196,255,.08);border-radius:7px;padding:1.5rem 1.3rem;background:rgba(196,196,255,.025);margin:1rem 0 1.6rem;}
+.luna-cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;gap:.6rem;}
+.luna-cal-title{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);}
+.luna-cal-nav{display:flex;gap:.4rem;}
+.luna-cal-nav button{width:36px;height:36px;border:1px solid rgba(196,196,255,.18);background:none;color:rgba(196,196,255,.6);border-radius:5px;cursor:pointer;font-size:1.05rem;line-height:1;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.luna-cal-nav button:hover{border-color:rgba(196,196,255,.42);color:#fff;background:rgba(196,196,255,.06);}
+.luna-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.3rem;}
+.luna-cal-dow{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(196,196,255,.3);text-align:center;padding:.1rem 0 .35rem;}
+.luna-cal-day{aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;border-radius:7px;padding:.2rem 0;}
+.luna-cal-day.empty{visibility:hidden;}
+.luna-cal-day .d-num{font-family:'Cinzel',serif;font-size:.62rem;color:rgba(220,216,240,.48);line-height:1;}
+.luna-cal-day .moon-ico{width:clamp(20px,5.4vw,32px);height:clamp(20px,5.4vw,32px);}
+.luna-cal-day.today{background:rgba(201,168,76,.12);outline:1px solid rgba(201,168,76,.42);}
+.luna-cal-day.today .d-num{color:#c9a84c;font-weight:600;}
+.luna-cal-day.principal .d-num{color:rgba(255,255,255,.82);}
+.luna-cal-legend{display:flex;flex-wrap:wrap;gap:.7rem 1.3rem;justify-content:center;margin-top:1.1rem;}
+.luna-cal-legend span{display:flex;align-items:center;gap:.4rem;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(196,196,255,.4);}
+.luna-cal-legend .moon-ico{width:19px;height:19px;}
+@media(max-width:480px){.luna-cal-wrap{padding:1rem .55rem;}.luna-cal-grid{gap:.15rem;}.luna-cal-day .d-num{font-size:.55rem;}}
+
+/* ── key-fact cards (nature/why sections) ── */
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem;margin:1.2rem 0 1.6rem;}
+.fact-card{background:rgba(196,196,255,.025);border:1px solid rgba(196,196,255,.07);border-radius:4px;padding:1.1rem 1.2rem;transition:border-color .25s,background .25s;}
+.fact-card:hover{border-color:rgba(196,196,255,.15);background:rgba(196,196,255,.045);}
+.fact-icon{width:30px;height:30px;display:block;margin-bottom:.6rem;color:rgba(196,196,255,.6);}
+.fact-title{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:.35rem;}
+.fact-text{font-family:'Cormorant Garamond',serif;font-size:.98rem;line-height:1.55;color:rgba(196,196,220,.55);}
+.fact-text strong{color:rgba(232,230,245,.82);font-style:normal;}
+/* sun-earth-moon geometry diagram */
+.geo-diagram{background:rgba(196,196,255,.02);border:1px solid rgba(196,196,255,.06);border-radius:4px;padding:1.3rem 1rem;margin:1.2rem 0 1.6rem;}
+.geo-diagram svg{width:100%;max-width:560px;display:block;margin:0 auto;}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important;}}
 </style>
 <script type="application/ld+json">
 {
@@ -194,10 +232,12 @@ p,li{font-size:1.13rem;line-height:1.8;}
 
   <h2 id="h-phases">Las 8 fases del ciclo</h2>
 
+  <div data-phase-strip aria-hidden="true"></div>
+
   <!-- LUNA NUEVA -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#030304" stroke="rgba(196,196,255,.2)" stroke-width="1"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0" data-maria="0" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-new">Luna Nueva</div>
         <div class="phase-entry-sub" id="ps-new">Conjunción solar · El reinicio</div>
@@ -217,7 +257,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <!-- LUNA CRECIENTE -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#030304" stroke="rgba(196,196,255,.2)" stroke-width="1"/><path d="M24 2a22 22 0 0 1 0 44A14 14 0 0 0 24 2z" fill="rgba(220,220,255,.22)"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0.11" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-waxc">Luna Creciente</div>
         <div class="phase-entry-sub" id="ps-waxc">Creciente iluminada · El primer impulso</div>
@@ -236,7 +276,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <!-- CUARTO CRECIENTE -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#030304" stroke="rgba(196,196,255,.2)" stroke-width="1"/><path d="M24 2v44a22 22 0 0 0 0-44z" fill="rgba(220,220,255,.22)"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0.25" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-fq">Cuarto Creciente</div>
         <div class="phase-entry-sub" id="ps-fq">Primera cuadratura · El punto de decisión</div>
@@ -255,7 +295,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <!-- GIBOSA CRECIENTE -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#030304" stroke="rgba(196,196,255,.2)" stroke-width="1"/><path d="M24 2A22 22 0 0 1 24 46 28 28 0 0 0 24 2z" fill="rgba(220,220,255,.22)"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0.39" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-waxg">Gibosa Creciente</div>
         <div class="phase-entry-sub" id="ps-waxg">Más que la mitad · La anticipación</div>
@@ -274,7 +314,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <!-- LUNA LLENA -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="rgba(230,230,200,.18)" stroke="rgba(196,196,255,.25)" stroke-width="1"/><circle cx="24" cy="24" r="22" fill="none" stroke="rgba(220,220,255,.12)" stroke-width="3"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0.5" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-full">Luna Llena</div>
         <div class="phase-entry-sub" id="ps-full">Oposición solar · El clímax del ciclo</div>
@@ -297,7 +337,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <!-- GIBOSA MENGUANTE -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#030304" stroke="rgba(196,196,255,.2)" stroke-width="1"/><path d="M24 2A22 22 0 0 0 24 46 28 28 0 0 1 24 2z" fill="rgba(220,220,255,.22)"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0.61" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-wang">Gibosa Menguante</div>
         <div class="phase-entry-sub" id="ps-wang">La integración · El retorno gradual</div>
@@ -316,7 +356,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <!-- CUARTO MENGUANTE -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#030304" stroke="rgba(196,196,255,.2)" stroke-width="1"/><path d="M24 2v44a22 22 0 0 1 0-44z" fill="rgba(220,220,255,.22)"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0.75" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-lq">Cuarto Menguante</div>
         <div class="phase-entry-sub" id="ps-lq">Segunda cuadratura · El punto de soltar</div>
@@ -335,7 +375,7 @@ p,li{font-size:1.13rem;line-height:1.8;}
   <!-- MENGUANTE -->
   <div class="phase-entry">
     <div class="phase-entry-header">
-      <svg class="phase-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#030304" stroke="rgba(196,196,255,.2)" stroke-width="1"/><path d="M24 2a22 22 0 0 0 0 44A14 14 0 0 1 24 2z" fill="rgba(220,220,255,.22)"/></svg>
+      <span class="phase-svg moon-ico" data-moon="age:0.89" aria-hidden="true"></span>
       <div>
         <div class="phase-entry-name" id="pn-wanc">Luna Menguante</div>
         <div class="phase-entry-sub" id="ps-wanc">El regreso a la oscuridad · La preparación</div>
@@ -357,6 +397,57 @@ p,li{font-size:1.13rem;line-height:1.8;}
 
   <hr>
   <h2 id="h-why">¿Por qué cambia de forma la luna?</h2>
+
+  <div class="geo-diagram">
+    <svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="geo-title">
+      <title id="geo-title">Geometría Sol-Tierra-Luna que produce las fases</title>
+      <!-- sunlight direction -->
+      <defs>
+        <linearGradient id="sunRay" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="rgba(255,210,120,.5)"/>
+          <stop offset="100%" stop-color="rgba(255,210,120,0)"/>
+        </linearGradient>
+        <radialGradient id="earthG" cx="40%" cy="38%" r="65%"><stop offset="0%" stop-color="#3a5a8a"/><stop offset="100%" stop-color="#16263f"/></radialGradient>
+      </defs>
+      <!-- Sun -->
+      <circle cx="34" cy="90" r="22" fill="url(#sunRay)"/>
+      <circle cx="34" cy="90" r="13" fill="rgba(255,200,90,.92)"/>
+      <text x="34" y="128" text-anchor="middle" fill="rgba(255,200,90,.6)" font-family="Cinzel,serif" font-size="8" letter-spacing="1" id="geo-sun">SOL</text>
+      <!-- rays -->
+      <line x1="52" y1="78" x2="230" y2="60" stroke="rgba(255,210,120,.18)" stroke-width="1"/>
+      <line x1="52" y1="90" x2="230" y2="90" stroke="rgba(255,210,120,.18)" stroke-width="1"/>
+      <line x1="52" y1="102" x2="230" y2="120" stroke="rgba(255,210,120,.18)" stroke-width="1"/>
+      <!-- Earth -->
+      <circle cx="258" cy="90" r="20" fill="url(#earthG)"/>
+      <path d="M258 70 A20 20 0 0 1 258 110 Z" fill="rgba(8,12,24,.55)"/>
+      <text x="258" y="128" text-anchor="middle" fill="rgba(150,180,230,.6)" font-family="Cinzel,serif" font-size="8" letter-spacing="1" id="geo-earth">TIERRA</text>
+      <!-- Moon orbit -->
+      <ellipse cx="258" cy="90" rx="78" ry="62" fill="none" stroke="rgba(196,196,255,.12)" stroke-dasharray="3 4"/>
+      <!-- Moon positions: new (between sun-earth, left), full (right), quarters top/bottom -->
+      <g>
+        <circle cx="180" cy="90" r="9" fill="#0a0a16" stroke="rgba(196,196,255,.3)" stroke-width="1"/>
+        <text x="180" y="74" text-anchor="middle" fill="rgba(196,196,255,.45)" font-family="Cinzel,serif" font-size="6.5" id="geo-new">NUEVA</text>
+      </g>
+      <g>
+        <circle cx="336" cy="90" r="9" fill="rgba(232,230,212,.9)"/>
+        <text x="336" y="74" text-anchor="middle" fill="rgba(196,196,255,.45)" font-family="Cinzel,serif" font-size="6.5" id="geo-full">LLENA</text>
+      </g>
+      <g>
+        <circle cx="258" cy="28" r="9" fill="#0a0a16"/>
+        <path d="M258 19 A9 9 0 0 1 258 37 Z" fill="rgba(232,230,212,.9)"/>
+        <circle cx="258" cy="28" r="9" fill="none" stroke="rgba(196,196,255,.25)" stroke-width=".8"/>
+      </g>
+      <g>
+        <circle cx="258" cy="152" r="9" fill="#0a0a16"/>
+        <path d="M258 143 A9 9 0 0 0 258 161 Z" fill="rgba(232,230,212,.9)"/>
+        <circle cx="258" cy="152" r="9" fill="none" stroke="rgba(196,196,255,.25)" stroke-width=".8"/>
+      </g>
+      <!-- caption right -->
+      <text x="430" y="86" fill="rgba(196,196,220,.5)" font-family="Cormorant Garamond,serif" font-size="12" font-style="italic" id="geo-caption">La mitad iluminada</text>
+      <text x="430" y="102" fill="rgba(196,196,220,.5)" font-family="Cormorant Garamond,serif" font-size="12" font-style="italic" id="geo-caption2">apunta siempre al Sol</text>
+    </svg>
+  </div>
+
   <p id="p-why-1">La luna no cambia de forma, ni encoge, ni crece, ni tiene partes que se "apagan". El disco lunar es siempre el mismo cuerpo esférico de 3.474 km de diámetro. Lo que cambia es el ángulo desde el que la vemos respecto a la fuente de luz: el Sol. La geometría de tres cuerpos en movimiento —Sol, Tierra, Luna— crea la ilusión de un disco que se transforma noche a noche.</p>
   <p id="p-why-2">La luna orbita la Tierra a una distancia media de 384.400 km (con variaciones de ±27.000 km debido a la elipse) completando una vuelta en 27,3 días respecto a las estrellas fijas (mes sidéreo). Sin embargo, durante esos 27,3 días la Tierra también se ha desplazado en su órbita alrededor del Sol, lo que significa que para que la luna "vuelva a la misma posición" respecto al Sol y la Tierra hacen falta 29,5 días (mes sinódico). Esta diferencia de 2,2 días explica por qué el ciclo de fases no coincide con el ciclo de regreso a las estrellas.</p>
   <p id="p-why-3">La mitad de la Luna está siempre iluminada por el Sol —exactamente como la Tierra—. Lo que vemos desde nuestro planeta es la intersección entre esa mitad iluminada y la mitad de la luna que está orientada hacia nosotros. Cuando la Luna está "detrás" de la Tierra (luna llena), vemos la cara iluminada completa. Cuando está "delante" de la Tierra entre nosotros y el Sol (luna nueva), vemos solo la cara oscura. En posiciones intermedias, vemos proporciones intermedias.</p>
@@ -365,6 +456,30 @@ p,li{font-size:1.13rem;line-height:1.8;}
 
   <hr>
   <h2 id="h-nature">Las fases lunares y la naturaleza</h2>
+
+  <div class="fact-grid">
+    <div class="fact-card">
+      <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M2 16c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 11c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
+      <div class="fact-title" id="fc-1-t">Mareas</div>
+      <div class="fact-text" id="fc-1-d"><strong>Efecto probado.</strong> En luna llena y nueva las mareas vivas pueden ser un 40% mayores. En Fundy alcanzan 16 m.</div>
+    </div>
+    <div class="fact-card">
+      <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V8"/><path d="M12 8c0-4 3-6 6-6 0 4-3 6-6 6z"/><path d="M12 12c0-3-3-5-6-5 0 3 3 5 6 5z"/></svg>
+      <div class="fact-title" id="fc-2-t">Plantas</div>
+      <div class="fact-text" id="fc-2-d"><strong>En debate.</strong> Estudios del FiBL hallan correlaciones modestas entre fase lunar y germinación. No siempre replicables.</div>
+    </div>
+    <div class="fact-card">
+      <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12c4-5 14-5 18 0-4 5-14 5-18 0z"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
+      <div class="fact-title" id="fc-3-t">Vida marina</div>
+      <div class="fact-text" id="fc-3-d"><strong>Efecto claro.</strong> Los corales del Gran Arrecife desovan sincronizados la noche tras la luna llena de primavera.</div>
+    </div>
+    <div class="fact-card">
+      <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14a8 8 0 1 1-9.9-9.9 6.5 6.5 0 0 0 9.9 9.9z"/></svg>
+      <div class="fact-title" id="fc-4-t">Sueño humano</div>
+      <div class="fact-text" id="fc-4-d"><strong>Investigación activa.</strong> Un estudio de 2013 (Current Biology) midió -30% de sueño profundo cerca de la luna llena.</div>
+    </div>
+  </div>
+
   <p id="p-nat-1">El impacto de las fases lunares sobre la vida en la Tierra va mucho más allá del romanticismo poético. Existe evidencia científica robusta para varios de estos efectos, aunque otros siguen siendo objeto de investigación activa o permanecen en el territorio de la tradición sin respaldo empírico sólido.</p>
   <p id="p-nat-2">Las mareas son el efecto más documentado y espectacular. La gravedad de la luna "estira" el océano creando dos protuberancias de agua: una del lado de la Luna y otra en el lado opuesto. La rotación de la Tierra hace que estas protuberancias "viajen" alrededor del globo, produciendo las dos mareas altas y dos mareas bajas diarias en la mayoría de las costas. En luna llena y luna nueva, cuando el Sol y la Luna se alinean, estas fuerzas se suman, creando las mareas vivas. En los cuartos, cuando Sol y Luna forman un ángulo recto, las fuerzas se interfieren parcialmente, creando las mareas muertas. La diferencia entre ambos tipos puede ser dramática: en la Bahía de Fundy (Canadá), las mareas vivas alcanzan 16 metros, las mareas muertas apenas 8.</p>
   <p id="p-nat-3">El crecimiento vegetal y la agricultura lunar son objeto de debate científico activo. Los estudios más rigurosos, como los del Dr. L. Kolisko en los años 1930-1970, y trabajos más recientes del FIBL (Instituto de Investigación en Agricultura Orgánica), han encontrado correlaciones estadísticas entre la fase lunar y la germinación, el crecimiento del follaje y el rendimiento de ciertos cultivos. La hipótesis principal es que las variaciones en la iluminación nocturna afectan los relojes circadianos de las plantas, especialmente aquellas que regulan la fotosíntesis y la transpiración. Sin embargo, los efectos son modestos y no siempre replicables, lo que mantiene el debate abierto.</p>
@@ -486,6 +601,17 @@ if(EN){
   document.getElementById('p-nat-2').textContent="Tides are the most documented and spectacular effect. The Moon's gravity 'stretches' the ocean creating two water bulges: one on the Moon's side and one on the opposite side. Earth's rotation makes these bulges 'travel' around the globe, producing the two high and two low tides daily on most coasts. At full moon and new moon, when the Sun and Moon align, these forces add together, creating spring tides. At the quarters, when Sun and Moon form a right angle, forces partially interfere, creating neap tides. The difference between the two can be dramatic: in the Bay of Fundy (Canada), spring tides reach 16 metres, neap tides barely 8.";
   document.getElementById('p-nat-3').textContent="Plant growth and lunar agriculture are the subject of active scientific debate. The most rigorous studies, such as those by Dr L. Kolisko in the 1930s-1970s, and more recent work from the FiBL (Research Institute of Organic Agriculture), have found statistical correlations between lunar phase and germination, foliage growth and yield of certain crops. The main hypothesis is that variations in nocturnal illumination affect plants' circadian clocks, especially those regulating photosynthesis and transpiration. However, the effects are modest and not always replicable, keeping the debate open.";
   document.getElementById('p-nat-4').textContent="Marine animals have behaviours linked to the lunar cycle that are much clearer. Corals on the Great Barrier Reef release their gametes synchronously on the night after the spring full moon: a synchronisation that guarantees massive cross-fertilisation of millions of organisms. Horseshoe crabs (Limulus polyphemus) on the US east coast emerge en masse to reproduce during the full and new moons of May and June. Several fish species change their feeding activity based on lunar phase — something experienced fishermen have long known, though science was slow to formally document it.";
+  // Geometry diagram labels
+  var geoEN={'geo-sun':'SUN','geo-earth':'EARTH','geo-new':'NEW','geo-full':'FULL','geo-caption':'The lit half always','geo-caption2':'faces the Sun'};
+  Object.keys(geoEN).forEach(function(k){var e=document.getElementById(k);if(e)e.textContent=geoEN[k];});
+  // Nature key-fact cards
+  var fcEN={
+    'fc-1-t':'Tides','fc-1-d':'<strong>Proven effect.</strong> At full and new moon, spring tides can be 40% higher. In the Bay of Fundy they reach 16 m.',
+    'fc-2-t':'Plants','fc-2-d':'<strong>Debated.</strong> FiBL studies find modest correlations between lunar phase and germination. Not always replicable.',
+    'fc-3-t':'Marine life','fc-3-d':'<strong>Clear effect.</strong> Great Barrier Reef corals spawn in sync on the night after the spring full moon.',
+    'fc-4-t':'Human sleep','fc-4-d':'<strong>Active research.</strong> A 2013 study (Current Biology) measured -30% deep sleep around the full moon.'
+  };
+  Object.keys(fcEN).forEach(function(k){var e=document.getElementById(k);if(e)e.innerHTML=fcEN[k];});
   document.getElementById('p-nat-5').textContent="Human sleep and the moon is one of the most recently studied topics. The most cited study, published in Current Biology in 2013 by Cajochen et al., monitored the sleep of 33 participants in a completely controlled laboratory (no sunlight, no phase information) over several weeks and found that around the full moon: deep sleep time (delta waves) decreased by 30%, total sleep time decreased by 20 minutes, melatonin levels were lower and participants took longer to fall asleep. The researchers propose an endogenous circalunar clock mechanism that could be an evolutionary vestige from when nocturnal moonlight was relevant for survival. Subsequent studies have obtained mixed results, but the question remains scientifically active and relevant.";
 }
 </script>
@@ -600,5 +726,6 @@ if('serviceWorker' in navigator) {
   if(EN){var sl=document.getElementById('share-label');if(sl)sl.textContent='Share';}
 })();
 </script>
+<script src="/moon-visuals.js"></script>
 </body>
 </html>
