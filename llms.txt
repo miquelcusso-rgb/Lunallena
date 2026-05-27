@@ -1,0 +1,20 @@
+# Lunallena
+
+> Lunallena es una web de contenido lunar en español: muestra cuándo es la próxima luna llena, la fase de la luna de hoy en tiempo real, el calendario de lunas llenas del año y curiosidades lunares verificadas con fuentes. Versión en inglés en https://www.nextfullmoon.co/. Publicada por Furiosa Studio.
+
+## Páginas clave
+
+- [Inicio — próxima luna llena](https://www.lunallena.co/): cuenta atrás en tiempo real a la próxima luna llena y fase actual de la luna.
+- [Luna de hoy](https://www.lunallena.co/luna-hoy): visualización de la fase lunar de hoy con iluminación y datos del día.
+- [Fases lunares](https://www.lunallena.co/fases-lunares): las 8 fases del ciclo lunar explicadas, por qué cambia de forma la luna y su relación con la naturaleza.
+- [Lunas llenas del año](https://www.lunallena.co/lunas-llenas): calendario completo de lunas llenas, nombres tradicionales y lunas especiales (azul, de sangre, superluna).
+- [Luna de fresa](https://www.lunallena.co/luna-fresa): qué es la luna de fresa, cuándo ocurre y de dónde viene su nombre.
+- [Perseidas](https://www.lunallena.co/perseidas): cuándo ver la lluvia de meteoros de las Perseidas y cómo afecta la luz lunar.
+- [Signos lunares](https://www.lunallena.co/signos-lunares): la luna en astrología y el calendario lunar de los próximos 30 días.
+- [Eclipses](https://www.lunallena.co/eclipses): próximos eclipses lunares y solares.
+- [Mindfulness lunar](https://www.lunallena.co/mindfulness): rituales y prácticas de atención plena ligados al ciclo lunar.
+
+## Notas
+
+- Datos de fase lunar calculados astronómicamente; curiosidades citan fuentes científicas verificables.
+- Idiomas: español (lunallena.co) e inglés (nextfullmoon.co). El contenido es equivalente por dominio.
