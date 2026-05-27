@@ -11,6 +11,15 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.lunallena.co/editorial</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/editorial"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/editorial"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/editorial"/>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.lunallena.co/lunas-llenas</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/lunas-llenas"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/lunas-llenas"/>
