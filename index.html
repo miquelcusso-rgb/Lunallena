@@ -184,26 +184,28 @@ main{position:relative;z-index:2;display:flex;flex-direction:column;align-items:
   width:clamp(192px,40vw,480px);height:clamp(192px,40vw,480px);
   display:block;
   border-radius:50%;
-  /* Radial mask: fades the outer ~10% of the circle to transparent so the
-     moon edge dissolves naturally into any background without a visible ring */
-  -webkit-mask-image:radial-gradient(circle closest-side at 50% 50%,black 97%,rgba(0,0,0,.55) 99%,transparent 100%);
-  mask-image:radial-gradient(circle closest-side at 50% 50%,black 97%,rgba(0,0,0,.55) 99%,transparent 100%);
+  /* Circular clip via border-radius is enough — no opacity mask, because a
+     soft mask makes the moon's bright limb semi-transparent and blends with
+     the dark page bg, creating a visible dark halo ring. */
   transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .4s ease;
   animation:moonFloat 9s ease-in-out infinite;
 }
-body.moon-focused .moon-stage{z-index:20;}
-/* Mobile/webapp: focused moon floats to screen centre, 30% larger */
-@media(max-width:899px){
-  body.moon-focused .moon-stage{
-    position:fixed;top:50%;left:50%;margin:0;
-    transform:translate(-50%,-50%);z-index:270;
-    animation:moonFocusIn .45s ease both;
-  }
-  body.moon-focused #central-moon-canvas{
-    animation:none;transform:scale(1.56);
-  }
-  @keyframes moonFocusIn{from{opacity:0;}to{opacity:1;}}
+/* Focused moon: floats to viewport centre, ~56% larger. All widths. */
+body.moon-focused .moon-stage{
+  position:fixed;top:50%;left:50%;margin:0;
+  transform:translate(-50%,-50%);z-index:270;
+  animation:moonFocusIn .35s ease-out both;
 }
+body.moon-focused #central-moon-canvas{
+  animation:none;transform:scale(1.56);
+}
+@keyframes moonFocusIn{from{opacity:0;}to{opacity:1;}}
+@media(prefers-reduced-motion:reduce){
+  body.moon-focused .moon-stage{animation:none;}
+}
+/* Keyboard focus-visible ring on the moon (a11y) */
+.moon-stage:focus{outline:none;}
+.moon-stage:focus-visible{outline:2px solid rgba(196,196,255,.6);outline-offset:8px;border-radius:50%;}
 .nasa-credit{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,196,255,.18);margin-top:.4rem;margin-bottom:.6rem;}
 .nasa-credit a{color:inherit;text-decoration:none;transition:color .2s;}
 .nasa-credit a:hover{color:rgba(196,196,255,.45);}
@@ -609,7 +611,7 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
   </div>
 
   <!-- CENTRAL MOON — NASA Dial-a-Moon (SVS) -->
-  <div class="moon-stage" id="moon-stage">
+  <div class="moon-stage" id="moon-stage" role="button" tabindex="0" aria-label="Ampliar la luna" aria-pressed="false">
     <canvas id="central-moon-canvas"></canvas>
   </div>
   <p class="nasa-credit"><a href="https://svs.gsfc.nasa.gov/gallery/moonphase/" target="_blank" rel="noopener">Visualización lunar: NASA/GSFC SVS</a></p>
@@ -1301,9 +1303,12 @@ function dialMoonUrl(){
 }
 
 function drawNasaPhoto(ctx,cx,cy,r,img){
-  // Scale image ~11% larger than canvas so the NASA frame's dark background
-  // border is pushed fully outside the mask fade zone — removes the dark ring.
-  const s=1.11,d=r*2*s,o=(d-r*2)/2;
+  // NASA SVS frames are 730×730 with the moon disk filling ~85-88% of the
+  // frame; the rest is dark JPEG background. We upscale the image so that
+  // dark border is pushed fully OUTSIDE the canvas — combined with the
+  // canvas's border-radius:50% circular clip, the visible disk fills the
+  // entire circle with no dark ring/halo and no alpha-mask blend artifact.
+  const s=1.22,d=r*2*s,o=(d-r*2)/2;
   ctx.drawImage(img,-o,-o,d,d);
 }
 
@@ -1994,12 +1999,13 @@ function tick(){
   if(dEl&&L)dEl.innerHTML=`${L.nextPrefix} <strong>${L.days[nf.getDay()]} ${nf.getDate()} ${currentLang==='es'?'de ':' '}${L.months[nf.getMonth()]}</strong>`;
 }
 
-// ── MOON FOCUS (hover desktop / tap mobile) ──
+// ── MOON FOCUS (click on any width: floats moon, dims/blurs rest) ──
 function initMoonFocus(){
   const stage=document.getElementById('moon-stage');
   const overlay=document.getElementById('page-overlay');
-  const isMob=()=>window.innerWidth<900||'ontouchstart' in window;
   let focused=false;
+  // Localise aria-label by host (lunallena.co=ES, nextfullmoon.co=EN).
+  if(location.hostname.indexOf('nextfullmoon')>-1) stage.setAttribute('aria-label','Enlarge the moon');
   // Marker so we can restore the moon to its original spot inside <main>.
   const home=document.createComment('moon-home');
   stage.parentNode.insertBefore(home,stage);
@@ -2015,10 +2021,13 @@ function initMoonFocus(){
       home.parentNode.insertBefore(stage,home.nextSibling);
     }
     document.body.classList.toggle('moon-focused',on);
+    stage.setAttribute('aria-pressed', on?'true':'false');
   }
-  // Desktop: no focus effect. Mobile/tablet/webapp: tap to float the moon.
-  stage.addEventListener('click',e=>{
-    if(isMob()){e.stopPropagation();setFocus(!focused);}
+  // Click anywhere on any viewport: toggle focus.
+  stage.addEventListener('click',e=>{e.stopPropagation();setFocus(!focused);});
+  // Keyboard: Enter/Space activates the focus toggle (a11y).
+  stage.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();setFocus(!focused);}
   });
   overlay.addEventListener('click',()=>setFocus(false));
   document.addEventListener('keydown',e=>{if(e.key==='Escape')setFocus(false);});
