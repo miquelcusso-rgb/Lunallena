@@ -29,6 +29,24 @@
     <priority>0.95</priority>
   </url>
   <url>
+    <loc>https://www.nextfullmoon.co/moon-phase-today</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/moon-phase-today"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/fase-lunar-hoy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/moon-phase-today"/>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/fase-lunar-hoy</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/fase-lunar-hoy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/moon-phase-today"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/moon-phase-today"/>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://www.lunallena.co/editorial</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/editorial"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/editorial"/>

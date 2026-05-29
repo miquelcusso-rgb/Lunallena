@@ -41,6 +41,14 @@
       "destination": "/next-full-moon.html"
     },
     {
+      "source": "/moon-phase-today",
+      "destination": "/moon-phase-today.html"
+    },
+    {
+      "source": "/fase-lunar-hoy",
+      "destination": "/moon-phase-today.html"
+    },
+    {
       "source": "/mindfulness",
       "destination": "/mindfulness.html"
     },
