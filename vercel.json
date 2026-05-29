@@ -2,22 +2,12 @@
   "rewrites": [
     {
       "source": "/",
-      "has": [{ "type": "host", "value": "www.nextfullmoon.co" }],
+      "has": [{ "type": "host", "value": "^(www\\.)?nextfullmoon\\.co$" }],
       "destination": "/index.en.html"
     },
     {
       "source": "/",
-      "has": [{ "type": "host", "value": "nextfullmoon.co" }],
-      "destination": "/index.en.html"
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "www.lunallena.co" }],
-      "destination": "/index.es.html"
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "lunallena.co" }],
+      "has": [{ "type": "host", "value": "^(www\\.)?lunallena\\.co$" }],
       "destination": "/index.es.html"
     },
     {
