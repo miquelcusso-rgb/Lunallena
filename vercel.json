@@ -11,6 +11,16 @@
       "destination": "/index.en.html"
     },
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.lunallena.co" }],
+      "destination": "/index.es.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "lunallena.co" }],
+      "destination": "/index.es.html"
+    },
+    {
       "source": "/editorial",
       "destination": "/editorial.html"
     },
