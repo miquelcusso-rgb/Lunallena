@@ -6,9 +6,27 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.lunallena.co/"/>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/next-full-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/next-full-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/proxima-luna-llena"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/next-full-moon"/>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/proxima-luna-llena</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/proxima-luna-llena"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/next-full-moon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/next-full-moon"/>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://www.lunallena.co/editorial</loc>

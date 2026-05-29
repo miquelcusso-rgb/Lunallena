@@ -33,6 +33,14 @@
       "destination": "/eclipses.html"
     },
     {
+      "source": "/next-full-moon",
+      "destination": "/next-full-moon.html"
+    },
+    {
+      "source": "/proxima-luna-llena",
+      "destination": "/next-full-moon.html"
+    },
+    {
       "source": "/mindfulness",
       "destination": "/mindfulness.html"
     },
