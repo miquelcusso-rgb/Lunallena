@@ -74,7 +74,7 @@
     },
     {
       "source": "/luna-de-fresa",
-      "destination": "/strawberry-moon.html"
+      "destination": "/luna-de-fresa.html"
     },
     {
       "source": "/harvest-moon",
@@ -119,9 +119,9 @@
   ],
   "redirects": [
     {
-      "source": "/luna-de-fresa",
-      "destination": "/luna-fresa",
-      "permanent": true
+      "source": "/luna-fresa",
+      "destination": "/luna-de-fresa",
+      "statusCode": 308
     }
   ],
   "headers": [
