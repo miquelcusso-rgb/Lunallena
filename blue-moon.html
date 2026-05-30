@@ -138,7 +138,6 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
 
 <div class="ad-slot">
 <ins class="adsbygoogle" style="display:block;text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6498215334315959" data-ad-slot="6262711344"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <h2 data-en="Monthly vs seasonal blue moon" data-es="Luna azul mensual vs estacional">Monthly vs seasonal blue moon</h2>
@@ -190,6 +189,7 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
 
 <div class="footer">
   <span data-en="© 2026 Furiosa Studio · Precise astronomical calculations" data-es="© 2026 Furiosa Studio · Cálculos astronómicos precisos">© 2026 Furiosa Studio · Precise astronomical calculations</span>
+  <span> · </span><a id="footer-privacy-link" href="/privacy" data-en="Privacy" data-es="Privacidad" style="color:rgba(220,185,90,.5);text-decoration:none;">Privacy</a>
   <p style="margin-top:1.2rem;opacity:.55;font-size:.78rem"><span data-es="Parte de la " data-en="Part of the ">Part of the </span><a href="https://furiosadata.com" rel="dofollow" style="color:inherit;border-bottom:1px solid currentColor"><span data-es="Red de Herramientas Furiosa Data" data-en="Furiosa Data Tools Network">Furiosa Data Tools Network</span></a><span data-es=" — datos abiertos y 8 herramientas gratuitas de Furiosa Studio." data-en=" — open data and 8 free tools by Furiosa Studio."> — open data and 8 free tools by Furiosa Studio.</span></p>
 </div>
 
@@ -206,12 +206,41 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
     document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
     const can=document.getElementById('pg-canonical');
     if(can) can.href = lang==='es' ? 'https://www.lunallena.co/luna-azul' : 'https://www.nextfullmoon.co/blue-moon';
+    const pl=document.getElementById('footer-privacy-link');
+    if(pl) pl.href = lang==='es' ? '/privacidad' : '/privacy';
     try{ localStorage.setItem('nfm-lang', lang); }catch(e){}
   }
   document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
   const saved=(function(){ try{return localStorage.getItem('nfm-lang');}catch(e){return null;} })();
   const isEs=location.hostname.indexOf('lunallena')>-1;
   applyLang(saved || (isEs?'es':'en'));
+})();
+</script>
+
+<div id="ck" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(3,3,6,.97);border-top:1px solid rgba(220,185,90,.1);padding:.75rem 1.5rem;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:space-between;font-family:'Cinzel',serif;">
+  <span id="ck-t" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.95rem;color:rgba(216,196,150,.55);flex:1;min-width:200px;line-height:1.5;"></span>
+  <div style="display:flex;gap:.5rem;flex-shrink:0;">
+    <button onclick="llConsent(1)" id="ck-y" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:rgba(220,185,90,.07);border:1px solid rgba(220,185,90,.22);color:rgba(220,185,90,.8);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+    <button onclick="llConsent(0)" id="ck-n" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:none;border:1px solid rgba(220,185,90,.1);color:rgba(220,185,90,.35);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+  </div>
+</div>
+<script>
+(function(){
+  const K='ll-consent';
+  const isES=location.hostname.indexOf('lunallena')>-1;
+  const T={en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(220,185,90,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(220,185,90,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}};
+  function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});}
+  function hide(){document.getElementById('ck').style.display='none';}
+  window.llConsent=function(v){localStorage.setItem(K,String(v));hide();if(Number(v))push1();};
+  const savedLang=(function(){try{return localStorage.getItem('nfm-lang');}catch(e){return null;}})();
+  const lang=savedLang||(isES?'es':'en');
+  const tt=T[lang]||T.en;
+  document.getElementById('ck-t').innerHTML=tt.t;
+  document.getElementById('ck-y').textContent=tt.y;
+  document.getElementById('ck-n').textContent=tt.n;
+  const v=localStorage.getItem(K);
+  if(v==='1')push1();
+  else if(!v)document.getElementById('ck').style.display='flex';
 })();
 </script>
 

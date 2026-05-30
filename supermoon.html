@@ -39,7 +39,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is a supermoon?","acceptedAnswer":{"@type":"Answer","text":"A supermoon is a full moon (or new moon) that occurs when the Moon is near perigee — its closest point to Earth in its slightly elliptical orbit. Because it's closer, it appears up to 14% larger in diameter and about 30% brighter than the smallest full moon of the year (a 'micromoon'). The commonly used threshold is a full moon within 90% of the closest perigee."}},
-{"@type":"Question","name":"When is the next supermoon?","acceptedAnswer":{"@type":"Answer","text":"The next supermoons are the autumn 2026 trio: September 26, October 26 and November 24, 2026. The November 24 supermoon is the closest and largest of the three. After that, the 2027 supermoons fall in the autumn again."}},
+{"@type":"Question","name":"When is the next supermoon?","acceptedAnswer":{"@type":"Answer","text":"The next supermoons are the autumn 2026 trio: September 26 (Harvest Moon), October 26 (Hunter's Moon) and November 24 (Beaver Moon), 2026. The November 24 Beaver Moon supermoon is the closest and largest of the three. After that, the 2027 supermoons fall in the autumn again."}},
 {"@type":"Question","name":"How much bigger does a supermoon actually look?","acceptedAnswer":{"@type":"Answer","text":"Up to 14% larger in diameter and 30% brighter than the year's smallest full moon — but only when comparing the two extremes side by side. In practice, the difference between a supermoon and an average full moon is hard to notice with the naked eye because you never see them next to each other. The brightness increase is more perceptible than the size."}},
 {"@type":"Question","name":"How often do supermoons happen?","acceptedAnswer":{"@type":"Answer","text":"Typically 3 to 4 supermoons occur each year, and they usually cluster in consecutive months because perigee and full moon drift in and out of sync gradually. 2026 has its trio in September, October and November."}},
 {"@type":"Question","name":"Is a supermoon the same as a blood moon or a blue moon?","acceptedAnswer":{"@type":"Answer","text":"No — they're independent. A supermoon is about distance (near perigee). A blood moon is a total lunar eclipse (Earth's shadow turns it red). A blue moon is the second full moon in a calendar month. They can occasionally coincide, producing headlines like 'super blue blood moon', but each describes a different thing."}},
@@ -124,15 +124,14 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
 <table class="moon-table">
   <thead><tr><th data-en="Date (UTC)" data-es="Fecha (UTC)">Date (UTC)</th><th data-en="Name" data-es="Nombre">Name</th><th data-en="Note" data-es="Nota">Note</th></tr></thead>
   <tbody>
-    <tr class="next"><td class="date">Sep 26, 2026</td><td data-en="Hunter / Harvest" data-es="Cazador / Cosecha">Hunter / Harvest</td><td data-en="First of three consecutive supermoons" data-es="Primera de tres superlunas consecutivas">First of three consecutive supermoons</td></tr>
-    <tr><td class="date">Oct 26, 2026</td><td data-en="Beaver Moon" data-es="Luna del Castor">Beaver Moon</td><td data-en="Second of the trio" data-es="Segunda del trío">Second of the trio</td></tr>
-    <tr><td class="date">Nov 24, 2026</td><td data-en="Cold Moon" data-es="Luna Fría">Cold Moon</td><td data-en="Closest &amp; largest supermoon of 2026" data-es="La superluna más cercana y grande de 2026">Closest &amp; largest supermoon of 2026</td></tr>
+    <tr class="next"><td class="date">Sep 26, 2026</td><td data-en="Harvest Moon" data-es="Luna de Cosecha">Harvest Moon</td><td data-en="First of three consecutive supermoons" data-es="Primera de tres superlunas consecutivas">First of three consecutive supermoons</td></tr>
+    <tr><td class="date">Oct 26, 2026</td><td data-en="Hunter's Moon" data-es="Luna del Cazador">Hunter's Moon</td><td data-en="Second of the trio" data-es="Segunda del trío">Second of the trio</td></tr>
+    <tr><td class="date">Nov 24, 2026</td><td data-en="Beaver Moon" data-es="Luna del Castor">Beaver Moon</td><td data-en="Closest &amp; largest supermoon of 2026" data-es="La superluna más cercana y grande de 2026">Closest &amp; largest supermoon of 2026</td></tr>
   </tbody>
 </table>
 
 <div class="ad-slot">
 <ins class="adsbygoogle" style="display:block;text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6498215334315959" data-ad-slot="6262711344"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <h2 data-en="The science: perigee vs apogee" data-es="La ciencia: perigeo vs apogeo">The science: perigee vs apogee</h2>
@@ -165,6 +164,7 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
 
 <div class="footer">
   <span data-en="© 2026 Furiosa Studio · Precise astronomical calculations" data-es="© 2026 Furiosa Studio · Cálculos astronómicos precisos">© 2026 Furiosa Studio · Precise astronomical calculations</span>
+  <span> · </span><a id="footer-privacy-link" href="/privacy" data-en="Privacy" data-es="Privacidad" style="color:rgba(196,196,255,.5);text-decoration:none;">Privacy</a>
   <p style="margin-top:1.2rem;opacity:.55;font-size:.78rem"><span data-es="Parte de la " data-en="Part of the ">Part of the </span><a href="https://furiosadata.com" rel="dofollow" style="color:inherit;border-bottom:1px solid currentColor"><span data-es="Red de Herramientas Furiosa Data" data-en="Furiosa Data Tools Network">Furiosa Data Tools Network</span></a><span data-es=" — datos abiertos y 8 herramientas gratuitas de Furiosa Studio." data-en=" — open data and 8 free tools by Furiosa Studio."> — open data and 8 free tools by Furiosa Studio.</span></p>
 </div>
 </div>
@@ -177,11 +177,40 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
     document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
     const can=document.getElementById('pg-canonical');
     if(can)can.href=lang==='es'?'https://www.lunallena.co/superluna':'https://www.nextfullmoon.co/supermoon';
+    const pl=document.getElementById('footer-privacy-link');
+    if(pl)pl.href=lang==='es'?'/privacidad':'/privacy';
     try{localStorage.setItem('nfm-lang',lang);}catch(e){}
   }
   document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
   const saved=(function(){try{return localStorage.getItem('nfm-lang');}catch(e){return null;}})();
   applyLang(saved||(location.hostname.indexOf('lunallena')>-1?'es':'en'));
+})();
+</script>
+
+<div id="ck" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(3,3,6,.97);border-top:1px solid rgba(196,196,255,.1);padding:.75rem 1.5rem;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:space-between;font-family:'Cinzel',serif;">
+  <span id="ck-t" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.95rem;color:rgba(196,192,230,.55);flex:1;min-width:200px;line-height:1.5;"></span>
+  <div style="display:flex;gap:.5rem;flex-shrink:0;">
+    <button onclick="llConsent(1)" id="ck-y" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:rgba(196,196,255,.07);border:1px solid rgba(196,196,255,.22);color:rgba(196,196,255,.75);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+    <button onclick="llConsent(0)" id="ck-n" style="font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;background:none;border:1px solid rgba(196,196,255,.1);color:rgba(196,196,255,.35);border-radius:2px;cursor:pointer;font-family:inherit;"></button>
+  </div>
+</div>
+<script>
+(function(){
+  const K='ll-consent';
+  const isES=location.hostname.indexOf('lunallena')>-1;
+  const T={en:{t:'We use Google AdSense for contextual advertising. <a href="/privacy" style="color:rgba(196,196,255,.5);text-decoration:underline;">Privacy policy</a>.',y:'Accept',n:'Decline'},es:{t:'Usamos Google AdSense para publicidad contextual. <a href="/privacidad" style="color:rgba(196,196,255,.5);text-decoration:underline;">Política de privacidad</a>.',y:'Aceptar',n:'Rechazar'}};
+  function push1(){(adsbygoogle=window.adsbygoogle||[]).push({});}
+  function hide(){document.getElementById('ck').style.display='none';}
+  window.llConsent=function(v){localStorage.setItem(K,String(v));hide();if(Number(v))push1();};
+  const savedLang=(function(){try{return localStorage.getItem('nfm-lang');}catch(e){return null;}})();
+  const lang=savedLang||(isES?'es':'en');
+  const tt=T[lang]||T.en;
+  document.getElementById('ck-t').innerHTML=tt.t;
+  document.getElementById('ck-y').textContent=tt.y;
+  document.getElementById('ck-n').textContent=tt.n;
+  const v=localStorage.getItem(K);
+  if(v==='1')push1();
+  else if(!v)document.getElementById('ck').style.display='flex';
 })();
 </script>
 </body>
