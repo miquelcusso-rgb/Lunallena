@@ -754,6 +754,24 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
   </svg>
 </a>
 
+<!-- About section — static text for indexability -->
+<section id="about-site" style="position:relative;z-index:2;max-width:820px;margin:3rem auto 0;padding:2.5rem 1.5rem;border-top:1px solid rgba(196,196,255,.07);">
+  <h2 id="about-h2" style="font-family:'Cinzel',serif;font-weight:400;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:1.2rem;">Sobre Lunallena</h2>
+  <p id="about-p1" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.08rem;color:rgba(196,196,220,.52);line-height:1.8;margin-bottom:.9rem;">
+    Lunallena es una herramienta astronómica gratuita que te dice en tiempo real cuándo es la próxima luna llena, la fase lunar actual y los horarios exactos de salida y puesta de la luna según tu ubicación. Sin suscripción, sin publicidad invasiva, sin cookies innecesarias.
+  </p>
+  <p id="about-p2" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.08rem;color:rgba(196,196,220,.52);line-height:1.8;margin-bottom:1.5rem;">
+    Cada luna llena tiene un nombre tradicional que proviene de las culturas nativas de Norteamérica y Europa: la <a href="/luna-de-fresa" style="color:rgba(196,196,220,.7);text-decoration:underline;">Luna de Fresa</a> en junio, la <a href="/luna-de-cosecha" style="color:rgba(196,196,220,.7);text-decoration:underline;">Luna de Cosecha</a> en septiembre, la <a href="/luna-azul" style="color:rgba(196,196,220,.7);text-decoration:underline;">Luna Azul</a> cuando hay dos lunas llenas en un mes. Las fechas exactas cambian cada año según el ciclo sinódico lunar de 29,53 días. También puedes consultar los próximos <a href="/eclipses" style="color:rgba(196,196,220,.7);text-decoration:underline;">eclipses lunares y solares</a>, las <a href="/fases-lunares" style="color:rgba(196,196,220,.7);text-decoration:underline;">ocho fases de la luna</a> y las <a href="/perseidas" style="color:rgba(196,196,220,.7);text-decoration:underline;">Perseidas</a>, la lluvia de estrellas de agosto.
+  </p>
+  <nav id="about-nav" style="display:flex;flex-wrap:wrap;gap:.5rem;" aria-label="Secciones del sitio">
+    <a href="/lunas-llenas" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Las 12 lunas llenas</a>
+    <a href="/luna-hoy" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Luna hoy</a>
+    <a href="/fases-lunares" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Fases lunares</a>
+    <a href="/eclipses" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Eclipses</a>
+    <a href="/superluna" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Superluna</a>
+  </nav>
+</section>
+
 <footer>
   <p>© 2026 Furiosa Studio · <span id="footer-calc">Cálculos astronómicos precisos</span> · <a href="/privacidad" id="footer-privacy-link"><span id="footer-privacy">Privacidad</span></a> · <a href="/companion.html" id="footer-companion-link"><span id="footer-companion">Instalar como app</span></a></p>
 <p style="margin-top:1.2rem;opacity:.55;font-size:.78rem"><span data-es="Parte de la " data-en="Part of the ">Parte de la </span><a href="https://furiosadata.com" rel="dofollow" style="color:inherit;border-bottom:1px solid currentColor"><span data-es="Red de Herramientas Furiosa Data" data-en="Furiosa Data Tools Network">Red de Herramientas Furiosa Data</span></a><span data-es=" — datos abiertos y 8 herramientas gratuitas de Furiosa Studio." data-en=" — open data and 8 free tools by Furiosa Studio."> — datos abiertos y 8 herramientas gratuitas de Furiosa Studio.</span></p>
@@ -1864,6 +1882,15 @@ document.getElementById('nav-eclipses-sub')&&(document.getElementById('nav-eclip
   const fc=document.getElementById('footer-calc'),fp=document.getElementById('footer-privacy');
   if(fc)fc.textContent=L.footerCalc;if(fp)fp.textContent=L.footerPrivacy;
   const fcomp=document.getElementById('footer-companion');if(fcomp)fcomp.textContent=L.footerCompanion||'Install as app';
+
+  // About section
+  const aH=document.getElementById('about-h2'),aP1=document.getElementById('about-p1'),aP2=document.getElementById('about-p2'),aN=document.getElementById('about-nav');
+  if(currentLang==='en'){
+    if(aH)aH.textContent='About Next Full Moon';
+    if(aP1)aP1.textContent='Next Full Moon is a free astronomical tool that tells you in real time when the next full moon is, the current moon phase, and exact moonrise and moonset times for your location. No subscription, no intrusive ads, no unnecessary cookies.';
+    if(aP2)aP2.innerHTML='Every full moon has a traditional name rooted in Native American and European cultures: the <a href="/strawberry-moon" style="color:rgba(196,196,220,.7);text-decoration:underline;">Strawberry Moon</a> in June, the <a href="/harvest-moon" style="color:rgba(196,196,220,.7);text-decoration:underline;">Harvest Moon</a> in September, the <a href="/blue-moon" style="color:rgba(196,196,220,.7);text-decoration:underline;">Blue Moon</a> when two full moons fall in one month. Exact dates shift each year following the 29.53-day lunar synodic cycle. You can also check upcoming <a href="/eclipses" style="color:rgba(196,196,220,.7);text-decoration:underline;">solar and lunar eclipses</a>, the <a href="/fases-lunares" style="color:rgba(196,196,220,.7);text-decoration:underline;">eight moon phases</a>, and the <a href="/perseidas" style="color:rgba(196,196,220,.7);text-decoration:underline;">Perseids</a>, August\'s meteor shower.';
+    if(aN)aN.innerHTML='<a href="/next-full-moon" style="font-family:\'Cinzel\',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Full moon calendar</a><a href="/moon-phase-today" style="font-family:\'Cinzel\',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Moon phase today</a><a href="/fases-lunares" style="font-family:\'Cinzel\',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Moon phases</a><a href="/eclipses" style="font-family:\'Cinzel\',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Eclipses</a><a href="/supermoon" style="font-family:\'Cinzel\',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,196,255,.45);text-decoration:none;border:1px solid rgba(196,196,255,.1);padding:.3rem .65rem;border-radius:2px;">Supermoon</a>';
+  }
 
   // Sister box
   const sey=document.getElementById('eclipse-sister-eyebrow'),sen=document.getElementById('eclipse-sister-name');
