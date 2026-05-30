@@ -69,6 +69,30 @@
       "destination": "/blue-moon.html"
     },
     {
+      "source": "/strawberry-moon",
+      "destination": "/strawberry-moon.html"
+    },
+    {
+      "source": "/luna-de-fresa",
+      "destination": "/strawberry-moon.html"
+    },
+    {
+      "source": "/harvest-moon",
+      "destination": "/harvest-moon.html"
+    },
+    {
+      "source": "/luna-de-cosecha",
+      "destination": "/harvest-moon.html"
+    },
+    {
+      "source": "/supermoon",
+      "destination": "/supermoon.html"
+    },
+    {
+      "source": "/superluna",
+      "destination": "/supermoon.html"
+    },
+    {
       "source": "/luna-azul",
       "destination": "/blue-moon.html"
     },

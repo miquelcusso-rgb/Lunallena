@@ -160,4 +160,58 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/strawberry-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/strawberry-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-de-fresa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/strawberry-moon"/>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/luna-de-fresa</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-de-fresa"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/strawberry-moon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/strawberry-moon"/>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/harvest-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/harvest-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-de-cosecha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/harvest-moon"/>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/luna-de-cosecha</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-de-cosecha"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/harvest-moon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/harvest-moon"/>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/supermoon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/supermoon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/superluna"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/supermoon"/>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.lunallena.co/superluna</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/superluna"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/supermoon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/supermoon"/>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>
