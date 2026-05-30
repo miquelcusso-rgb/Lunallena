@@ -65,6 +65,14 @@
       "destination": "/moon-phase-today.html"
     },
     {
+      "source": "/blue-moon",
+      "destination": "/blue-moon.html"
+    },
+    {
+      "source": "/luna-azul",
+      "destination": "/blue-moon.html"
+    },
+    {
       "source": "/fase-lunar-hoy",
       "destination": "/moon-phase-today.html"
     },
