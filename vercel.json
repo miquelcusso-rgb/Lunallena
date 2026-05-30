@@ -93,6 +93,14 @@
       "destination": "/supermoon.html"
     },
     {
+      "source": "/buck-moon",
+      "destination": "/buck-moon.html"
+    },
+    {
+      "source": "/luna-del-ciervo",
+      "destination": "/buck-moon.html"
+    },
+    {
       "source": "/luna-azul",
       "destination": "/blue-moon.html"
     },
