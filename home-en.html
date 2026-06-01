@@ -377,11 +377,11 @@ body.phase-waning-crescent{--bg-gradient:
 
 /* breathing */
 .breathing-circle{
-  width:clamp(135px,40vw,216px);height:clamp(135px,40vw,216px);border-radius:50%;
+  width:clamp(108px,30vw,168px);height:clamp(108px,30vw,168px);border-radius:50%;
   background:radial-gradient(circle,rgba(196,196,255,.12),rgba(196,196,255,.02));
   border:1px solid rgba(196,196,255,.15);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;
-  margin:1.5rem auto;
+  margin:clamp(2.8rem,9vw,4.2rem) auto;
   font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.2em;color:rgba(196,196,255,.6);text-transform:uppercase;
   cursor:pointer;transition:transform .1s;text-align:center;
 }
@@ -389,9 +389,9 @@ body.phase-waning-crescent{--bg-gradient:
 .breathing-circle.inhale{animation:breatheIn 4s ease-in-out forwards;}
 .breathing-circle.hold{animation:breatheHold 4s linear forwards;}
 .breathing-circle.exhale{animation:breatheOut 6s ease-in-out forwards;}
-@keyframes breatheIn{to{transform:scale(1.45);background:radial-gradient(circle,rgba(196,196,255,.22),rgba(196,196,255,.04));}}
-@keyframes breatheHold{from{transform:scale(1.45);}to{transform:scale(1.45);}}
-@keyframes breatheOut{from{transform:scale(1.45);}to{transform:scale(1);}}
+@keyframes breatheIn{to{transform:scale(1.35);background:radial-gradient(circle,rgba(196,196,255,.22),rgba(196,196,255,.04));}}
+@keyframes breatheHold{from{transform:scale(1.35);}to{transform:scale(1.35);}}
+@keyframes breatheOut{from{transform:scale(1.35);}to{transform:scale(1);}}
 .breath-instruction{font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(196,196,255,.45);text-align:center;min-height:1.4em;}
 .breath-btn{background:rgba(196,196,255,.07);border:1px solid rgba(196,196,255,.15);color:#fff;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;padding:.55rem 1.4rem;border-radius:2px;cursor:pointer;transition:background .2s;margin-top:.8rem;}
 .breath-btn:hover{background:rgba(196,196,255,.15);}
