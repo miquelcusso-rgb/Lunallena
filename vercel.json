@@ -82,7 +82,7 @@
     },
     {
       "source": "/luna-de-cosecha",
-      "destination": "/harvest-moon.html"
+      "destination": "/luna-de-cosecha.html"
     },
     {
       "source": "/supermoon",
@@ -98,7 +98,7 @@
     },
     {
       "source": "/luna-del-ciervo",
-      "destination": "/buck-moon.html"
+      "destination": "/luna-del-ciervo.html"
     },
     { "source": "/wolf-moon", "destination": "/wolf-moon.html" },
     { "source": "/luna-del-lobo", "destination": "/luna-del-lobo.html" },
