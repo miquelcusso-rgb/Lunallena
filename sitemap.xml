@@ -223,4 +223,85 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/wolf-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/wolf-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-del-lobo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/wolf-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/snow-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/snow-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-de-nieve"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/snow-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/worm-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/worm-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-del-gusano"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/worm-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/pink-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/pink-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-rosa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/pink-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/flower-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/flower-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-de-flores"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/flower-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/sturgeon-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/sturgeon-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-del-esturion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/sturgeon-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/hunters-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/hunters-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-del-cazador"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/hunters-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/beaver-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/beaver-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-del-castor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/beaver-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nextfullmoon.co/cold-moon</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nextfullmoon.co/cold-moon"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lunallena.co/luna-fria"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nextfullmoon.co/cold-moon"/>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
