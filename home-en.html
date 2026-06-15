@@ -849,7 +849,6 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
       <p id="donacion-body-p">Dominio · Mejoras de diseño · Versión en inglés.</p>
     </div>
     <div style="margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
-      <button class="donate-main-btn" id="btn-kofi" style="flex:1">☕ Ko-fi</button>
       <button class="donate-main-btn" id="btn-stripe" style="flex:1">💳 Stripe</button>
     </div>
     <div class="panel-divider"></div>
@@ -1012,7 +1011,6 @@ footer,footer p{font-size:.62rem !important;line-height:1.7 !important;}
 
 <script>
 // ── DONATION URLs — fill in your actual links ──
-const KOFI_URL   = 'https://ko-fi.com/miquelcusso';
 const STRIPE_URL = 'https://buy.stripe.com/4gM3cx75U5zx5Sna769R600';
 
 // ── LUNAR ENGINE ──
@@ -2075,9 +2073,7 @@ function initDonation(){
       btn.classList.add('active');
     });
   });
-  const kofiBtn=document.getElementById('btn-kofi');
   const stripeBtn=document.getElementById('btn-stripe');
-  if(kofiBtn)kofiBtn.addEventListener('click',()=>window.open(KOFI_URL,'_blank','noopener'));
   if(stripeBtn)stripeBtn.addEventListener('click',()=>{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'support_click',value:2,currency:'EUR'});window.open(STRIPE_URL,'_blank','noopener');});
 }
 
