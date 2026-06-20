@@ -36,7 +36,7 @@
 
 <!-- Article Schema -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"When Is the Next Full Moon? Complete Calendar 2026–2027","description":"Calendar of every full moon from 2026 to 2027, with the traditional name of each moon, exact UTC times, and special events including supermoons, the March 2026 blood moon, and blue moons.","datePublished":"2026-05-29","dateModified":"2026-05-29","author":{"@type":"Organization","name":"Furiosa Studio","url":"https://furiosadata.com"},"publisher":{"@type":"Organization","name":"Furiosa Studio","url":"https://furiosadata.com"},"mainEntityOfPage":"https://www.nextfullmoon.co/next-full-moon","image":"https://www.nextfullmoon.co/og-moon.jpg"}
+{"@context":"https://schema.org","@type":"Article","headline":"When Is the Next Full Moon? Complete Calendar 2026–2027","description":"Calendar of every full moon from 2026 to 2027, with the traditional name of each moon, exact UTC times, and special events including supermoons, the March 2026 blood moon, and blue moons.","datePublished":"2026-05-29","dateModified":"2026-06-21","author":{"@type":"Organization","name":"Furiosa Studio","url":"https://furiosadata.com"},"publisher":{"@type":"Organization","name":"Furiosa Studio","url":"https://furiosadata.com"},"mainEntityOfPage":"https://www.nextfullmoon.co/next-full-moon","image":"https://www.nextfullmoon.co/og-moon.jpg"}
 </script>
 
 <!-- ItemList Schema: 2026 full moons -->
@@ -61,8 +61,8 @@
 <!-- FAQPage Schema -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"When is the next full moon?","acceptedAnswer":{"@type":"Answer","text":"The next full moon is on March 3, 2026, at 11:38 UTC. It is the Worm Moon, and it coincides with a total lunar eclipse, turning it into a blood moon visible from the Americas, eastern Asia, Australia and the Pacific."}},
-{"@type":"Question","name":"What is the next full moon called?","acceptedAnswer":{"@type":"Answer","text":"The next full moon is the Worm Moon (March 2026), named in the Old Farmer's Almanac tradition for the earthworms that reappear as the soil thaws in the Northern Hemisphere spring."}},
+{"@type":"Question","name":"When is the next full moon?","acceptedAnswer":{"@type":"Answer","text":"The next full moon is on June 29, 2026, at 23:57 UTC. It is the Strawberry Moon, June's full moon and the lowest full moon of the year, so it often glows amber low on the horizon. The full moon after it is the Buck Moon on July 29, 2026."}},
+{"@type":"Question","name":"What is the next full moon called?","acceptedAnswer":{"@type":"Answer","text":"The next full moon is the Strawberry Moon (June 2026), named in the Old Farmer's Almanac tradition for the wild strawberry harvest that peaks in June across the Northern Hemisphere. It is also called the Honey Moon or Rose Moon."}},
 {"@type":"Question","name":"Why is a full moon sometimes red (blood moon)?","acceptedAnswer":{"@type":"Answer","text":"A red full moon — a 'blood moon' — happens during a total lunar eclipse. When the Moon enters Earth's deep shadow, the only sunlight reaching its surface has been refracted through our atmosphere, filtered to red wavelengths — the same physics that makes sunsets red, projected onto the Moon."}},
 {"@type":"Question","name":"What is a supermoon?","acceptedAnswer":{"@type":"Answer","text":"A supermoon is a full moon that happens within 90% of the Moon's closest approach to Earth (perigee). It looks up to 14% larger and 30% brighter than the smallest full moon of the year. There are typically 3–4 supermoons per year. In 2026, the September, October and November full moons are all supermoons."}},
 {"@type":"Question","name":"What is a blue moon?","acceptedAnswer":{"@type":"Answer","text":"A 'blue moon' is the second full moon in a calendar month — a roughly once-every-2.5-years event. The Moon does not actually turn blue. The next blue moon is May 31, 2026 (the second full moon in May; the first is May 1)."}},
@@ -345,6 +345,24 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
   const isEs = location.hostname.indexOf('lunallena') > -1;
   const canonicalEn = 'https://www.nextfullmoon.co/next-full-moon';
   const canonicalEs = 'https://www.lunallena.co/proxima-luna-llena';
+  const meta = {
+    en: {
+      title: 'When Is the Next Full Moon? · Full Calendar 2026–2027 · Next Full Moon',
+      desc: 'The next full moon is June 29, 2026 (23:57 UTC) — the Strawberry Moon, the lowest full moon of the year. Complete calendar of every full moon 2026–2027, with names, dates, exact UTC times and special events (supermoon, blue moon, eclipses).',
+      ogTitle: 'When Is the Next Full Moon? Calendar 2026–2027',
+      ogDesc: 'Next full moon: June 29, 2026 (Strawberry Moon, lowest of the year). Complete calendar with all 12 full moon names, dates and times.',
+      ogSite: 'Next Full Moon'
+    },
+    es: {
+      title: '¿Cuándo es la próxima luna llena? · Calendario completo 2026–2027 · Luna Llena',
+      desc: 'La próxima luna llena es el 29 de junio de 2026 (23:57 UTC) — la Luna de Fresa, la luna llena más baja del año. Calendario completo de cada luna llena 2026–2027, con nombres, fechas, horas exactas en UTC y eventos especiales (superluna, luna azul, eclipses).',
+      ogTitle: '¿Cuándo es la próxima luna llena? Calendario 2026–2027',
+      ogDesc: 'Próxima luna llena: 29 de junio de 2026 (Luna de Fresa, la más baja del año). Calendario completo con los 12 nombres de luna llena, fechas y horas.',
+      ogSite: 'Luna Llena'
+    }
+  };
+
+  function setMeta(id, val){ const el=document.getElementById(id); if(el){ if(el.tagName==='TITLE') el.textContent=val; else el.setAttribute('content', val); } }
 
   function applyLang(lang){
     document.documentElement.lang = lang;
@@ -358,6 +376,14 @@ strong{color:rgba(255,255,255,.85);font-weight:400;}
     // canonical follows lang (only if running on the wrong host, keep canonical pointing at correct one)
     const can = document.getElementById('pg-canonical');
     if(can) can.href = lang==='es' ? canonicalEs : canonicalEn;
+    // head SEO follows lang
+    const m = meta[lang] || meta.en;
+    setMeta('pg-title', m.title);
+    setMeta('pg-desc', m.desc);
+    setMeta('og-title', m.ogTitle);
+    setMeta('og-desc', m.ogDesc);
+    setMeta('og-site', m.ogSite);
+    setMeta('og-url', lang==='es' ? canonicalEs : canonicalEn);
     try{ localStorage.setItem('nfm-lang', lang); }catch(e){}
   }
   document.querySelectorAll('.lang-btn').forEach(b=>{
